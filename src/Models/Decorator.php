@@ -2,6 +2,9 @@
 
 namespace Trinityrank\DecoratorsFront\Models;
 
+use App\Articles\Types\Blog;
+use App\Categories\Types\MoneyPageCategory;
+use App\Categories\Types\ReviewPageCategory;
 use App\Models\Operater;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -10,43 +13,100 @@ use TOC\MarkupFixer;
 class Decorator extends Model
 {
     protected static $decoratorMapper = [
-        'three-column-section' => 'formatThreeColumnSection',
-        'title-section' => 'formatTitleSection',
-        'image-three-rows-section' => 'formatImageThreeRowsSection',
-        'youtube-section' => 'formatYoutubeSection',
-        'grid-section' => 'formatGridSection',
-        'standard-table-section' => 'parseStandardTableSection',
-        'content-section' => 'formatContentSection',
-        'faq-section' => 'formatFaqSection',
-        'sources-section' => 'formatSourcesSection',
-        'methodology-section' => 'formatMethodologySection',
-        'featured-snippet-section' => 'formatFeaturedSnippetSection',
-        'show-more-section' => 'formatShowMoreSection',
-        'credit-card-table-section' => 'parseCreditCardTableSection',
-        'single-review-table-section' => 'formatSingleReviewTableSection',
-        'review-compare-section' => 'formatReviewCompareSection',
-        'three-cards-table-section' => 'parseThreeCardsTableSection',
-        'offer-summary-table-section' => 'parseOfferSummaryTableSection',
-        'tech-table-section' => 'parseTechTableSection',
-        'gambler-table-section' => 'parseGamblerTableSection',
-        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection',
-        'values-content-table-section' => 'parseValuesContentTableSection',
-        'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection',
-        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',
-        'content-table' => 'formatContentTableSection',
-        'text-banner' => 'formatTextBannerSection',
-        'table-section' => 'parseTableSection',
+        'three-column-section' => 'formatThreeColumnSection',                       // FORTUNLY, SBG, RW42
+        'title-section' => 'formatTitleSection',                                    // FORTUNLY, SBG, RW42, Techjury
+        'image-three-rows-section' => 'formatImageThreeRowsSection',                // FORTUNLY, SBG, RW42, Techjury
+        'youtube-section' => 'formatYoutubeSection',                                // FORTUNLY, SBG, RW42, Techjury
+        'content-section' => 'formatContentSection',                                // FORTUNLY, SBG, RW42, Techjury
+        'faq-section' => 'formatFaqSection',                                        // FORTUNLY, SBG, RW42, Techjury
+        'sources-section' => 'formatSourcesSection',                                // FORTUNLY, SBG, RW42, Techjury
+        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY, SBG, RW42, Techjury
+        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY, SBG, RW42, Techjury
+        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY, SBG, RW42, Techjury
+        'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY, SBG, RW42, Techjury
+        'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY, SBG, RW42, Techjury
+        'content-table' => 'formatContentTableSection',                             // FORTUNLY, SBG, RW42, Techjury
+        'table-section' => 'parseTableSection',                                     // FORTUNLY, SBG, RW42, Techjury
 
-        // Fortunly
-        'text-banner' => 'formatTextBannerSection',
+        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY, SBG
+        'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY, SBG
+        'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection', // FORTUNLY, SBG <- FIXED
 
-        // SBG
-        'review-score-compare-section' => 'formatReviewScoreCompareSection',
-        'text-left-image-right-section' => 'formatTextLeftImageRightSection',
-        'authors-section' => 'authorsSection',
-        'divide-by-letters-section' => 'formatDivideByLettersSection',
-        'related-product-section' => 'formatRelatedProductSection',
+        'authors-section' => 'authorsSection',                                      // SBG, RW42, Techjury [ONLY]
+
+        'text-banner' => 'formatTextBannerSection',                                 // FORTUNLY [ONLY]
+
+        'review-score-compare-section' => 'formatReviewScoreCompareSection',        // SBG [ONLY]
+        'text-left-image-right-section' => 'formatTextLeftImageRightSection',       // SBG [ONLY]
+        'divide-by-letters-section' => 'formatDivideByLettersSection',              // SBG [ONLY]
+
+        'image-and-content-side-by-side-section' => 'imageAndContentSideBySideSection', // RW42, Techjury [ONLY]
+        'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',  // RW42, Techjury [ONLY]
+        'single-review-hardware-box-section' => 'singleReviewHardwareBoxSection',       // RW42, Techjury [ONLY]
+        'single-review-compare-section' => 'singleReviewCompareSection',                // RW42, Techjury [ONLY]
+        'small-three-column-table' => 'smallThreeColumnTableSection',                   // RW42, Techjury [ONLY]
+        'review-grid-section' => 'formatReviewGridSection',                             // RW42 [ONLY]
+        'content-with-background-section' => 'formatContentWithBackgroundSection',      // RW42, Techjury [ONLY]
+        'content-in-quotes-section' => 'formatContentInQuotesSection',                  // RW42, Techjury [ONLY]
+        'review-pricing-grid-section' => 'formatReviewPricingGridSection',              // RW42, Techjury [ONLY]
+        'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection', // RW42, Techjury [ONLY]
+        'pros-cons-table-section' => 'parseProsConsTableSection',                       // RW42 [ONLY]
+        'offer-bullets-table-section' => 'parseOfferBulletsTableSection',               // RW42, Techjury [ONLY]
+        'hardware-box-table-section' => 'parseHardwareBoxTableSection',                 // RW42, Techjury [ONLY]
+
+        'disclaimer-section' => 'disclaimerSection',                                    // Techjury [ONLY]
+        'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',  // Techjury [ONLY]
+        'money-page-grid-section' => 'formatMoneyPageGridSection',                      // Techjury [ONLY]
+        'post-grid-section' => 'formatPostGridSection',                                 // Techjury [ONLY]
+        'background-checks-section' => 'formatBackgroundChecksSection',                 // Techjury [ONLY]
+        'related-review-section' => 'formatRelatedReviewSection',                       // Techjury [ONLY]
+
+        // COMPLETED ^^^^
+
+
+
+        // DIF SOME
+        'offer-summary-table-section' => 'parseOfferSummaryTableSection', // FORTUNLY == SBG,  RW42, Techjury
+        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury
+        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY != SBG
+        'related-product-section' => 'formatRelatedProductSection', // SBG != RW42 == Techjury
+
+        // DIF ALL
+        'grid-section' => 'formatGridSection', // FORTUNLY, SBG, RW42, Techjury
+        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY, SBG, RW42, Techjury
+        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury
+        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury
+        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY, SBG, RW42, Techjury
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury
+
+        // DIF NAME
+
+        // 'detailed-blue-table-section' => 'formatDetailedBlueTableSection', // X2 dif name RW42, Techjury
+        // 'values-content-table-section' => 'formatValuesContentTableSection', // X2 dif name RW42, Techjury
+        // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name RW42, Techjury
+        // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name RW42, Techjury
+
+        // Review42 problems
+
+//        'standard-table-section' => 'parseStandardTableSection', // <---- check
+//        'credit-card-table-section' => 'parseCreditCardTableSection', // <---- check
+//        'related-product-section' => 'formatRelatedProductSection' // <---- check
+
+        // Techjury problems
+
+//        'review-grid-section' => 'formatReviewGridSection',
+//        'three-column-section' => 'formatThreeColumnSection',
+//        'pros-cons-table-section' => 'parseProsConsTableSection',
+
+        // SITES:
+        // Fortunly     - DONE,
+        // SBG          - CHECK,
+        // Review42     - CHECK,
+        // Techjury     - CHECK,
+        // DataProt,
+        // TechTribunal,
+        // KommandoTech
+
     ];
 
     public static function parse($decorators)
@@ -308,6 +368,7 @@ class Decorator extends Model
                 'title_label' => $decorator['attributes']['title_label'],
                 'title' => $decorator['attributes']['title'],
                 'list_type' => $decorator['attributes']['list_type'],
+                'bottom_text' => $decorator['attributes']['bottom_text'] ?? '',
                 'elements' => collect($decorator['attributes']['featured-snippets'])
                     ->map(function ($element) {
                         return [
@@ -376,6 +437,7 @@ class Decorator extends Model
                         'rating' => $element['attributes']['rating'],
                         'cta_text' => !empty($element['attributes']['cta_text']) ? $element['attributes']['cta_text'] : 'Visit Site',
                         'cta_url' => $element['attributes']['cta_url'],
+                        'inactive' => $element['attributes']['inactive'] ?? false,
                         'main_features' => collect($element['attributes']['main_features'])->map(function ($element) {
                             return [
                                 'feature_title' => $element['attributes']['feature_title'],
@@ -691,7 +753,7 @@ class Decorator extends Model
                         'table_columns' => collect($element['attributes']['table_columns'])->map(function ($element) {
                             return [
                                 'column_value' => $element['attributes']['column_value'],
-                                'column_link' => $element['attributes']['column_link']
+                                'column_link' => $element['attributes']['column_link'] ?? null
                             ];
                         })->toArray(),
                     ];
@@ -794,6 +856,399 @@ class Decorator extends Model
                         ];
                     })
                     ->toArray()
+            ]
+        ];
+    }
+
+    public static function imageAndContentSideBySideSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'subtitle' => $decorator['attributes']['subtitle'],
+                'description' => $decorator['attributes']['description'],
+                'button-text' => $decorator['attributes']['button_text'],
+                'button-url' => $decorator['attributes']['button_url'],
+                'image-right' => $decorator['attributes']['pull_image_right'],
+            ]
+        ];
+    }
+
+    public static function singleReviewBoxWithRatingSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'fact_checked' => $decorator['attributes']['fact_checked'],
+                'cta_url' => $decorator['attributes']['cta_url'],
+                'cta_text' => $decorator['attributes']['cta_text'],
+                'price_text' => $decorator['attributes']['price_text'],
+                'price' => $decorator['attributes']['price'],
+                'main_features' => collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'],
+                        'feature_text' => $element['attributes']['feature_text'] ?? '',
+                        'rating' => $element['attributes']['rating'] ?? null
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function singleReviewHardwareBoxSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'fact_checked' => $decorator['attributes']['fact_checked'],
+                'rating' => $decorator['attributes']['rating'],
+                'merchant_list' => collect($decorator['attributes']['merchant_list'])->map(function ($element) {
+                    return [
+                        'price' => $element['attributes']['price'],
+                        'cta_url' => $element['attributes']['cta_url'],
+                        'cta_text' => $element['attributes']['cta_text'],
+                        'merchant' => $element['attributes']['merchant'],
+                    ];
+                })->toArray(),
+                'main_features' => collect($decorator['attributes']['main_features_table'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'],
+                        'text' => $element['attributes']['feature_text']
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function singleReviewCompareSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'fact_checked' => $decorator['attributes']['fact_checked'],
+                'winner_title' => $decorator['attributes']['winner_title'],
+                'winner_rating' => $decorator['attributes']['winner_rating'],
+                'winner_cta_text' => $decorator['attributes']['winner_cta_text'],
+                'winner_cta_url' => $decorator['attributes']['winner_cta_url'],
+                'loser_title' => $decorator['attributes']['loser_title'],
+                'loser_rating' => $decorator['attributes']['loser_rating'],
+                'loser_cta_text' => $decorator['attributes']['loser_cta_text'],
+                'loser_cta_url' => $decorator['attributes']['loser_cta_url'],
+                'main_features' => collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'],
+                        'winner_text' => $element['attributes']['winner_text'],
+                        'loser_text' => $element['attributes']['loser_text']
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function smallThreeColumnTableSection($decorator)
+    {
+
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'text' => $decorator['attributes']['text'] ?? '',
+                'table' => collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'],
+                        'title' => $element['attributes']['title'],
+                        'review_url' => $element['attributes']['review_url'],
+                        'main_features' => collect($element['attributes']['main_features'])->map(function ($subelement) {
+                            return [
+                                'feature_title' => $subelement['attributes']['feature_title'],
+                                'feature_text' => $subelement['attributes']['feature_text'],
+                            ];
+                        })->toArray()
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function formatReviewGridSection($decorator)
+    {
+        $reviews = ReviewPageCategory::orderBy('created_at', 'desc')->limit(9)->with('media')->get();
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'reviews' => $reviews,
+                'label_title' => $decorator['attributes']['label_title'],
+                'title' => $decorator['attributes']['title'],
+                'review_description' => $decorator['attributes']['review_description']
+            ]
+        ];
+    }
+
+    public static function formatContentWithBackgroundSection($decorator)
+    {
+        // Fix iframe for responsive
+        $content = str_replace("<iframe", "<div class='iframe-wrapper'><iframe", $decorator['attributes']['content']);
+        $content = str_replace("</iframe>", "</iframe></div>", $content);
+        /*
+        Lazy Load
+        can't replace all "src" to "data-src" because "script" tag also has "src" attribute
+        */
+        // Iframe
+        $content = str_replace('src="https://www.youtube.com', 'data-src="https://www.youtube.com', $content);
+        // Img
+        $content = str_replace('src="https://trinity-core.s3-us-west-1.amazonaws.com', 'data-src="https://trinity-core.s3-us-west-1.amazonaws.com', $content);
+
+        $content = (new MarkupFixer())->fix($content);
+        return [
+            'layout' => $decorator['layout'],
+            'data' => $content
+        ];
+    }
+
+    public static function formatContentInQuotesSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'content' => $decorator['attributes']['content'],
+            ]
+        ];
+    }
+
+    public static function formatReviewPricingGridSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'table_row' => collect($decorator['attributes']['table_row'])->map(function ($element) {
+                    return [
+                        'url' => $element['attributes']['url'],
+                        'plan' => $element['attributes']['plan'],
+                        'offer' => $element['attributes']['offer'],
+                        'description' => $element['attributes']['description'],
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function formatReviewStrengthsWeaknessesSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'best_for' => $decorator['attributes']['best_for'],
+                'strengths' => collect($decorator['attributes']['strengths'])->map(function ($element) {
+                    return [
+                        'text' => $element['attributes']['strength'],
+                    ];
+                })->toArray(),
+                'weaknesses' => collect($decorator['attributes']['weaknesses'])->map(function ($element) {
+                    return [
+                        'text' => $element['attributes']['weakness'],
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function parseProsConsTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'],
+            'table_type' => $decorator['table_type'],
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'],
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
+            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Visit Website',
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'],
+            'content' => $decorator->decorators[0]['attributes']['content'],
+            'main_features' => collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
+                return [
+                    'feature_title' => $element['attributes']['feature_title'],
+                    'feature_text' => $element['attributes']['feature_text']
+                ];
+            })->toArray(),
+            'pros_list' => collect($decorator->decorators[0]['attributes']['pros_list'])->map(function ($element) {
+                return [
+                    'item' => $element['attributes']['text']
+                ];
+            })
+                ->flatten(1)
+                ->toArray(),
+            'cons_list' => collect($decorator->decorators[0]['attributes']['cons_list'])->map(function ($element) {
+                return [
+                    'item' => $element['attributes']['text']
+                ];
+            })
+                ->flatten(1)
+                ->toArray(),
+        ];
+    }
+
+    public static function parseOfferBulletsTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'],
+            'table_type' => $decorator['table_type'],
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'alt' => $decorator->getFirstMedia('logo')->getCustomProperty('alt') ?? $decorator->decorators[0]['attributes']['title'] ?? '',
+            'key' => $decorator->decorators[0]['key'],
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'brand_name' => $decorator->decorators[0]['attributes']['brand_name'],
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
+            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Get A Quote',
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'bulleted_features' => collect($decorator->decorators[0]['attributes']['bulleted_features'])->map(function ($element) {
+                return [
+                    'value' => $element['attributes']['value']
+                ];
+            })->toArray(),
+        ];
+    }
+
+    public static function parseHardwareBoxTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'],
+            'table_type' => $decorator['table_type'],
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'],
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'rating' => $decorator->decorators[0]['attributes']['rating'],
+            'brand_name' => $decorator->decorators[0]['attributes']['brand_name'],
+            'description' => $decorator->decorators[0]['attributes']['description'],
+            'product_gallery' => $decorator->getMedia('product_gallery_'. $decorator->decorators[0]['key']) ?? '',
+            'merchant_list' => collect($decorator->decorators[0]['attributes']['merchant_list'])->map(function ($element) {
+                return [
+                    'price' => $element['attributes']['price'],
+                    'currency' => $element['attributes']['merchant-list_currency'] ?? '$',
+                    'cta_url' => $element['attributes']['cta_url'],
+                    'cta_text' => $element['attributes']['cta_text'],
+                    'merchant' => $element['attributes']['merchant'],
+                ];
+            })->toArray(),
+            'main_features' => collect($decorator->decorators[0]['attributes']['main_features_table'])->map(function ($element) {
+                return [
+                    'title' => $element['attributes']['feature_title'],
+                    'text' => $element['attributes']['feature_text']
+                ];
+            })->toArray()
+        ];
+    }
+
+    public static function disclaimerSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'description' => $decorator['attributes']['description']
+            ]
+        ];
+    }
+
+    public static function singleReviewBoxWithFeaturesSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'fact_checked' => $decorator['attributes']['fact_checked'],
+                'description' => $decorator['attributes']['description'],
+                'cta_url' => $decorator['attributes']['cta_url'],
+                'cta_text' => $decorator['attributes']['cta_text'],
+                'price_text' => $decorator['attributes']['price_text'],
+                'price' => $decorator['attributes']['price'],
+                'main_features' => collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'],
+                        'feature' => $element['attributes']['feature_text']
+                    ];
+                })->toArray(),
+                'works_on' => $decorator['attributes']['works_on'] ?? null,
+            ]
+        ];
+    }
+
+    public static function formatMoneyPageGridSection($decorator)
+    {
+        $moneypage_categories = MoneyPageCategory::orderBy('created_at', 'desc')->whereNotNull('parent_id')->distinct()->limit(16)->get();
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'moneypage_categories' => $moneypage_categories,
+                'label_title' => $decorator['attributes']['label_title'],
+                'title' => $decorator['attributes']['title'],
+                'money_description' => $decorator['attributes']['review_description']
+            ]
+        ];
+    }
+
+    public static function formatPostGridSection($decorator)
+    {
+        $posts = Blog::whereHas('categories', function($q) use ($decorator){
+            $q->where('slug', $decorator['attributes']['category']);
+        })
+            ->orderBy('updated_at', 'desc')
+            ->with('media','user')
+            ->status()
+            ->publishDate()
+            ->take(8)
+            ->get();
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'posts' => $posts,
+                'category' => $decorator['attributes']['category'],
+                'title' => $decorator['attributes']['title'],
+                'description' => $decorator['attributes']['description']
+            ]
+        ];
+    }
+
+    public static function formatBackgroundChecksSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title']
+            ]
+        ];
+    }
+
+    public static function formatRelatedReviewSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'elements' => collect($decorator['attributes']['related-reviews'])
+                    ->map(function ($element) {
+                        $model = collect($element['attributes'])->keys()->last();
+                        return $element['attributes'][$model];
+                    })->toArray()
             ]
         ];
     }
