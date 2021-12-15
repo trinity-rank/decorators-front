@@ -14,19 +14,19 @@ class Decorator extends Model
 {
     protected static $decoratorMapper = [
         'three-column-section' => 'formatThreeColumnSection',                       // FORTUNLY, SBG, RW42
-        'title-section' => 'formatTitleSection',                                    // FORTUNLY, SBG, RW42, Techjury
-        'image-three-rows-section' => 'formatImageThreeRowsSection',                // FORTUNLY, SBG, RW42, Techjury
-        'youtube-section' => 'formatYoutubeSection',                                // FORTUNLY, SBG, RW42, Techjury
-        'content-section' => 'formatContentSection',                                // FORTUNLY, SBG, RW42, Techjury
-        'faq-section' => 'formatFaqSection',                                        // FORTUNLY, SBG, RW42, Techjury
-        'sources-section' => 'formatSourcesSection',                                // FORTUNLY, SBG, RW42, Techjury
-        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY, SBG, RW42, Techjury
-        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY, SBG, RW42, Techjury
-        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY, SBG, RW42, Techjury
-        'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY, SBG, RW42, Techjury
-        'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY, SBG, RW42, Techjury
-        'content-table' => 'formatContentTableSection',                             // FORTUNLY, SBG, RW42, Techjury
-        'table-section' => 'parseTableSection',                                     // FORTUNLY, SBG, RW42, Techjury
+        'title-section' => 'formatTitleSection',                                    // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'image-three-rows-section' => 'formatImageThreeRowsSection',                // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'youtube-section' => 'formatYoutubeSection',                                // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'content-section' => 'formatContentSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'faq-section' => 'formatFaqSection',                                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'sources-section' => 'formatSourcesSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'content-table' => 'formatContentTableSection',                             // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'table-section' => 'parseTableSection',                                     // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
 
         'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY, SBG
         'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY, SBG
@@ -51,7 +51,7 @@ class Decorator extends Model
         'review-pricing-grid-section' => 'formatReviewPricingGridSection',              // RW42, Techjury [ONLY]
         'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection', // RW42, Techjury [ONLY]
         'pros-cons-table-section' => 'parseProsConsTableSection',                       // RW42 [ONLY]
-        'offer-bullets-table-section' => 'parseOfferBulletsTableSection',               // RW42, Techjury [ONLY]
+        'offer-bullets-table-section' => 'parseOfferBulletsTableSection',               // RW42, Techjury, TechTribunal [ONLY]
         'hardware-box-table-section' => 'parseHardwareBoxTableSection',                 // RW42, Techjury [ONLY]
 
         'disclaimer-section' => 'disclaimerSection',                                    // Techjury [ONLY]
@@ -61,30 +61,45 @@ class Decorator extends Model
         'background-checks-section' => 'formatBackgroundChecksSection',                 // Techjury [ONLY]
         'related-review-section' => 'formatRelatedReviewSection',                       // Techjury [ONLY]
 
+        'standard-data-table-section' => 'parseStandardDataTableSection',               // Dataprot [ONLY]
+        'single-review-box-section' => 'formatSingleReviewRowSection',                  // Dataprot [ONLY]
+        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot, TechTribunal [ONLY]
+        'editors-choice-section' => 'parseEditorsChoiceSection',                        // Dataprot [ONLY]
+        'related-posts-section' => 'formatRelatedPostsSection',                         // Dataprot, TechTribunal [ONLY]
+        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot [ONLY]
+
+        'products-table-section' => 'parseProductTableSection',                         // TechTribunal [ONLY]
+        'deals-list-layout' => 'formatDealsListLayout',                                 // TechTribunal [ONLY]
+        'home-title-section' => 'formatHomeTitleSection',                               // TechTribunal [ONLY]
+        'moneypage-slider-section' => 'formatMoneypageSliderSection',                   // TechTribunal [ONLY]
+        'home-mission-section' => 'formatHomeMissionSection',                           // TechTribunal [ONLY]
+        'reviews-section' => 'formatReviewsSection',                                    // TechTribunal [ONLY]
+        'home-top-posts-section' => 'formatHomeTopPostsSection',                        // TechTribunal [ONLY]
+        'single-review-compare-features-section' => 'formatSingleReviewCompareFeaturesSection', // TechTribunal [ONLY]
+
         // COMPLETED ^^^^
 
 
-
         // DIF SOME
-        'offer-summary-table-section' => 'parseOfferSummaryTableSection', // FORTUNLY == SBG,  RW42, Techjury
-        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury
+        'offer-summary-table-section' => 'parseOfferSummaryTableSection', // FORTUNLY == SBG,  RW42, Techjury, Dataprot, TechTribunal
+        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury, TechTribunal
         'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY != SBG
         'related-product-section' => 'formatRelatedProductSection', // SBG != RW42 == Techjury
 
         // DIF ALL
-        'grid-section' => 'formatGridSection', // FORTUNLY, SBG, RW42, Techjury
-        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY, SBG, RW42, Techjury
-        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury
-        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury
-        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY, SBG, RW42, Techjury
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury
+        'grid-section' => 'formatGridSection', // FORTUNLY == Dataprot, SBG, RW42, Techjury, TechTribunal
+        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
 
         // DIF NAME
 
         // 'detailed-blue-table-section' => 'formatDetailedBlueTableSection', // X2 dif name RW42, Techjury
-        // 'values-content-table-section' => 'formatValuesContentTableSection', // X2 dif name RW42, Techjury
-        // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name RW42, Techjury
-        // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name RW42, Techjury
+        // 'values-content-table-section' => 'formatValuesContentTableSection', // X2 dif name RW42, Techjury, TechTribunal
+        // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name RW42, Techjury, TechTribunal
+        // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name RW42, Techjury, TechTribunal
 
         // Review42 problems
 
@@ -98,12 +113,33 @@ class Decorator extends Model
 //        'three-column-section' => 'formatThreeColumnSection',
 //        'pros-cons-table-section' => 'parseProsConsTableSection',
 
+        // Dataprot problems
+
+//        'three-column-section' => 'formatThreeColumnSection',
+//        'single-review-table-section' => 'formatSingleReviewTableSection',
+//        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',
+//        'values-content-table-section' => 'parseValuesContentTableSection',
+//        'content-table' => 'formatContentTableSection',
+//        'related-review-section' => 'formatRelatedReviewSection',
+
+        // TechTribunal problems
+
+//      'three-column-section' => 'formatThreeColumnSection',
+//      'detailed-blue-table-section' => 'parseDetailedBlueTableSection'
+//      'single-review-box-section' => 'formatSingleReviewRowSection',
+//      'review-pricing-grid-section' => 'formatReviewPricingGridSection',
+//      'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection',
+//      'single-review-hardware-box-section' => 'formatSingleReviewHardwareBoxSection',
+//      'single-review-compare-section' => 'formatSingleReviewCompareSection',
+
+
+
         // SITES:
         // Fortunly     - DONE,
         // SBG          - CHECK,
         // Review42     - CHECK,
         // Techjury     - CHECK,
-        // DataProt,
+        // DataProt,    - CHECK,
         // TechTribunal,
         // KommandoTech
 
@@ -124,13 +160,13 @@ class Decorator extends Model
     {
         $tableTitle = $decorator['attributes']['table_title'] ?? null;
         $tableElements = json_decode($decorator['attributes']['table'][0]['attributes']['operaters']);
-        $operaters = Operater::whereIn('id', $tableElements)->with('media')->orderByRaw('FIELD(id,'.implode(",",$tableElements).')')->get();
+        $operaters = Operater::whereIn('id', $tableElements)->with('media')->orderByRaw('FIELD(id,' . implode(",", $tableElements) . ')')->get();
 
         $data = [
             'layout' => $decorator['attributes']['table'][0]['layout'],
             'data' => [
                 'table_title' => $tableTitle,
-                'elements' => $operaters->map( function( $operater ) {
+                'elements' => $operaters->map(function ($operater) {
                     $tableParser = self::$decoratorMapper[$operater['table_type']];
                     $operater['image'] = $operater->getFirstMediaUrl('logo') ?? "";
                     $operater = \App\Models\Decorator::{$tableParser}($operater) ?? [];
@@ -220,17 +256,17 @@ class Decorator extends Model
                         $url = '';
                         $categoryUrl = '';
 
-                        if($routePrefix === 'blog' || $routePrefix === 'moneypage') {
+                        if ($routePrefix === 'blog' || $routePrefix === 'moneypage') {
                             $url = route('resolve.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('resolve', [$category->slug]);
                         }
 
-                        if($routePrefix === 'news') {
+                        if ($routePrefix === 'news') {
                             $url = route('news.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('news.category', [$category->slug]);
                         }
 
-                        if($routePrefix === 'reviews') {
+                        if ($routePrefix === 'reviews') {
                             $url = route('reviews.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('reviews.category', [$category->slug]);
                         }
@@ -285,7 +321,8 @@ class Decorator extends Model
 
     }
 
-    public static function formatContentSection($decorator) {
+    public static function formatContentSection($decorator)
+    {
         // Fix iframe for responsive
         $content = str_replace("<iframe", "<div class='iframe-wrapper'><iframe", $decorator['attributes']['content']);
         $content = str_replace("</iframe>", "</iframe></div>", $content);
@@ -310,7 +347,7 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'],
             'data' => [
-                'title' => $decorator['attributes']['title'],
+                'title' => $decorator['attributes']['title'] ?? 'FAQ',
                 'elements' => collect($decorator['attributes']['faq'])
                     ->map(function ($element) {
                         return [
@@ -380,7 +417,8 @@ class Decorator extends Model
         ];
     }
 
-    public static function formatShowMoreSection($decorator) {
+    public static function formatShowMoreSection($decorator)
+    {
         return [
             'layout' => $decorator['layout'],
             'data' => (new MarkupFixer())->fix($decorator['attributes']['content'])
@@ -827,7 +865,7 @@ class Decorator extends Model
             'data' => [
                 'main_title' => $decorator['attributes']['main_title'],
                 'elements' => collect($decorator['attributes']['paragraph'])
-                    ->map(function($element) {
+                    ->map(function ($element) {
                         $element['attributes']['letter'] = substr($element['attributes']['title'], 0, 1);
                         return $element['attributes'];
                     })
@@ -1138,7 +1176,7 @@ class Decorator extends Model
             'rating' => $decorator->decorators[0]['attributes']['rating'],
             'brand_name' => $decorator->decorators[0]['attributes']['brand_name'],
             'description' => $decorator->decorators[0]['attributes']['description'],
-            'product_gallery' => $decorator->getMedia('product_gallery_'. $decorator->decorators[0]['key']) ?? '',
+            'product_gallery' => $decorator->getMedia('product_gallery_' . $decorator->decorators[0]['key']) ?? '',
             'merchant_list' => collect($decorator->decorators[0]['attributes']['merchant_list'])->map(function ($element) {
                 return [
                     'price' => $element['attributes']['price'],
@@ -1207,11 +1245,11 @@ class Decorator extends Model
 
     public static function formatPostGridSection($decorator)
     {
-        $posts = Blog::whereHas('categories', function($q) use ($decorator){
+        $posts = Blog::whereHas('categories', function ($q) use ($decorator) {
             $q->where('slug', $decorator['attributes']['category']);
         })
             ->orderBy('updated_at', 'desc')
-            ->with('media','user')
+            ->with('media', 'user')
             ->status()
             ->publishDate()
             ->take(8)
@@ -1249,6 +1287,349 @@ class Decorator extends Model
                         $model = collect($element['attributes'])->keys()->last();
                         return $element['attributes'][$model];
                     })->toArray()
+            ]
+        ];
+    }
+
+    public static function parseStandardDataTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'] ?? null,
+            'table_type' => $decorator['table_type'],
+            'name' => $decorator['name'] ?? null,
+            'badge_text' => isset($decorator->decorators[0]['attributes']['badge_text']) ? $decorator->decorators[0]['attributes']['badge_text'] : null,
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'],
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'],
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'],
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? 'Apply now',
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'],
+            'rating' => $decorator->decorators[0]['attributes']['rating'],
+            'bottom_line' => $decorator->decorators[0]['attributes']['bottom_line'],
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'],
+            'key_features' => collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
+                return [
+                    'feature' => $element['attributes']['feature']
+                ];
+            })
+                ->flatten(1)
+                ->toArray(),
+            'applications' => collect($decorator->decorators[0]['attributes']['application'])->map(function ($element, $key) {
+                return [
+                    $element,
+                ];
+            })->toArray(),
+        ];
+    }
+
+    public static function formatSingleReviewRowSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'elements' => collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'],
+                        'description' => $element['attributes']['description'],
+                        'price_text' => $element['attributes']['price_text'],
+                        'price' => $element['attributes']['price'],
+                        'price_period' => $element['attributes']['price_period'],
+                        'cta_text' => !empty($element['attributes']['cta_text']) ? $element['attributes']['cta_text'] : 'Visit Website',
+                        'cta_url' => $element['attributes']['cta_url'],
+                        'best_for_title' => $element['attributes']['best_for_title'] ?? null,
+                        'best_for_text' => $element['attributes']['best_for_text'] ?? null,
+                        'main_features' => collect($element['attributes']['main_features'])->map(function ($element) {
+                            return [
+                                'feature_title' => $element['attributes']['feature_title'],
+                                'feature_text' => $element['attributes']['feature_text']
+                            ];
+                        })->toArray(),
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function formatStatsHighlightSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'content' => $decorator['attributes']['content'],
+                'list_type' => $decorator['attributes']['list_type'],
+                'elements' => collect($decorator['attributes']['stats-highlights'])
+                    ->map(function ($element) {
+                        return [
+                            'stat' => $element['attributes']['stat'],
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function parseEditorsChoiceSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'],
+            'table_type' => $decorator['table_type'],
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'price' => $decorator->decorators[0]['attributes']['price'],
+            'price_period' => $decorator->decorators[0]['attributes']['price_period'] ?? 'monthly',
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] !== '' ? $decorator->decorators[0]['attributes']['cta_text'] : 'Visit Website',
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
+            'review_url' => isset($decorator->decorators[0]['attributes']['review_url']) ? $decorator->decorators[0]['attributes']['review_url'] : null,
+        ];
+    }
+
+    public static function formatRelatedPostsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'elements' => collect($decorator['attributes']['grid'])
+                    ->map(function ($element) {
+                        $model = collect($element['attributes'])->keys()->last();
+                        $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
+                        $routePrefix = strtolower(collect(explode('\\', $model))->last());
+
+                        $category = $page->categories->first();
+
+                        $url = '';
+                        $categoryUrl = '';
+
+                        if($routePrefix === 'blog' || $routePrefix === 'moneypage') {
+                            $url = route('resolve.single', [$category->slug, $page->slug]);
+                            $categoryUrl = route('resolve', [$category->slug]);
+                        }
+
+                        if($routePrefix === 'news') {
+                            $url = route('news.single', [$category->slug, $page->slug]);
+                            $categoryUrl = route('news.category', [$category->slug]);
+                        }
+
+                        if($routePrefix === 'reviews') {
+                            $url = route('reviews.single', [$category->slug, $page->slug]);
+                            $categoryUrl = route('reviews.category', [$category->slug]);
+                        }
+
+
+
+                        return [
+                            'title' => $page['title'],
+                            'created_at_m' => $page['created_at']->format('M') ,
+                            'created_at_d' => $page['created_at']->format('d'),
+                            'url' => $url,
+                            'category_name' => $category->name,
+                            'image' => $page->getFirstMediaUrl('feature'),
+                            'category_url' => $categoryUrl,
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function formatTitleImageTextGridSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'key' => $decorator['key'],
+                'title' => $decorator['attributes']['title'] ?? null,
+                'subtitle' => $decorator['attributes']['subtitle'] ?? null,
+                'elements' => collect($decorator['attributes']['columns'])
+                    ->map(function ($element) {
+                        return [
+                            'title' => $element['attributes']['title'],
+                            'text' => $element['attributes']['text'],
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function parseProductTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'] ?? null,
+            'table_type' => $decorator['table_type'] ?? "",
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'],
+            'rating' => $decorator->decorators[0]['attributes']['rating'],
+            'brand' => $decorator->decorators[0]['attributes']['brand'],
+            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Buy Now',
+            'content' => $decorator->decorators[0]['attributes']['content'],
+            'product_gallery' => $decorator->getMedia('product_gallery_'. $decorator->decorators[0]['key']),
+            'main_features_table' => collect($decorator->decorators[0]['attributes']['main_features_table'])->map(function ($element) {
+                return [
+                    'feature_title' => $element['attributes']['feature_title'],
+                    'feature_text' => $element['attributes']['feature_text']
+                ];
+            })->toArray(),
+            'merchant_list' => collect($decorator->decorators[0]['attributes']['merchant_list'])->map(function ($element) {
+                return [
+                    'merchant' => $element['attributes']['merchant'],
+                    'price' => $element['attributes']['price'],
+                    'cta_text' => $element['attributes']['cta_text'],
+                    'cta_url' => $element['attributes']['cta_url'],
+                ];
+            })->toArray(),
+
+        ];
+    }
+
+    public static function formatDealsListLayout($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'elements' => collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'],
+                        'brand' => $element['attributes']['brand'],
+                        'title' => $element['attributes']['title'],
+                        'website_url' => $element['attributes']['website_url'] ?? null,
+                        'bonus_code' => $element['attributes']['bonus_code'],
+                        'description' => $element['attributes']['description'],
+                        'button_txt' => $element['attributes']['button_txt'],
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function formatHomeTitleSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => $decorator['attributes']
+        ];
+    }
+
+    public static function formatReviewsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => $decorator['attributes']
+        ];
+    }
+
+    public static function formatMoneypageSliderSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'title_text' => $decorator['attributes']['title_text'],
+                'elements' => collect($decorator['attributes']['slider'])
+                    ->map(function ($element) {
+                        $model = collect($element['attributes'])->keys()->last();
+                        $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
+                        $routePrefix = strtolower(collect(explode('\\', $model))->last());
+                        $category = $page->categories->first();
+                        $url = '';
+                        $categoryUrl = '';
+                        $url = route('resolve.single', [$category->slug, $page->slug]);
+                        $categoryUrl = route('resolve', [$category->slug]);
+                        return [
+                            'title' => $page->title,
+                            'created_at_d' => $page->created_at->format('d'),
+                            'created_at_m' => $page->created_at->format('M'),
+                            'url' => $url,
+                            'category_name' => $category->name,
+                            'image' => $page->getFirstMediaUrl('feature'),
+                            'category_url' => $categoryUrl,
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function formatHomeMissionSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'content' => $decorator['attributes']['content'],
+                'elements' => collect($decorator['attributes']['columns'])
+                    ->map(function ($element) {
+                        return [
+                            'title' => $element['attributes']['title'],
+                            'description' => $element['attributes']['description'],
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function formatHomeTopPostsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'title' => $decorator['attributes']['title'],
+                'elements' => collect($decorator['attributes']['slider'])
+                    ->map(function ($element) {
+                        $model = collect($element['attributes'])->keys()->last();
+                        $page = $model::whereId($element['attributes'][$model])->with('categories', 'media')->first();
+                        $routePrefix = strtolower(collect(explode('\\', $model))->last());
+                        // ray($page);
+                        $category = $page->categories->first();
+
+                        $url = '';
+                        $categoryUrl = '';
+                        $url = route('resolve.single', [$category->slug, $page->slug]);
+                        $categoryUrl = route('resolve', [$category->slug]);
+                        return [
+                            'title' => $page->title,
+                            'url' => $url,
+                            'category_name' => $category->name,
+                            'image' => $page->getFirstMediaUrl('feature'),
+                            'category_url' => $categoryUrl,
+                        ];
+                    })
+                    ->toArray()
+            ]
+        ];
+    }
+
+    public static function formatSingleReviewCompareFeaturesSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'key' => $decorator['key'],
+            'data' => [
+                'winner_best_for' => $decorator['attributes']['winner_best_for'],
+                'winner_title' => $decorator['attributes']['winner_title'],
+                'loser_best_for' => $decorator['attributes']['loser_best_for'],
+                'loser_title' => $decorator['attributes']['loser_title'],
+                'main_features' => collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'],
+                        'winner_features' => $element['attributes']['winner_features'],
+                        'loser_features' => $element['attributes']['loser_features']
+                    ];
+                })->toArray()
             ]
         ];
     }
