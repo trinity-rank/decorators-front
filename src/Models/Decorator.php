@@ -14,19 +14,20 @@ class Decorator extends Model
 {
     protected static $decoratorMapper = [
         'three-column-section' => 'formatThreeColumnSection',                       // FORTUNLY, SBG, RW42
-        'title-section' => 'formatTitleSection',                                    // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'title-section' => 'formatTitleSection',                                    // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
         'image-three-rows-section' => 'formatImageThreeRowsSection',                // FORTUNLY, SBG, RW42, Techjury, TechTribunal
         'youtube-section' => 'formatYoutubeSection',                                // FORTUNLY, SBG, RW42, Techjury, TechTribunal
-        'content-section' => 'formatContentSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'faq-section' => 'formatFaqSection',                                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'sources-section' => 'formatSourcesSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'content-section' => 'formatContentSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'faq-section' => 'formatFaqSection',                                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'sources-section' => 'formatSourcesSection',                                // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
         'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY, SBG, RW42, Techjury, TechTribunal
         'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
         'content-table' => 'formatContentTableSection',                             // FORTUNLY, SBG, RW42, Techjury, TechTribunal
         'table-section' => 'parseTableSection',                                     // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'offer-summary-table-section' => 'parseOfferSummaryTableSection',           // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
 
         'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY, SBG
         'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY, SBG
@@ -52,7 +53,7 @@ class Decorator extends Model
         'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection', // RW42, Techjury [ONLY]
         'pros-cons-table-section' => 'parseProsConsTableSection',                       // RW42 [ONLY]
         'offer-bullets-table-section' => 'parseOfferBulletsTableSection',               // RW42, Techjury, TechTribunal [ONLY]
-        'hardware-box-table-section' => 'parseHardwareBoxTableSection',                 // RW42, Techjury [ONLY]
+        'hardware-box-table-section' => 'parseHardwareBoxTableSection',                 // RW42, Techjury, KommandoTech [ONLY]
 
         'disclaimer-section' => 'disclaimerSection',                                    // Techjury [ONLY]
         'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',  // Techjury [ONLY]
@@ -62,11 +63,11 @@ class Decorator extends Model
         'related-review-section' => 'formatRelatedReviewSection',                       // Techjury [ONLY]
 
         'standard-data-table-section' => 'parseStandardDataTableSection',               // Dataprot [ONLY]
-        'single-review-box-section' => 'formatSingleReviewRowSection',                  // Dataprot [ONLY]
-        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot, TechTribunal [ONLY]
+        'single-review-box-section' => 'formatSingleReviewRowSection',                  // Dataprot, KommandoTech [ONLY]
+        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot, TechTribunal, KommandoTech [ONLY]
         'editors-choice-section' => 'parseEditorsChoiceSection',                        // Dataprot [ONLY]
         'related-posts-section' => 'formatRelatedPostsSection',                         // Dataprot, TechTribunal [ONLY]
-        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot [ONLY]
+        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot, KommandoTech [ONLY]
 
         'products-table-section' => 'parseProductTableSection',                         // TechTribunal [ONLY]
         'deals-list-layout' => 'formatDealsListLayout',                                 // TechTribunal [ONLY]
@@ -77,22 +78,23 @@ class Decorator extends Model
         'home-top-posts-section' => 'formatHomeTopPostsSection',                        // TechTribunal [ONLY]
         'single-review-compare-features-section' => 'formatSingleReviewCompareFeaturesSection', // TechTribunal [ONLY]
 
+        'products-compare-section' => 'formatProductsCompareSection',                    // KommandoTech [ONLY]
+
         // COMPLETED ^^^^
 
 
         // DIF SOME
-        'offer-summary-table-section' => 'parseOfferSummaryTableSection', // FORTUNLY == SBG,  RW42, Techjury, Dataprot, TechTribunal
-        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury, TechTribunal
-        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY != SBG
+        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
+        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY == SBG <-- Test
         'related-product-section' => 'formatRelatedProductSection', // SBG != RW42 == Techjury
 
         // DIF ALL
-        'grid-section' => 'formatGridSection', // FORTUNLY == Dataprot, SBG, RW42, Techjury, TechTribunal
+        'grid-section' => 'formatGridSection', // FORTUNLY == Dataprot, SBG, RW42, Techjury, TechTribunal, KommandoTech
         'standard-table-section' => 'parseStandardTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
-        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
-        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
         'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
 
         // DIF NAME
 
@@ -101,17 +103,11 @@ class Decorator extends Model
         // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name RW42, Techjury, TechTribunal
         // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name RW42, Techjury, TechTribunal
 
-        // Review42 problems
-
-//        'standard-table-section' => 'parseStandardTableSection', // <---- check
-//        'credit-card-table-section' => 'parseCreditCardTableSection', // <---- check
-//        'related-product-section' => 'formatRelatedProductSection' // <---- check
-
         // Techjury problems
 
 //        'review-grid-section' => 'formatReviewGridSection',
 //        'three-column-section' => 'formatThreeColumnSection',
-//        'pros-cons-table-section' => 'parseProsConsTableSection',
+//        'pros-cons-table-section' => 'parseProsConsTableSection', <- dif text ('apply now,.. )
 
         // Dataprot problems
 
@@ -132,16 +128,32 @@ class Decorator extends Model
 //      'single-review-hardware-box-section' => 'formatSingleReviewHardwareBoxSection',
 //      'single-review-compare-section' => 'formatSingleReviewCompareSection',
 
+        // KommandoTech problems
+
+//      'three-column-section' => 'formatThreeColumnSection',
+//      'standard-data-table-section' => 'formatStandardDataTableSection',
+//      'single-review-table-section' => 'formatSingleReviewTableSection',
+//      'review-compare-section' => 'formatReviewCompareSection',
+//      'offer-bullets-table-section' => 'parseOfferBulletsTableSection',
+//      'values-content-table-section' => 'parseValuesContentTableSection',
+//      'content-table' => 'formatContentTableSection',
+//      'related-review-section' => 'formatRelatedReviewSection',
+//      'editors-choice-section' => 'formatEditorsChoiceSection',  <-- dif name
+//      'related-posts-section' => 'formatRelatedPostsSection',
+//      'review-pricing-grid-section' => 'formatReviewPricingGridSection',
+//      'table-section' => 'parseTableSection',
+
 
 
         // SITES:
-        // Fortunly     - DONE,
+        // Fortunly     - CHECK,
         // SBG          - CHECK,
         // Review42     - CHECK,
         // Techjury     - CHECK,
-        // DataProt,    - CHECK,
-        // TechTribunal,
-        // KommandoTech
+        // Techjury     - CHECK,
+        // DataProt     - CHECK,
+        // TechTribunal - CHECK,
+        // KommandoTech - CHECK,
 
     ];
 
@@ -560,16 +572,20 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'] ?? null,
+            'alt' => $decorator->getFirstMedia('logo')->getCustomProperty('alt') ?? $decorator->decorators[0]['attributes']['title'] ?? '',
             'title' => $decorator->decorators[0]['attributes']['title'],
-            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'],
+            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'] ?? null,
             'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Get A Quote',
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
-            'bottom_line_title' => $decorator->decorators[0]['attributes']['bottom_line_title'],
+            'bottom_line_title' => $decorator->decorators[0]['attributes']['bottom_line_title'] ?? "",
             'bottom_line_text' => $decorator->decorators[0]['attributes']['bottom_line_text'],
             'rating' => $decorator->decorators[0]['attributes']['rating'],
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'special_offer_title' => $decorator->decorators[0]['attributes']['special_offer_title'],
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
             'special_offer_text' => $decorator->decorators[0]['attributes']['special_offer_text'],
             'main_features' => collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
                 return [
@@ -578,7 +594,6 @@ class Decorator extends Model
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function parseTechTableSection($decorator)
@@ -767,6 +782,12 @@ class Decorator extends Model
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'],
             'content' => $decorator->decorators[0]['attributes']['content'],
+            'key_features' => collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
+                return [
+                    'feature_title' => $element['attributes']['feature_title'],
+                    'feature_value' => $element['attributes']['feature_value']
+                ];
+            })->toArray(),
             'main_features' => collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
                 return [
                     'feature_title' => $element['attributes']['feature_title'],
@@ -1628,6 +1649,38 @@ class Decorator extends Model
                         'title' => $element['attributes']['feature_title'],
                         'winner_features' => $element['attributes']['winner_features'],
                         'loser_features' => $element['attributes']['loser_features']
+                    ];
+                })->toArray()
+            ]
+        ];
+    }
+
+    public static function formatProductsCompareSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'],
+            'data' => [
+                'table_title' => $decorator['attributes']['table_title'],
+                'elements' => collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'],
+                        'title' => $element['attributes']['title'],
+                        'rating' => $element['attributes']['rating'],
+                        'brand' => $element['attributes']['brand'],
+                        'main_features' => collect($element['attributes']['main_features'])->map(function ($element) {
+                            return [
+                                'title' => $element['attributes']['title'],
+                                'text' => $element['attributes']['text']
+                            ];
+                        })->toArray(),
+                        'key_features' => collect($element['attributes']['key_features'])->map(function ($element) {
+                            return [
+                                'feature' => $element['attributes']['feature']
+                            ];
+                        })->flatten(1)
+                            ->toArray(),
+                        'cta_text' => !empty($element['attributes']['cta_text']) ? $element['attributes']['cta_text'] : '',
+                        'cta_url' => !empty($element['attributes']['cta_url']) ? $element['attributes']['cta_url'] : '',
                     ];
                 })->toArray()
             ]
