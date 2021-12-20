@@ -29,9 +29,10 @@ class Decorator extends Model
         'table-section' => 'parseTableSection',                                     // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal
         'offer-summary-table-section' => 'parseOfferSummaryTableSection',           // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
 
+        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY, SBG
         'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY, SBG
         'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY, SBG
-        'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection', // FORTUNLY, SBG <- FIXED
+        'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection', // FORTUNLY, SBG
 
         'authors-section' => 'authorsSection',                                      // SBG, RW42, Techjury [ONLY]
 
@@ -83,18 +84,15 @@ class Decorator extends Model
         // COMPLETED ^^^^
 
 
-        // DIF SOME
-        'tech-table-section' => 'parseTechTableSection', // FORTUNLY == SBG,  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
-        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY == SBG <-- Test
+        // DIF
+        'tech-table-section' => 'parseTechTableSection', // FORTUNLY (DONE),  SBG,  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
         'related-product-section' => 'formatRelatedProductSection', // SBG != RW42 == Techjury
-
-        // DIF ALL
-        'grid-section' => 'formatGridSection', // FORTUNLY == Dataprot, SBG, RW42, Techjury, TechTribunal, KommandoTech
-        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
-        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY, SBG, RW42, Techjury, TechTribunal
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY, SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'grid-section' => 'formatGridSection', // FORTUNLY (DONE), SBG , RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, TechTribunal
+        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, TechTribunal
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
 
         // DIF NAME
 
@@ -146,7 +144,7 @@ class Decorator extends Model
 
 
         // SITES:
-        // Fortunly     - CHECK,
+        // Fortune      - CHECK,
         // SBG          - CHECK,
         // Review42     - CHECK,
         // Techjury     - CHECK,
@@ -181,7 +179,7 @@ class Decorator extends Model
                 'elements' => $operaters->map(function ($operater) {
                     $tableParser = self::$decoratorMapper[$operater['table_type']];
                     $operater['image'] = $operater->getFirstMediaUrl('logo') ?? "";
-                    $operater = \App\Models\Decorator::{$tableParser}($operater) ?? [];
+                    $operater = self::{$tableParser}($operater) ?? [];
                     return $operater;
                 })->toArray()
             ]
@@ -262,35 +260,16 @@ class Decorator extends Model
                         $model = collect($element['attributes'])->keys()->last();
                         $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
                         $routePrefix = strtolower(collect(explode('\\', $model))->last());
-                        // ray($page);
                         $category = $page->categories->first();
-
-                        $url = '';
-                        $categoryUrl = '';
-
-                        if ($routePrefix === 'blog' || $routePrefix === 'moneypage') {
-                            $url = route('resolve.single', [$category->slug, $page->slug]);
-                            $categoryUrl = route('resolve', [$category->slug]);
-                        }
-
-                        if ($routePrefix === 'news') {
-                            $url = route('news.single', [$category->slug, $page->slug]);
-                            $categoryUrl = route('news.category', [$category->slug]);
-                        }
-
-                        if ($routePrefix === 'reviews') {
-                            $url = route('reviews.single', [$category->slug, $page->slug]);
-                            $categoryUrl = route('reviews.category', [$category->slug]);
-                        }
-
                         return [
                             'title' => $element['attributes']['title'],
                             'description' => $element['attributes']['description'],
                             'button_text' => $element['attributes']['button_text'],
-                            'url' => $url,
+                            'routePrefix' => $routePrefix,
+                            'page' => $page,
+                            'category' => $category,
                             'category_name' => $category->name,
                             'category_icon' => $category->getFirstMediaUrl('icon'),
-                            'category_url' => $categoryUrl,
                             'background_color' => $element['attributes']['background_color'] ?? 'bg-beige-bg',
                         ];
                     })
@@ -307,8 +286,11 @@ class Decorator extends Model
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
             'title' => $decorator->decorators[0]['attributes']['title'],
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? "",
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? "",
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
-            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? 'Apply now',
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'best_for' => $decorator->decorators[0]['attributes']['best_for'],
@@ -330,7 +312,6 @@ class Decorator extends Model
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function formatContentSection($decorator)
@@ -445,7 +426,10 @@ class Decorator extends Model
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
             'title' => $decorator->decorators[0]['attributes']['title'],
-            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Open Account',
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'],
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'],
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'],
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'credit_score_min' => $decorator->decorators[0]['attributes']['credit_score_min'],
@@ -454,23 +438,23 @@ class Decorator extends Model
             'price' => $decorator->decorators[0]['attributes']['price'],
             'price_text' => $decorator->decorators[0]['attributes']['price_text'],
             'website_url' => $decorator->decorators[0]['attributes']['website_url'],
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? "",
             'detail_title' => $decorator->decorators[0]['attributes']['detail_title'],
             'detail_text' => $decorator->decorators[0]['attributes']['detail_text'],
             'key_features' => collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
                 return [
-                    'feature_title' => $element['attributes']['feature_title'],
-                    'feature_text' => $element['attributes']['feature_text']
+                    'feature_title' => $element['attributes']['feature_title'] ?? '',
+                    'feature_text' => $element['attributes']['feature_text'] ?? ''
                 ];
             })
                 ->toArray(),
-            'rates_and_fees' => collect($decorator->decorators[0]['attributes']['rates_&_fees'])->map(function ($element) {
+            'rates_and_fees' => collect($decorator->decorators[0]['attributes']['rates_&_fees'] ?? null)->map(function ($element) {
                 return [
-                    'title' => $element['attributes']['title'],
-                    'value' => $element['attributes']['value'],
+                    'title' => $element['attributes']['title'] ?? '',
+                    'value' => $element['attributes']['value'] ?? '',
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function formatSingleReviewTableSection($decorator)
@@ -543,9 +527,15 @@ class Decorator extends Model
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
             'badge_text' => $decorator->decorators[0]['attributes']['badge_text'],
             'title' => $decorator->decorators[0]['attributes']['title'],
-            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Open Account',
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? "",
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? "",
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? "",
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? null,
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
-            'cta_lock' => $decorator->decorators[0]['attributes']['cta_lock'] ?? '',
+            'cta_lock' => $decorator->decorators[0]['attributes']['cta_lock'] ?? "",
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'],
@@ -603,9 +593,10 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'] ?? "",
             'title' => $decorator->decorators[0]['attributes']['title'],
             'rating' => $decorator->decorators[0]['attributes']['rating'],
-            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Apply Now',
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
@@ -616,7 +607,6 @@ class Decorator extends Model
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function parseGamblerTableSection($decorator)
@@ -626,9 +616,12 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
-            'title' => isset($decorator->decorators[0]['attributes']['title']) ? $decorator->decorators[0]['attributes']['title'] : '',
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? "",
             'name' => $decorator->decorators[0]['attributes']['name'] ?? null,
-            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Apply Now',
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? "",
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? "",
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? "",
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
@@ -641,7 +634,6 @@ class Decorator extends Model
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function parseDetailedBlueTableSection($decorator)
@@ -695,7 +687,7 @@ class Decorator extends Model
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'],
-            'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Apply Now',
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'credit_score_min' => $decorator->decorators[0]['attributes']['credit_score_min'],
@@ -714,7 +706,6 @@ class Decorator extends Model
                 ];
             })->toArray(),
         ];
-
     }
 
     public static function parseValuesContentTableSection($decorator)
