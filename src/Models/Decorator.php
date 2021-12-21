@@ -85,13 +85,13 @@ class Decorator extends Model
 
 
         // DIF
-        'grid-section' => 'formatGridSection',                              // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (DONE), SBG (DONE),  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
-        'standard-table-section' => 'parseStandardTableSection',            // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, TechTribunal
-        'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'gambler-table-section' => 'parseGamblerTableSection',              // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, TechTribunal
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'grid-section' => 'formatGridSection',                              // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
+        'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, TechTribunal
+        'standard-table-section' => 'parseStandardTableSection',            // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, TechTribunal
+        'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
+        'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
+        'gambler-table-section' => 'parseGamblerTableSection',              // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, TechTribunal
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
 
         // DIF NAME
 
@@ -191,12 +191,16 @@ class Decorator extends Model
     {
         return [
             'layout' => $decorator['layout'],
-            'data' => collect($decorator['attributes'])
-                ->flatten(1)
-                ->map(function ($row) {
-                    return $row['attributes'];
-                })
-                ->toArray()
+            'data' => [
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'],
+                'text' => $decorator['attributes']['text'],
+                'columns' => collect($decorator['attributes']['columns'])
+                    ->map(function ($element) {
+                        return $element['attributes'];
+                    })
+                    ->toArray()
+            ]
         ];
     }
 
@@ -292,7 +296,10 @@ class Decorator extends Model
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
-            'best_for' => $decorator->decorators[0]['attributes']['best_for'],
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'],
             'bottom_line' => $decorator->decorators[0]['attributes']['bottom_line'],
             'review_url' => $decorator->decorators[0]['attributes']['review_url'],
@@ -424,18 +431,22 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'],
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
             'banner_description' => $decorator->decorators[0]['attributes']['banner_description'],
             'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'],
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'],
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? "",
+            'sub_text' => $decorator->decorators[0]['attributes']['sub_text'] ?? "",
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'credit_score_min' => $decorator->decorators[0]['attributes']['credit_score_min'],
             'credit_score_max' => $decorator->decorators[0]['attributes']['credit_score_max'],
             'price_title' => $decorator->decorators[0]['attributes']['price_title'],
-            'price' => $decorator->decorators[0]['attributes']['price'],
-            'price_text' => $decorator->decorators[0]['attributes']['price_text'],
+            'price' => $decorator->decorators[0]['attributes']['price'] ?? "",
+            'price_text' => $decorator->decorators[0]['attributes']['price_text'] ?? "",
             'website_url' => $decorator->decorators[0]['attributes']['website_url'],
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? "",
             'detail_title' => $decorator->decorators[0]['attributes']['detail_title'],
@@ -524,7 +535,8 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
-            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'],
+            'key' => $decorator->decorators[0]['key'] ?? "",
+            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'],
             'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? "",
             'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? "",
@@ -539,13 +551,13 @@ class Decorator extends Model
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'],
             'phone' => $decorator->decorators[0]['attributes']['phone'],
-            'main_features_table' => collect($decorator->decorators[0]['attributes']['main_features_table'])->map(function ($element) {
+            'main_features_table' => collect($decorator->decorators[0]['attributes']['main_features_table'] ?? null)->map(function ($element) {
                 return [
                     'feature_title' => $element['attributes']['feature_title'],
                     'feature_value' => $element['attributes']['feature_value']
                 ];
             })->toArray(),
-            'content_tabs' => collect($decorator->decorators[0]['attributes']['content_tabs'])->map(function ($element) {
+            'content_tabs' => collect($decorator->decorators[0]['attributes']['content_tabs'] ?? null)->map(function ($element) {
                 return [
                     'tab_title' => $element['attributes']['tab_title'],
                     'tab_content' => $element['attributes']['tab_content']
@@ -615,6 +627,7 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'] ?? "",
             'name' => $decorator->decorators[0]['attributes']['name'] ?? null,
             'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? "",
@@ -626,9 +639,16 @@ class Decorator extends Model
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'],
             'content' => $decorator->decorators[0]['attributes']['content'],
-            'main_features' => collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
+            'main_features' => collect($decorator->decorators[0]['attributes']['main_features'] ?? null)->map(function ($element) {
                 return [
                     'feature_title' => $element['attributes']['feature_title'],
+                    'feature_text' => $element['attributes']['feature_text'],
+                    'additional_info' => $element['attributes']['main_features_list_section_aditional_info'] ?? '',
+                ];
+            })->toArray(),
+            'bottom_section_features' => collect($decorator->decorators[0]['attributes']['bottom_section_features'] ?? null)->map(function ($element) {
+                return [
+                    'feature_title' => $element['attributes']['bottom_section_features_list-section_feature_title'],
                     'feature_text' => $element['attributes']['feature_text']
                 ];
             })->toArray(),
@@ -674,7 +694,6 @@ class Decorator extends Model
                 ->flatten(1)
                 ->toArray(),
         ];
-
     }
 
     public static function parseValuesBulletsTableSection($decorator)
@@ -684,10 +703,15 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'],
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'key' => $decorator->decorators[0]['key'] ?? null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'],
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? "",
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? "",
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'credit_score_min' => $decorator->decorators[0]['attributes']['credit_score_min'],
             'credit_score_max' => $decorator->decorators[0]['attributes']['credit_score_max'],
