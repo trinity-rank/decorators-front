@@ -35,7 +35,7 @@ class Decorator extends Model
         'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection', // FORTUNLY, SBG
 
         'authors-section' => 'authorsSection',                                      // SBG, RW42, Techjury [ONLY]
-
+        'related-product-section' => 'formatRelatedProductSection',                 // SBG, RW42, Techjury [ONLY]
         'text-banner' => 'formatTextBannerSection',                                 // FORTUNLY [ONLY]
 
         'review-score-compare-section' => 'formatReviewScoreCompareSection',        // SBG [ONLY]
@@ -85,14 +85,13 @@ class Decorator extends Model
 
 
         // DIF
-        'tech-table-section' => 'parseTechTableSection', // FORTUNLY (DONE),  SBG,  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
-        'related-product-section' => 'formatRelatedProductSection', // SBG != RW42 == Techjury
-        'grid-section' => 'formatGridSection', // FORTUNLY (DONE), SBG , RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'standard-table-section' => 'parseStandardTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, TechTribunal
-        'credit-card-table-section' => 'parseCreditCardTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'three-cards-table-section' => 'parseThreeCardsTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
-        'gambler-table-section' => 'parseGamblerTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, TechTribunal
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (DONE), SBG, RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'grid-section' => 'formatGridSection',                              // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (DONE), SBG (DONE),  RW42, Techjury, TechTribunal <-- dif text (apply, visit)
+        'standard-table-section' => 'parseStandardTableSection',            // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, TechTribunal
+        'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
+        'gambler-table-section' => 'parseGamblerTableSection',              // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, TechTribunal
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (DONE), SBG (DONE), RW42, Techjury, Dataprot, TechTribunal, KommandoTech
 
         // DIF NAME
 
@@ -144,7 +143,7 @@ class Decorator extends Model
 
 
         // SITES:
-        // Fortune      - CHECK,
+        // Fortunly      - CHECK,
         // SBG          - CHECK,
         // Review42     - CHECK,
         // Techjury     - CHECK,
@@ -894,18 +893,8 @@ class Decorator extends Model
                 'elements' => collect($decorator['attributes']['related-products'])
                     ->map(function ($element) {
                         $model = collect($element['attributes'])->keys()->last();
-                        $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
-
-                        $category = $page->categories->first();
-                        $url = route('resolve', [$page->slug]);
-
-                        return [
-                            'name' => $page->name,
-                            'slug' => $category->slug,
-                            'url' => $url
-                        ];
-                    })
-                    ->toArray()
+                        return $element['attributes'][$model];
+                    })->toArray()
             ]
         ];
     }
