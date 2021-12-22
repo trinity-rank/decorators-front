@@ -782,6 +782,7 @@ class Decorator extends Model
 
     public static function parseValuesContentTwoButtonsTableSection($decorator)
     {
+        dd($decorator->decorators[0]['attributes']);
         return [
             'id' => $decorator['id'] ?? null,
             'table_type' => $decorator['table_type'],
