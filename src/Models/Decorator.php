@@ -782,7 +782,6 @@ class Decorator extends Model
 
     public static function parseValuesContentTwoButtonsTableSection($decorator)
     {
-        dd($decorator->decorators[0]['attributes']);
         return [
             'id' => $decorator['id'] ?? null,
             'table_type' => $decorator['table_type'],
@@ -797,7 +796,7 @@ class Decorator extends Model
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'],
             'content' => $decorator->decorators[0]['attributes']['content'],
-            'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) && !empty($decorator->decorators[0]['attributes']['key_features'])? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
+            'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) ? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
                 return [
                     'feature_title' => $element['attributes']['feature_title'],
                     'feature_value' => $element['attributes']['feature_value']
