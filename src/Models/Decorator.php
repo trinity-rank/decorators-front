@@ -47,7 +47,7 @@ class Decorator extends Model
         'single-review-hardware-box-section' => 'singleReviewHardwareBoxSection',       // RW42, Techjury [ONLY]
         'single-review-compare-section' => 'singleReviewCompareSection',                // RW42, Techjury [ONLY]
         'small-three-column-table' => 'smallThreeColumnTableSection',                   // RW42, Techjury [ONLY]
-        'review-grid-section' => 'formatReviewGridSection',                             // RW42 [ONLY]
+        'review-grid-section' => 'formatReviewGridSection',                             // RW42, Techjury [ONLY]
         'content-with-background-section' => 'formatContentWithBackgroundSection',      // RW42, Techjury [ONLY]
         'content-in-quotes-section' => 'formatContentInQuotesSection',                  // RW42, Techjury [ONLY]
         'review-pricing-grid-section' => 'formatReviewPricingGridSection',              // RW42, Techjury [ONLY]
@@ -85,8 +85,8 @@ class Decorator extends Model
 
 
         // DIF
-        'grid-section' => 'formatGridSection',                              // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
-        'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, TechTribunal
+        'grid-section' => 'formatGridSection',                              // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury (DONE), Dataprot, TechTribunal, KommandoTech
+        'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury (DONE), TechTribunal
         'standard-table-section' => 'parseStandardTableSection',            // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, TechTribunal
         'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
         'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (DONE), SBG (DONE), RW42 (DONE), Techjury, Dataprot, TechTribunal, KommandoTech
@@ -95,14 +95,13 @@ class Decorator extends Model
 
         // DIF NAME
 
-        // 'detailed-blue-table-section' => 'formatDetailedBlueTableSection', // X2 dif name RW42, Techjury
-        // 'values-content-table-section' => 'formatValuesContentTableSection', // X2 dif name RW42, Techjury, TechTribunal
-        // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name RW42, Techjury, TechTribunal
-        // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name RW42, Techjury, TechTribunal
+        // 'detailed-blue-table-section' => 'formatDetailedBlueTableSection', // X2 dif name Techjury
+        // 'values-content-table-section' => 'formatValuesContentTableSection', // X2 dif name Techjury, TechTribunal
+        // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name  Techjury, TechTribunal
+        // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name Techjury, TechTribunal
 
         // Techjury problems
 
-//        'review-grid-section' => 'formatReviewGridSection',
 //        'three-column-section' => 'formatThreeColumnSection',
 //        'pros-cons-table-section' => 'parseProsConsTableSection', <- dif text ('apply now,.. )
 
@@ -143,9 +142,9 @@ class Decorator extends Model
 
 
         // SITES:
-        // Fortunly      - CHECK,
-        // SBG          - CHECK,
-        // Review42     - CHECK,
+        // Fortunly     - CHECK (DONE),
+        // SBG          - CHECK (DONE),
+        // Review42     - CHECK (DONE),
         // Techjury     - CHECK,
         // Techjury     - CHECK,
         // DataProt     - CHECK,
@@ -193,8 +192,8 @@ class Decorator extends Model
             'layout' => $decorator['layout'],
             'data' => [
                 'title_label' => $decorator['attributes']['title_label'] ?? null,
-                'title' => $decorator['attributes']['title'],
-                'text' => $decorator['attributes']['text'],
+                'title' => $decorator['attributes']['title'] ?? '',
+                'text' => $decorator['attributes']['text'] ?? '',
                 'columns' => collect($decorator['attributes']['columns'])
                     ->map(function ($element) {
                         return $element['attributes'];
@@ -604,6 +603,7 @@ class Decorator extends Model
             'table_type' => $decorator['table_type'] ?? "",
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
+            'alt' => $decorator->getFirstMedia('logo')->getCustomProperty('alt') ?? $decorator->decorators[0]['attributes']['title'] ?? '',
             'key' => $decorator->decorators[0]['key'] ?? "",
             'title' => $decorator->decorators[0]['attributes']['title'],
             'rating' => $decorator->decorators[0]['attributes']['rating'],
@@ -1031,7 +1031,7 @@ class Decorator extends Model
                             return [
                                 'feature_title' => $subelement['attributes']['feature_title'],
                                 'feature_text' => $subelement['attributes']['feature_text'],
-                            ];
+                             ];
                         })->toArray()
                     ];
                 })->toArray()
