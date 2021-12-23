@@ -740,7 +740,7 @@ class Decorator extends Model
             'image' => $decorator->getFirstMediaUrl('logo') ?? "",
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'],
-            'best_for' => $decorator->decorators[0]['attributes']['best_for'],
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? '',
             'cta_text' => !empty($decorator->decorators[0]['attributes']['cta_text']) ? $decorator->decorators[0]['attributes']['cta_text'] : 'Apply Now',
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
