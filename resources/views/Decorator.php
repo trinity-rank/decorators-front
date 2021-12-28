@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Exception;
 use Illuminate\View\Component;
 
 class Decorator extends Component
@@ -22,22 +23,25 @@ class Decorator extends Component
      */
     public function render()
     {
-        $filesInFolder = \File::files(resource_path().'/views/components/decorators');
+        try {
+            $filesInFolder = \File::files(resource_path().'/views/components/decorators');
 
-        $doesDecoratorExists = collect($filesInFolder)->map(function ($path) {
-            return str_replace('.blade', '', pathinfo($path)['filename']);
-        })
-            ->contains(function ($decoratorName) {
-                return $decoratorName === $this->decorator['layout'];
-            });
+            $doesDecoratorExists = collect($filesInFolder)->map(function ($path) {
+                return str_replace('.blade', '', pathinfo($path)['filename']);
+            })
+                ->contains(function ($decoratorName) {
+                    return $decoratorName === $this->decorator['layout'];
+                });
 
-        if(!$doesDecoratorExists) {
+            if(!$doesDecoratorExists || $this->decorator['data'] == null) {
+                return;
+            }
+            $data = $this->decorator['data'];
+            $model = $this->model;
+
+            return view('components.decorators.'.$this->decorator['layout'], compact('data', 'model'));
+        } catch (Exception $e) {
             return;
         }
-
-        $data = $this->decorator['data'];
-        $model = $this->model;
-
-        return view('components.decorators.'.$this->decorator['layout'], compact('data', 'model'));
     }
 }
