@@ -13,26 +13,26 @@ use TOC\MarkupFixer;
 class Decorator extends Model
 {
     protected static $decoratorMapper = [
-        'table-section' => 'parseTableSection',                                     // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal
+        'table-section' => 'parseTableSection',                                     // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal
 
-        'three-column-section' => 'formatThreeColumnSection',                       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT)
-        'title-section' => 'formatTitleSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
+        'three-column-section' => 'formatThreeColumnSection',                       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD)
+        'title-section' => 'formatTitleSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
         'image-three-rows-section' => 'formatImageThreeRowsSection',                // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal
         'youtube-section' => 'formatYoutubeSection',                                // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal
-        'content-section' => 'formatContentSection',                                // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'faq-section' => 'formatFaqSection',                                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'sources-section' => 'formatSourcesSection',                                // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal
-        'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal
-        'content-table' => 'formatContentTableSection',                             // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal
-        'offer-summary-table-section' => 'parseOfferSummaryTableSection',           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
+        'content-section' => 'formatContentSection',                                // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'faq-section' => 'formatFaqSection',                                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'sources-section' => 'formatSourcesSection',                                // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'methodology-section' => 'formatMethodologySection',                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'featured-snippet-section' => 'formatFeaturedSnippetSection',               // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'show-more-section' => 'formatShowMoreSection',                             // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'single-review-table-section' => 'formatSingleReviewTableSection',          // FORTUNLY (TF), SBG (TS), RW42 (TR), Dataprot (TD). TechTribunal
+        'review-compare-section' => 'formatReviewCompareSection',                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal
+        'content-table' => 'formatContentTableSection',                             // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal
+        'offer-summary-table-section' => 'parseOfferSummaryTableSection',           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
 
         'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY (TF), SBG (TS)
-        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY (TF), SBG (TS)
-        'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY (TF), SBG (TS)
+        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',           // FORTUNLY (TF), SBG (TS), Dataprot (TD)
+        'values-content-table-section' => 'parseValuesContentTableSection',         // FORTUNLY (TF), SBG (TS), Dataprot (TD)
         'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection', // FORTUNLY (TF), SBG (TS)
 
         'authors-section' => 'authorsSection',                                      // SBG (TS), RW42 (TR), Techjury (TT)
@@ -62,15 +62,15 @@ class Decorator extends Model
         'money-page-grid-section' => 'formatMoneyPageGridSection',                      // Techjury (TT)
         'post-grid-section' => 'formatPostGridSection',                                 // Techjury (TT)
         'background-checks-section' => 'formatBackgroundChecksSection',                 // Techjury (TT)
-        'related-review-section' => 'formatRelatedReviewSection',                       // Techjury (TT)
+        'related-review-section' => 'formatRelatedReviewSection',                       // Techjury (TT), Dataprot (TD)
 
-        'standard-data-table-section' => 'parseStandardDataTableSection',               // Dataprot [ONLY]
-        'single-review-box-section' => 'formatSingleReviewRowSection',                  // Dataprot, KommandoTech [ONLY]
-        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot, TechTribunal, KommandoTech [ONLY]
-        'editors-choice-section' => 'parseEditorsChoiceSection',                        // Dataprot [ONLY]
-        'related-posts-section' => 'formatRelatedPostsSection',                         // Dataprot, TechTribunal [ONLY]
-        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot, KommandoTech [ONLY]
+        'standard-data-table-section' => 'parseStandardDataTableSection',               // Dataprot (TD)
+        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot (TD), TechTribunal, KommandoTech [ONLY]
+        'editors-choice-section' => 'formatEditorsChoiceSection',                       // Dataprot (TD)
+        'related-posts-section' => 'formatRelatedPostsSection',                         // Dataprot (TD), TechTribunal [ONLY]
+        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot (TD), KommandoTech [ONLY]
 
+        'single-review-box-section' => 'formatSingleReviewRowSection',                  // TechTribunal [ONLY]
         'products-table-section' => 'parseProductTableSection',                         // TechTribunal [ONLY]
         'deals-list-layout' => 'formatDealsListLayout',                                 // TechTribunal [ONLY]
         'home-title-section' => 'formatHomeTitleSection',                               // TechTribunal [ONLY]
@@ -86,13 +86,13 @@ class Decorator extends Model
 
 
         // DIF
-        'grid-section' => 'formatGridSection',                              // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
+        'grid-section' => 'formatGridSection',                              // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
         'tech-table-section' => 'parseTechTableSection',                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal
         'standard-table-section' => 'parseStandardTableSection',            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal
-        'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
-        'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
+        'credit-card-table-section' => 'parseCreditCardTableSection',       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
+        'three-cards-table-section' => 'parseThreeCardsTableSection',       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
         'gambler-table-section' => 'parseGamblerTableSection',              // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot, TechTribunal, KommandoTech
+        'values-bullets-table-section' => 'parseValuesBulletsTableSection', // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal, KommandoTech
 
         // DIF NAME
 
@@ -100,20 +100,11 @@ class Decorator extends Model
         // 'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection', // X2 dif name  TechTribunal
         // 'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection', // X2 dif name TechTribunal
 
-        // Dataprot problems
-
-//        'three-column-section' => 'formatThreeColumnSection',
-//        'single-review-table-section' => 'formatSingleReviewTableSection',
-//        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',
-//        'values-content-table-section' => 'parseValuesContentTableSection',
-//        'content-table' => 'formatContentTableSection',
-//        'related-review-section' => 'formatRelatedReviewSection',
 
         // TechTribunal problems
 
 //      'three-column-section' => 'formatThreeColumnSection',
 //      'detailed-blue-table-section' => 'parseDetailedBlueTableSection'
-//      'single-review-box-section' => 'formatSingleReviewRowSection',
 //      'review-pricing-grid-section' => 'formatReviewPricingGridSection',
 //      'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection',
 //      'single-review-hardware-box-section' => 'formatSingleReviewHardwareBoxSection',
@@ -141,7 +132,7 @@ class Decorator extends Model
         // SBG          - CHECK (DONE),
         // Review42     - CHECK (DONE),
         // Techjury     - CHECK (DONE),
-        // DataProt     - CHECK,
+        // DataProt     - CHECK (DONE),
         // TechTribunal - CHECK,
         // KommandoTech - CHECK,
 
@@ -184,15 +175,15 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title_label' => $decorator['attributes']['title_label'] ?? null,
-                'title' => $decorator['attributes']['title'] ?? null,
-                'text' => $decorator['attributes']['text'] ?? null,
-                'columns' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
-                    ->map(function ($element) {
-                        return $element['attributes'] ?? null;
-                    })
-                    ->toArray() : null
-            ] ?? null,
+                    'title_label' => $decorator['attributes']['title_label'] ?? null,
+                    'title' => $decorator['attributes']['title'] ?? null,
+                    'text' => $decorator['attributes']['text'] ?? null,
+                    'columns' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
+                        ->map(function ($element) {
+                            return $element['attributes'] ?? null;
+                        })
+                        ->toArray() : null
+                ] ?? null,
         ];
     }
 
@@ -227,19 +218,19 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title' => $decorator['attributes']['title'] ?? null,
-                'description' => $decorator['attributes']['description'] ?? null,
-                'elements' => isset($decorator['attributes']['youtube']) ? collect($decorator['attributes']['youtube'])
-                    ->map(function ($element) {
-                        return [
-                            'key' => $element['key'] ?? null,
-                            'title' => $element['attributes']['title'] ?? null,
-                            'description' => $element['attributes']['description'] ?? null,
-                            'url' => $element['attributes']['url'] ?? null,
-                        ];
-                    })
-                    ->toArray() : null
-            ]  ?? null,
+                    'title' => $decorator['attributes']['title'] ?? null,
+                    'description' => $decorator['attributes']['description'] ?? null,
+                    'elements' => isset($decorator['attributes']['youtube']) ? collect($decorator['attributes']['youtube'])
+                        ->map(function ($element) {
+                            return [
+                                'key' => $element['key'] ?? null,
+                                'title' => $element['attributes']['title'] ?? null,
+                                'description' => $element['attributes']['description'] ?? null,
+                                'url' => $element['attributes']['url'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ]  ?? null,
         ];
     }
 
@@ -248,34 +239,34 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'label_title' => $decorator['attributes']['label_title'] ?? null,
-                'title' => $decorator['attributes']['title'] ?? null,
-                'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
-                    ->map(function ($element) {
-                        if(isset($element['attributes'])) {
-                            $model = collect($element['attributes'])->keys()->last() ?? null;
-                            if($model != null) {
-                                $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first() ?? null;
-                                $routePrefix = strtolower(collect(explode('\\', $model))->last()) ?? null;
-                                if($page != null) {
-                                    $category = $page->categories->first() ?? null;
+                    'label_title' => $decorator['attributes']['label_title'] ?? null,
+                    'title' => $decorator['attributes']['title'] ?? null,
+                    'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
+                        ->map(function ($element) {
+                            if(isset($element['attributes'])) {
+                                $model = collect($element['attributes'])->keys()->last() ?? null;
+                                if($model != null) {
+                                    $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first() ?? null;
+                                    $routePrefix = strtolower(collect(explode('\\', $model))->last()) ?? null;
+                                    if($page != null) {
+                                        $category = $page->categories->first() ?? null;
+                                    }
                                 }
                             }
-                        }
-                        return [
-                            'title' => $element['attributes']['title'] ?? null,
-                            'description' => $element['attributes']['description'] ?? null,
-                            'button_text' => $element['attributes']['button_text'] ?? null,
-                            'routePrefix' => $routePrefix ?? null,
-                            'page' => $page ?? null,
-                            'category' => $category ?? null,
-                            'category_name' => $category->name ?? null,
-                            'category_icon' => isset($category) ? $category->getFirstMediaUrl('icon') : null,
-                            'background_color' => $element['attributes']['background_color'] ?? null,
-                        ];
-                    })
-                    ->toArray() : null
-            ] ?? null
+                            return [
+                                'title' => $element['attributes']['title'] ?? null,
+                                'description' => $element['attributes']['description'] ?? null,
+                                'button_text' => $element['attributes']['button_text'] ?? null,
+                                'routePrefix' => $routePrefix ?? null,
+                                'page' => $page ?? null,
+                                'category' => $category ?? null,
+                                'category_name' => $category->name ?? null,
+                                'category_icon' => isset($category) ? $category->getFirstMediaUrl('icon') : null,
+                                'background_color' => $element['attributes']['background_color'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -344,16 +335,16 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title' => $decorator['attributes']['title'] ?? 'FAQ',
-                'elements' => isset($decorator['attributes']['faq']) ? collect($decorator['attributes']['faq'])
-                    ->map(function ($element) {
-                        return [
-                            'question' => $element['attributes']['question'] ?? null,
-                            'answer' => $element['attributes']['answer'] ?? null,
-                        ];
-                    })
-                    ->toArray() : null
-            ] ?? null
+                    'title' => $decorator['attributes']['title'] ?? 'FAQ',
+                    'elements' => isset($decorator['attributes']['faq']) ? collect($decorator['attributes']['faq'])
+                        ->map(function ($element) {
+                            return [
+                                'question' => $element['attributes']['question'] ?? null,
+                                'answer' => $element['attributes']['answer'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -362,15 +353,15 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'elements' => isset($decorator['attributes']['sources']) ? collect($decorator['attributes']['sources'])
-                    ->map(function ($element) {
-                        return [
-                            'name' => $element['attributes']['name'] ?? null,
-                            'url' => $element['attributes']['url'] ?? null,
-                        ];
-                    })
-                    ->toArray() : null
-            ] ?? null
+                    'elements' => isset($decorator['attributes']['sources']) ? collect($decorator['attributes']['sources'])
+                        ->map(function ($element) {
+                            return [
+                                'name' => $element['attributes']['name'] ?? null,
+                                'url' => $element['attributes']['url'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -379,17 +370,17 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title_label' => $decorator['attributes']['title_label'] ?? null,
-                'title' => $decorator['attributes']['title'] ?? null,
-                'elements' => isset($decorator['attributes']['methodology']) ? collect($decorator['attributes']['methodology'])
-                    ->map(function ($element) {
-                        return [
-                            'title' => $element['attributes']['title'] ?? null,
-                            'content' => $element['attributes']['content'] ?? null,
-                        ];
-                    })
-                    ->toArray() : null
-            ] ?? null
+                    'title_label' => $decorator['attributes']['title_label'] ?? null,
+                    'title' => $decorator['attributes']['title'] ?? null,
+                    'elements' => isset($decorator['attributes']['methodology']) ? collect($decorator['attributes']['methodology'])
+                        ->map(function ($element) {
+                            return [
+                                'title' => $element['attributes']['title'] ?? null,
+                                'content' => $element['attributes']['content'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -469,35 +460,49 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                    return [
-                        'key' => $element['key'] ?? null,
-                        'intro_bonus_title' => $element['attributes']['intro_bonus_title'] ?? null,
-                        'intro_bonus_price' => $element['attributes']['intro_bonus_price'] ?? null,
-                        'intro_bonus_text' => $element['attributes']['intro_bonus_text'] ?? null,
-                        'rating' => $element['attributes']['rating'] ?? null,
-                        'cta_text' => $element['attributes']['cta_text'] ?? null,
-                        'cta_url' => $element['attributes']['cta_url'] ?? null,
-                        'inactive' => $element['attributes']['inactive'] ?? false,
-                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
-                            return [
-                                'feature_title' => $element['attributes']['feature_title'] ?? null,
-                                'feature_text' => $element['attributes']['feature_text'] ?? null
-                            ];
-                        })->toArray() : null,
-                        'strenghts' => isset($element['attributes']['strenghts']) ? collect($element['attributes']['strenghts'])->map(function ($element) {
-                            return [
-                                'strenght' => $element['attributes']['strenght'] ?? null
-                            ];
-                        })->toArray() : null,
-                        'weaknesses' => isset($element['attributes']['weaknesses']) ? collect($element['attributes']['weaknesses'])->map(function ($element) {
-                            return [
-                                'weakness' => $element['attributes']['weakness'] ?? null
-                            ];
-                        })->toArray() : null,
-                    ];
-                })->toArray() : null
-            ] ?? null
+                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                        return [
+                            'key' => $element['key'] ?? null,
+                            'intro_bonus_title' => $element['attributes']['intro_bonus_title'] ?? null,
+                            'intro_bonus_price' => $element['attributes']['intro_bonus_price'] ?? null,
+                            'intro_bonus_text' => $element['attributes']['intro_bonus_text'] ?? null,
+                            'top_feature_title' => $element['attributes']['top_feature_title'] ?? null,
+                            'top_feature_value' => $element['attributes']['top_feature_value'] ?? null,
+                            'name' => $element['attributes']['name'],
+                            'rating' => $element['attributes']['rating'] ?? null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null,
+                            'inactive' => $element['attributes']['inactive'] ?? false,
+                            'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
+                                return [
+                                    'feature' => $element['attributes']['feature'] ?? null,
+                                ];
+                            })->flatten(1)
+                                ->toArray() : null,
+                            'applications' => isset($element['attributes']['application']) ? collect($element['attributes']['application'])->map(function ($element, $key) {
+                                return [
+                                    $element,
+                                ];
+                            })->toArray() : null,
+                            'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
+                                return [
+                                    'feature_title' => $element['attributes']['feature_title'] ?? null,
+                                    'feature_text' => $element['attributes']['feature_text'] ?? null
+                                ];
+                            })->toArray() : null,
+                            'strenghts' => isset($element['attributes']['strenghts']) ? collect($element['attributes']['strenghts'])->map(function ($element) {
+                                return [
+                                    'strenght' => $element['attributes']['strenght'] ?? null
+                                ];
+                            })->toArray() : null,
+                            'weaknesses' => isset($element['attributes']['weaknesses']) ? collect($element['attributes']['weaknesses'])->map(function ($element) {
+                                return [
+                                    'weakness' => $element['attributes']['weakness'] ?? null
+                                ];
+                            })->toArray() : null,
+                        ];
+                    })->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -506,22 +511,22 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'table_title' => $decorator['attributes']['table_title'] ?? null,
-                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                    return [
-                        'key' => $element['key'] ?? null,
-                        'title' => $element['attributes']['title'] ?? null,
-                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
-                            return [
-                                'title' => $element['attributes']['title'] ?? null,
-                                'text' => $element['attributes']['text'] ?? null
-                            ];
-                        })->toArray() : null,
-                        'cta_text' => $element['attributes']['cta_text'] ?? null,
-                        'cta_url' => $element['attributes']['cta_url'] ?? null
-                    ];
-                })->toArray() : null
-            ] ?? null
+                    'table_title' => $decorator['attributes']['table_title'] ?? null,
+                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                        return [
+                            'key' => $element['key'] ?? null,
+                            'title' => $element['attributes']['title'] ?? null,
+                            'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
+                                return [
+                                    'title' => $element['attributes']['title'] ?? null,
+                                    'text' => $element['attributes']['text'] ?? null
+                                ];
+                            })->toArray() : null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null
+                        ];
+                    })->toArray() : null
+                ] ?? null
         ];
     }
 
@@ -667,6 +672,7 @@ class Decorator extends Model
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
+            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'] ?? null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'short_description' => $decorator->decorators[0]['attributes']['short_description'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
@@ -744,6 +750,7 @@ class Decorator extends Model
             'name' => $decorator['name'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
             'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
             'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
@@ -821,6 +828,10 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
+                    'table_title' => $decorator['attributes']['table_title'] ?? null,
+                    'banner_description' => $decorator['attributes']['banner_description'] ?? null,
+                    'banner_cta_text' => $decorator['attributes']['banner_cta_text'] ?? null,
+                    'banner_cta_url' => $decorator['attributes']['banner_cta_url'] ?? null,
                     'title_columns' => isset($decorator['attributes']['title_columns']) ? collect($decorator['attributes']['title_columns'])->map(function ($element) {
                         return [
                             $element['attributes']['column_title'] ?? null
@@ -1315,7 +1326,55 @@ class Decorator extends Model
                     'elements' => isset($decorator['attributes']['related-reviews']) ? collect($decorator['attributes']['related-reviews'])
                         ->map(function ($element) {
                             $model = isset($element['attributes']) ? collect($element['attributes'])->keys()->last() : null;
-                            return $element['attributes'][$model] ?? null;
+
+                            $model = collect($element['attributes'])->keys()->last();
+                            $page = $model::with('categories', 'media')->whereId($element['attributes'][$model])->first();
+
+                            $category = $page->categories->first();
+
+                            $url = route('reviews.single', [$page->categories->first()->slug, $page->slug]);
+
+                            $key_for_img = collect($page->decorators)->map(function ($item) {
+                                if ($item['layout'] === "single-review-table-section") {
+                                    return $item['attributes']['table'][0]['key'];
+                                }
+                            })->reject(function ($value) {
+                                return $value === null;
+                            })->toArray();
+
+                            $data_for_related = collect($page->decorators)->map(function ($item) {
+                                if ($item['layout'] === "single-review-table-section") {
+                                    return $item['attributes']['table'][0]['attributes'];
+                                }
+                            })->reject(function ($value) {
+                                return $value === null;
+                            })->toArray();
+
+                            $key = array_values($key_for_img)[0] ?? '';
+
+                            if ($data_for_related != []) {
+                                $card = collect(array_values($data_for_related)[0])->only([
+                                    'top_feature_value',
+                                    'alternative_feature',
+                                    'alternative_feature_value',
+                                    'application',
+                                    'cta_url'
+                                ])->toArray();
+                            } else {
+                                $card = [];
+                            }
+
+                            $img = $page->getFirstMediaUrl('logo'.'_'.$key);
+
+                            return [
+                                $element['attributes'][$model] ?? null,
+                                'name' => $page->name,
+                                'slug' => $category->slug,
+                                'url' => $url,
+                                'card' => $card,
+                                'img' => $img,
+                                'page_status' => $page->status,
+                            ];
                         })->toArray() : null
                 ] ?? null
         ];
@@ -1325,36 +1384,36 @@ class Decorator extends Model
     {
         return [
             'id' => $decorator['id'] ?? null,
-            'table_type' => $decorator['table_type'],
+            'table_type' => $decorator['table_type'] ?? null,
             'name' => $decorator['name'] ?? null,
-            'badge_text' => isset($decorator->decorators[0]['attributes']['badge_text']) ? $decorator->decorators[0]['attributes']['badge_text'] : null,
+            'badge_text' => $decorator->decorators[0]['attributes']['badge_text'] ?? null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
-            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
-            'title' => $decorator->decorators[0]['attributes']['title'],
-            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'],
-            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'],
-            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'],
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? null,
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
-            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? 'Apply now',
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
             'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
             'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
-            'best_for' => $decorator->decorators[0]['attributes']['best_for'],
-            'rating' => $decorator->decorators[0]['attributes']['rating'],
-            'bottom_line' => $decorator->decorators[0]['attributes']['bottom_line'],
-            'review_url' => $decorator->decorators[0]['attributes']['review_url'],
-            'key_features' => collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
+            'bottom_line' => $decorator->decorators[0]['attributes']['bottom_line'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
+            'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) ? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
                 return [
-                    'feature' => $element['attributes']['feature']
+                    'feature' => $element['attributes']['feature'] ?? null,
                 ];
             })
                 ->flatten(1)
-                ->toArray(),
-            'applications' => collect($decorator->decorators[0]['attributes']['application'])->map(function ($element, $key) {
+                ->toArray() : null,
+            'applications' => isset($decorator->decorators[0]['attributes']['application']) ? collect($decorator->decorators[0]['attributes']['application'])->map(function ($element, $key) {
                 return [
                     $element,
                 ];
-            })->toArray(),
+            })->toArray() : null,
         ];
     }
 
@@ -1389,48 +1448,54 @@ class Decorator extends Model
     public static function formatStatsHighlightSection($decorator)
     {
         return [
-            'layout' => $decorator['layout'],
-            'key' => $decorator['key'],
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
             'data' => [
-                'title' => $decorator['attributes']['title'],
-                'content' => $decorator['attributes']['content'],
-                'list_type' => $decorator['attributes']['list_type'],
-                'elements' => collect($decorator['attributes']['stats-highlights'])
+                'title' => $decorator['attributes']['title'] ?? null,
+                'content' => $decorator['attributes']['content'] ?? null,
+                'list_type' => $decorator['attributes']['list_type'] ?? null,
+                'elements' => isset($decorator['attributes']['stats-highlights']) ? collect($decorator['attributes']['stats-highlights'])
                     ->map(function ($element) {
                         return [
-                            'stat' => $element['attributes']['stat'],
+                            'stat' => $element['attributes']['stat'] ?? null,
                         ];
                     })
-                    ->toArray()
+                    ->toArray() : null
             ]
         ];
     }
 
-    public static function parseEditorsChoiceSection($decorator)
+    public static function formatEditorsChoiceSection($decorator)
     {
         return [
-            'id' => $decorator['id'],
-            'table_type' => $decorator['table_type'],
-            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
-            'name' => $decorator['name'] ?? null,
-            'image' => $decorator->getFirstMediaUrl('logo') ?? "",
-
-            'title' => $decorator->decorators[0]['attributes']['title'],
-            'price' => $decorator->decorators[0]['attributes']['price'],
-            'price_period' => $decorator->decorators[0]['attributes']['price_period'] ?? 'monthly',
-            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] !== '' ? $decorator->decorators[0]['attributes']['cta_text'] : 'Visit Website',
-            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'],
-            'review_url' => isset($decorator->decorators[0]['attributes']['review_url']) ? $decorator->decorators[0]['attributes']['review_url'] : null,
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                    'key' => $decorator['key'] ?? null,
+                    'title' => $decorator['attributes']['table_title'] ?? null,
+                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])
+                        ->map(function ($element) {
+                            return [
+                                'key' => $element['key'] ?? null,
+                                'title' => $element['attributes']['title'] ?? null,
+                                'price' => $element['attributes']['price'] ?? null,
+                                'price_period' => $element['attributes']['price_period'] ?? null,
+                                'cta_text' => $element['attributes']['cta_text'] ?? null,
+                                'cta_url' => $element['attributes']['cta_url'] ?? null,
+                                'review_url' => $element['attributes']['review_url'] ?? null,
+                            ];
+                        })
+                        ->toArray() : null
+                ] ?? null
         ];
     }
 
     public static function formatRelatedPostsSection($decorator)
     {
         return [
-            'layout' => $decorator['layout'],
+            'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title' => $decorator['attributes']['title'],
-                'elements' => collect($decorator['attributes']['grid'])
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
                     ->map(function ($element) {
                         $model = collect($element['attributes'])->keys()->last();
                         $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
@@ -1445,30 +1510,25 @@ class Decorator extends Model
                             $url = route('resolve.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('resolve', [$category->slug]);
                         }
-
                         if($routePrefix === 'news') {
                             $url = route('news.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('news.category', [$category->slug]);
                         }
-
                         if($routePrefix === 'reviews') {
                             $url = route('reviews.single', [$category->slug, $page->slug]);
                             $categoryUrl = route('reviews.category', [$category->slug]);
                         }
-
-
-
                         return [
-                            'title' => $page['title'],
-                            'created_at_m' => $page['created_at']->format('M') ,
-                            'created_at_d' => $page['created_at']->format('d'),
-                            'url' => $url,
-                            'category_name' => $category->name,
-                            'image' => $page->getFirstMediaUrl('feature'),
-                            'category_url' => $categoryUrl,
+                            'title' => $page['title'] ?? null,
+                            'created_at_m' => $page['created_at']->format('M') ?? null,
+                            'created_at_d' => $page['created_at']->format('d') ?? null,
+                            'url' => $url ?? null,
+                            'category_name' => $category->name ?? null,
+                            'image' => $page->getFirstMediaUrl('feature') ?? null,
+                            'category_url' => $categoryUrl ?? null,
                         ];
                     })
-                    ->toArray()
+                    ->toArray() : null
             ]
         ];
     }
@@ -1476,19 +1536,19 @@ class Decorator extends Model
     public static function formatTitleImageTextGridSection($decorator)
     {
         return [
-            'layout' => $decorator['layout'],
+            'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'key' => $decorator['key'],
+                'key' => $decorator['key'] ?? null,
                 'title' => $decorator['attributes']['title'] ?? null,
                 'subtitle' => $decorator['attributes']['subtitle'] ?? null,
-                'elements' => collect($decorator['attributes']['columns'])
+                'elements' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
                     ->map(function ($element) {
                         return [
-                            'title' => $element['attributes']['title'],
-                            'text' => $element['attributes']['text'],
+                            'title' => $element['attributes']['title'] ?? null,
+                            'text' => $element['attributes']['text'] ?? null,
                         ];
                     })
-                    ->toArray()
+                    ->toArray() : null
             ]
         ];
     }
@@ -1596,18 +1656,18 @@ class Decorator extends Model
     public static function formatHomeMissionSection($decorator)
     {
         return [
-            'layout' => $decorator['layout'],
+            'layout' => $decorator['layout'] ?? null,
             'data' => [
-                'title' => $decorator['attributes']['title'],
-                'content' => $decorator['attributes']['content'],
-                'elements' => collect($decorator['attributes']['columns'])
+                'title' => $decorator['attributes']['title'] ?? null,
+                'content' => $decorator['attributes']['content'] ?? null,
+                'elements' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
                     ->map(function ($element) {
                         return [
-                            'title' => $element['attributes']['title'],
-                            'description' => $element['attributes']['description'],
+                            'title' => $element['attributes']['title'] ?? null,
+                            'description' => $element['attributes']['description'] ?? null
                         ];
                     })
-                    ->toArray()
+                    ->toArray() : null
             ]
         ];
     }
