@@ -5,7 +5,7 @@
 You can install the package via composer:
 
 ```bash
-composer require bibesko/decorator
+composer require trinityrank/decorators-front
 ```
 
 You can publish view components classes:
@@ -17,26 +17,20 @@ php artisan vendor:publish --tag="decorator-components"
 ## Usage
 
 ```php
-use bibesko\Decorator\Models\Decorator;
+use Trinityrank\DecoratorsFront\Models\Decorator;
 Decorator::parse($page);
 ```
+## App must include
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [Bibesko](https://github.com/Bibesko)
-- [All Contributors](../../contributors)
+```php
+use App\Articles\Types\Blog;
+use App\Categories\Types\MoneyPageCategory;
+use App\Categories\Types\ReviewPageCategory;
+use App\Models\Operater;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
+use TOC\MarkupFixer;
+```
 
 ## License
 
