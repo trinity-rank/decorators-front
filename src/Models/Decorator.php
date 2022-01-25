@@ -13,71 +13,72 @@ use TOC\MarkupFixer;
 class Decorator extends Model
 {
     protected static $decoratorMapper = [
-        'table-section' => 'parseTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'three-column-section' => 'formatThreeColumnSection',                           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'title-section' => 'formatTitleSection',                                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'image-three-rows-section' => 'formatImageThreeRowsSection',                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH ?)
-        'youtube-section' => 'formatYoutubeSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal (TH)
-        'content-section' => 'formatContentSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'faq-section' => 'formatFaqSection',                                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'sources-section' => 'formatSourcesSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'methodology-section' => 'formatMethodologySection',                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'featured-snippet-section' => 'formatFeaturedSnippetSection',                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'show-more-section' => 'formatShowMoreSection',                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'single-review-table-section' => 'formatSingleReviewTableSection',              // FORTUNLY (TF), SBG (TS), RW42 (TR), Dataprot (TD), KommandoTech (TK)
-        'review-compare-section' => 'formatReviewCompareSection',                       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'content-table' => 'formatContentTableSection',                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'offer-summary-table-section' => 'parseOfferSummaryTableSection',               // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'values-content-two-buttons-table-sections' => 'parseValuesContentTwoButtonsTableSection',  // FORTUNLY (TF), SBG (TS)
-        'detailed-blue-table-section' => 'parseDetailedBlueTableSection',               // FORTUNLY (TF), SBG (TS), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'values-content-table-section' => 'parseValuesContentTableSection',             // FORTUNLY (TF), SBG (TS), Dataprot (TD), KommandoTech (TK)
-        'values-phone-content-table-section' => 'parseValuesPhoneContentTableSection',  // FORTUNLY (TF), SBG (TS)
-        'authors-section' => 'authorsSection',                                          // SBG (TS), RW42 (TR), Techjury (TT)
-        'related-product-section' => 'formatRelatedProductSection',                     // SBG (TS), RW42 (TR), Techjury (TT)
-        'text-banner' => 'formatTextBannerSection',                                     // FORTUNLY (TF)
-        'review-score-compare-section' => 'formatReviewScoreCompareSection',            // SBG (TS)
-        'text-left-image-right-section' => 'formatTextLeftImageRightSection',           // SBG (TS)
-        'divide-by-letters-section' => 'formatDivideByLettersSection',                  // SBG (TS)
-        'image-and-content-side-by-side-section' => 'imageAndContentSideBySideSection', // RW42 (TR), Techjury (TT)
-        'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',  // RW42 (TR)
-        'single-review-hardware-box-section' => 'singleReviewHardwareBoxSection',       // RW42 (TR), Techjury (TT), TechTribunal (TH)
-        'single-review-compare-section' => 'singleReviewCompareSection',                // RW42 (TR), Techjury (TT), TechTribunal (TH)
-        'small-three-column-table' => 'smallThreeColumnTableSection',                   // RW42 (TR), Techjury (TT)
-        'review-grid-section' => 'formatReviewGridSection',                             // RW42 (TR), Techjury (TT)
-        'content-with-background-section' => 'formatContentWithBackgroundSection',      // RW42 (TR), Techjury (TT)
-        'content-in-quotes-section' => 'formatContentInQuotesSection',                  // RW42 (TR), Techjury (TT)
-        'review-pricing-grid-section' => 'formatReviewPricingGridSection',              // RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
-        'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection', // RW42 (TR), Techjury (TT), TechTribunal (TH)
-        'pros-cons-table-section' => 'parseProsConsTableSection',                       // RW42 (TR), Techjury (TT)
-        'offer-bullets-table-section' => 'parseOfferBulletsTableSection',               // RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
-        'hardware-box-table-section' => 'parseHardwareBoxTableSection',                 // RW42 (TR), Techjury (TT), KommandoTech (TK)
-        'disclaimer-section' => 'disclaimerSection',                                    // Techjury (TT)
-        'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',  // Techjury (TT)
-        'money-page-grid-section' => 'formatMoneyPageGridSection',                      // Techjury (TT)
-        'post-grid-section' => 'formatPostGridSection',                                 // Techjury (TT)
-        'background-checks-section' => 'formatBackgroundChecksSection',                 // Techjury (TT)
-        'related-review-section' => 'formatRelatedReviewSection',                       // Techjury (TT), Dataprot (TD), KommandoTech (TK)
-        'standard-data-table-section' => 'formatStandardDataTableSection',              // KommandoTech (TK)
-        'stats-highlight-section' => 'formatStatsHighlightSection',                     // Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'editors-choice-section' => 'formatEditorsChoiceSection',                       // Dataprot (TD), TechTribunal (TH)
-        'related-posts-section' => 'formatRelatedPostsSection',                         // Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',           // Dataprot (TD)
-        'single-review-box-section' => 'formatSingleReviewRowSection',                  // TechTribunal (TH)
-        'products-table-section' => 'parseProductTableSection',                         // TechTribunal (TH)
-        'deals-list-layout' => 'formatDealsListLayout',                                 // TechTribunal (TH)
-        'home-title-section' => 'formatHomeTitleSection',                               // TechTribunal (TH)
-        'moneypage-slider-section' => 'formatMoneypageSliderSection',                   // TechTribunal (TH)
-        'reviews-section' => 'formatReviewsSection',                                    // TechTribunal (TH)
-        'home-top-posts-section' => 'formatHomeTopPostsSection',                        // TechTribunal (TH)
-        'single-review-compare-features-section' => 'formatSingleReviewCompareFeaturesSection', // TechTribunal (TH)
-        'products-compare-table-section' => 'parseProductsCompareSection',               // KommandoTech (TK)
-        'grid-section' => 'formatGridSection',                                           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'tech-table-section' => 'parseTechTableSection',                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
-        'standard-table-section' => 'parseStandardTableSection',                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
-        'credit-card-table-section' => 'parseCreditCardTableSection',                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'three-cards-table-section' => 'parseThreeCardsTableSection',                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
-        'gambler-table-section' => 'parseGamblerTableSection',                           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
-        'values-bullets-table-section' => 'parseValuesBulletsTableSection',              // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+
+        'authors-section' => 'authorsSection',                                                          // SBG (TS), RW42 (TR), Techjury (TT)
+        'background-checks-section' => 'formatBackgroundChecksSection',                                 // Techjury (TT)
+        'content-in-quotes-section' => 'formatContentInQuotesSection',                                  // RW42 (TR), Techjury (TT)
+        'content-section' => 'formatContentSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'content-table' => 'formatContentTableSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'content-with-background-section' => 'formatContentWithBackgroundSection',                      // RW42 (TR), Techjury (TT)
+        'credit-card-table-section' => 'formatCreditCardTableSection',                                  // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'deals-list-layout' => 'formatDealsListLayout',                                                 // TechTribunal (TH)
+        'detailed-blue-table-section' => 'formatDetailedBlueTableSection',                              // FORTUNLY (TF), SBG (TS), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'disclaimer-section' => 'disclaimerSection',                                                    // Techjury (TT)
+        'divide-by-letters-section' => 'formatDivideByLettersSection',                                  // SBG (TS)
+        'editors-choice-section' => 'formatEditorsChoiceSection',                                       // Dataprot (TD), TechTribunal (TH)
+        'faq-section' => 'formatFaqSection',                                                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'featured-snippet-section' => 'formatFeaturedSnippetSection',                                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'gambler-table-section' => 'formatGamblerTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'grid-section' => 'formatGridSection',                                                          // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
+        'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
+        'home-top-posts-section' => 'formatHomeTopPostsSection',                                        // TechTribunal (TH)
+        'image-and-content-side-by-side-section' => 'imageAndContentSideBySideSection',                 // RW42 (TR), Techjury (TT)
+        'image-three-rows-section' => 'formatImageThreeRowsSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH ?)
+        'methodology-section' => 'formatMethodologySection',                                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'money-page-grid-section' => 'formatMoneyPageGridSection',                                      // Techjury (TT)
+        'moneypage-slider-section' => 'formatMoneyPageSliderSection',                                   // TechTribunal (TH)
+        'offer-bullets-table-section' => 'formatOfferBulletsTableSection',                              // RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
+        'offer-summary-table-section' => 'formatOfferSummaryTableSection',                              // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'post-grid-section' => 'formatPostGridSection',                                                 // Techjury (TT)
+        'products-compare-table-section' => 'formatProductsCompareSection',                             // KommandoTech (TK)
+        'products-table-section' => 'formatProductTableSection',                                        // TechTribunal (TH)
+        'pros-cons-table-section' => 'formatProsConsTableSection',                                      // RW42 (TR), Techjury (TT)
+        'related-posts-section' => 'formatRelatedPostsSection',                                         // Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'related-product-section' => 'formatRelatedProductSection',                                     // SBG (TS), RW42 (TR), Techjury (TT)
+        'related-review-section' => 'formatRelatedReviewSection',                                       // Techjury (TT), Dataprot (TD), KommandoTech (TK)
+        'review-compare-section' => 'formatReviewCompareSection',                                       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'review-grid-section' => 'formatReviewGridSection',                                             // RW42 (TR), Techjury (TT)
+        'review-pricing-grid-section' => 'formatReviewPricingGridSection',                              // RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
+        'review-score-compare-section' => 'formatReviewScoreCompareSection',                            // SBG (TS)
+        'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection',              // RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'reviews-section' => 'formatReviewsSection',                                                    // TechTribunal (TH)
+        'show-more-section' => 'formatShowMoreSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'single-review-box-section' => 'formatSingleReviewRowSection',                                  // TechTribunal (TH)
+        'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',              // Techjury (TT)
+        'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',                  // RW42 (TR)
+        'single-review-compare-features-section' => 'formatSingleReviewCompareFeaturesSection',         // TechTribunal (TH)
+        'single-review-compare-section' => 'singleReviewCompareSection',                                // RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'single-review-hardware-box-section' => 'singleReviewHardwareBoxSection',                       // RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'single-review-table-section' => 'formatSingleReviewTableSection',                              // FORTUNLY (TF), SBG (TS), RW42 (TR), Dataprot (TD), KommandoTech (TK)
+        'small-three-column-table' => 'smallThreeColumnTableSection',                                   // RW42 (TR), Techjury (TT)
+        'sources-section' => 'formatSourcesSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'standard-data-table-section' => 'formatStandardDataTableSection',                              // KommandoTech (TK)
+        'standard-table-section' => 'formatStandardTableSection',                                       // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH), KommandoTech (TK)
+        'stats-highlight-section' => 'formatStatsHighlightSection',                                     // Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'table-section' => 'formatTableSection',                                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'tech-table-section' => 'formatTechTableSection',                                               // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'text-banner' => 'formatTextBannerSection',                                                     // FORTUNLY (TF)
+        'text-left-image-right-section' => 'formatTextLeftImageRightSection',                           // SBG (TS)
+        'three-cards-table-section' => 'formatThreeCardsTableSection',                                  // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'three-column-section' => 'formatThreeColumnSection',                                           // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'title-image-text-grid-section' => 'formatTitleImageTextGridSection',                           // Dataprot (TD)
+        'title-section' => 'formatTitleSection',                                                        // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'values-bullets-table-section' => 'formatValuesBulletsTableSection',                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'values-content-table-section' => 'formatValuesContentTableSection',                            // FORTUNLY (TF), SBG (TS), Dataprot (TD), KommandoTech (TK)
+        'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection',     // FORTUNLY (TF), SBG (TS)
+        'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection',                 // FORTUNLY (TF), SBG (TS)
+        'youtube-section' => 'formatYoutubeSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal (TH)
 
         // in use ????
 
@@ -99,7 +100,7 @@ class Decorator extends Model
         });
     }
 
-    public static function parseTableSection($decorator)
+    public static function formatTableSection($decorator)
     {
         $tableTitle = $decorator['attributes']['table_title'] ?? null;
         $tableElements = json_decode($decorator['attributes']['table'][0]['attributes']['operaters']) ?? null;
@@ -220,7 +221,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseStandardTableSection($decorator)
+    public static function formatStandardTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -363,7 +364,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseCreditCardTableSection($decorator)
+    public static function formatCreditCardTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -392,7 +393,7 @@ class Decorator extends Model
             'detail_text' => $decorator->decorators[0]['attributes']['detail_text'] ?? null,
             'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) ? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
                 return [
-                    'feature_title' => $element['attributes']['key_features_list-section_feature_title'] ?? null,
+                    'feature_title' => $element['attributes']['feature_title'] ?? $element['attributes']['key_features_list-section_feature_title'] ?? null,
                     'feature_text' => $element['attributes']['feature_text'] ?? null
                 ];
             })->toArray() : null,
@@ -488,7 +489,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseThreeCardsTableSection($decorator)
+    public static function formatThreeCardsTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -533,7 +534,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseOfferSummaryTableSection($decorator)
+    public static function formatOfferSummaryTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -564,7 +565,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseTechTableSection($decorator)
+    public static function formatTechTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -588,7 +589,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseGamblerTableSection($decorator)
+    public static function formatGamblerTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -623,7 +624,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseDetailedBlueTableSection($decorator)
+    public static function formatDetailedBlueTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -671,7 +672,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseValuesBulletsTableSection($decorator)
+    public static function formatValuesBulletsTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -707,7 +708,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseValuesContentTableSection($decorator)
+    public static function formatValuesContentTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -733,7 +734,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseValuesPhoneContentTableSection($decorator)
+    public static function formatValuesPhoneContentTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -757,7 +758,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseValuesContentTwoButtonsTableSection($decorator)
+    public static function formatValuesContentTwoButtonsTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -1116,7 +1117,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseProsConsTableSection($decorator)
+    public static function formatProsConsTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -1158,7 +1159,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseOfferBulletsTableSection($decorator)
+    public static function formatOfferBulletsTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -1187,7 +1188,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseHardwareBoxTableSection($decorator)
+    public static function formatHardwareBoxTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -1565,7 +1566,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseProductTableSection($decorator)
+    public static function formatProductTableSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
@@ -1633,7 +1634,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function formatMoneypageSliderSection($decorator)
+    public static function formatMoneyPageSliderSection($decorator)
     {
         return [
             'layout' => $decorator['layout'],
@@ -1735,7 +1736,7 @@ class Decorator extends Model
         ];
     }
 
-    public static function parseProductsCompareSection($decorator)
+    public static function formatProductsCompareSection($decorator)
     {
         return [
             'id' => $decorator['id'] ?? null,
