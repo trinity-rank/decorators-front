@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\Component;
 
 class Decorator extends Component
@@ -40,7 +41,11 @@ class Decorator extends Component
             $model = $this->model;
 
             return view('components.decorators.'.$this->decorator['layout'], compact('data', 'model'));
+
         } catch (Exception $e) {
+
+            Log::error($e->getMessage().' for decorator: '.$this->decorator['layout']);
+
             return;
         }
     }
