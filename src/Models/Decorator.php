@@ -1265,16 +1265,14 @@ class Decorator extends Model
 
     public static function formatMoneyPageGridSection($decorator)
     {
-        $moneypage_categories = MoneyPageCategory::orderBy('created_at', 'desc')->whereNotNull('parent_id')->distinct()->limit(16)->get();
         return [
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'moneypage_categories' => $moneypage_categories ?? null,
-                    'label_title' => $decorator['attributes']['label_title'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'money_description' => $decorator['attributes']['review_description'] ?? null
-                ] ?? null
+                'label_title' => $decorator['attributes']['label_title'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'money_description' => $decorator['attributes']['review_description'] ?? null
+            ] ?? null
         ];
     }
 
