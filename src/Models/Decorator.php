@@ -1278,11 +1278,10 @@ class Decorator extends Model
 
     public static function formatPostGridSection($decorator)
     {
-        $posts = Blog::whereHas('categories', function ($q) use ($decorator) {
+        $posts = Blog::with('media', 'user.media')->whereHas('categories', function ($q) use ($decorator) {
             $q->where('slug', $decorator['attributes']['category']);
         })
             ->orderBy('updated_at', 'desc')
-            ->with('media', 'user')
             ->status()
             ->publishDate()
             ->take(8)
