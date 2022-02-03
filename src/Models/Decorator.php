@@ -379,6 +379,7 @@ class Decorator extends Model
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
             'sub_text' => $decorator->decorators[0]['attributes']['sub_text'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? null,
@@ -547,6 +548,7 @@ class Decorator extends Model
             'badge_text' => $decorator->decorators[0]['attributes']['badge_text'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'bottom_line_title' => $decorator->decorators[0]['attributes']['bottom_line_title'] ?? null,
             'bottom_line_text' => $decorator->decorators[0]['attributes']['bottom_line_text'] ?? null,
@@ -1134,6 +1136,7 @@ class Decorator extends Model
             'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'content' => $decorator->decorators[0]['attributes']['content'] ?? null,
             'main_features' => isset($decorator->decorators[0]['attributes']['main_features']) ? collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
