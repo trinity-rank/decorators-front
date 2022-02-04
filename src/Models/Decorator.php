@@ -1383,48 +1383,43 @@ class Decorator extends Model
     public static function formatStandardDataTableSection($decorator)
     {
         return [
-            'layout' => $decorator['layout'] ?? null,
-            'data' => [
-                'table_title' => $decorator['attributes']['table_title'] ?? null,
-                'elements' => collect($decorator['attributes']['table'])->map(function ($element) {
-                    return [
-                        'key' => $element['key'] ?? null,
-                        'title' => $element['attributes']['title'] ?? null,
-                        'badge_text' => isset($element['attributes']['badge_text']) ? $element['attributes']['badge_text'] : null,
-                        'cta_url' => $element['attributes']['cta_url'] ?? null,
-                        'cta_text' => $element['attributes']['cta_text'] ?? null,
-                        'offer_text' => $element['attributes']['offer_text'] ?? null,
-                        'offer_price' => $element['attributes']['offer_price'] ?? null,
-                        'offer_period' => $element['attributes']['offer_period'] ?? null,
-                        'banner_description' => $element['attributes']['banner_description'] ?? null,
-                        'banner_cta_text' => $element['attributes']['banner_cta_text'] ?? null,
-                        'banner_cta_url' => $element['attributes']['banner_cta_url'] ?? null,
-                        'best_for' => $element['attributes']['best_for'] ?? null,
-                        'rating' => $element['attributes']['rating'] ?? null,
-                        'bottom_line' => $element['attributes']['bottom_line'] ?? null,
-                        'review_url' => $element['attributes']['review_url'] ?? null,
-                        'review_scroll_tag' => $element['attributes']['review_scroll_tag'] ?? null,
-                        'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
-                            return [
-                                'feature' => $element['attributes']['feature'] ?? null,
-                            ];
-                        })
-                            ->flatten(1)
-                            ->toArray() : null,
-                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
-                            return [
-                                'title' => $element['attributes']['title'] ?? null,
-                                'value' => $element['attributes']['value'] ?? null,
-                            ];
-                        })->toArray() : null,
-                        'applications' => isset($element['attributes']['application']) ? collect($element['attributes']['application'])->map(function ($element, $key) {
-                            return [
-                                $element ?? null,
-                            ];
-                        })->toArray() : null,
-                    ];
-                })->toArray()
-            ]
+            'id' => $decorator['id'] ?? null,
+            'table_type' => $decorator['table_type'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
+            'badge_text' => isset($decorator->decorators[0]['attributes']['badge_text']) ? $decorator->decorators[0]['attributes']['badge_text'] : null,
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
+            'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
+            'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
+            'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? null,
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
+            'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
+            'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
+            'bottom_line' => $decorator->decorators[0]['attributes']['bottom_line'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) ? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
+                return [
+                    'feature' => $element['attributes']['feature'] ?? null,
+                ];
+            })
+                ->flatten(1)
+                ->toArray() : null,
+            'main_features' => isset($decorator->decorators[0]['attributes']['main_features']) ? collect($decorator->decorators[0]['attributes']['main_features'])->map(function ($element) {
+                return [
+                    'title' => $element['attributes']['title'] ?? null,
+                    'value' => $element['attributes']['value'] ?? null,
+                ];
+            })->toArray() : null,
+            'applications' => isset($decorator->decorators[0]['attributes']['application']) ? collect($decorator->decorators[0]['attributes']['application'])->map(function ($element, $key) {
+                return [
+                    $element ?? null,
+                ];
+            })->toArray() : null,
         ];
     }
 
