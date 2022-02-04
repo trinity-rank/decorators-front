@@ -1351,6 +1351,7 @@ class Decorator extends Model
 
                             if ($data_for_related != []) {
                                 $card = collect(array_values($data_for_related)[0])->only([
+                                    'name',
                                     'top_feature_value',
                                     'alternative_feature',
                                     'alternative_feature_value',
