@@ -1369,6 +1369,7 @@ class Decorator extends Model
                             }
 
                             $img = $page->getFirstMediaUrl('logo'.'_'.$key);
+                            $imgFeature = $page->getFirstMediaUrl('feature');
 
                             return [
                                 $element['attributes'][$model] ?? null,
@@ -1378,6 +1379,9 @@ class Decorator extends Model
                                 'card' => $card,
                                 'img' => $img,
                                 'page_status' => $page->status,
+                                'title' => $page->title,
+                                'page_slug' => $page->slug,
+                                'img_feature' => $imgFeature
                             ];
                         })->toArray() : null
                 ] ?? null
