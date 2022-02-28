@@ -1212,6 +1212,7 @@ class Decorator extends Model
             'merchant_list' => isset($decorator->decorators[0]['attributes']['merchant_list']) ? collect($decorator->decorators[0]['attributes']['merchant_list'])->map(function ($element) {
                 return [
                     'price' => $element['attributes']['price'] ?? null,
+                    'price_options' => $element['attributes']['price_options'] ?? null,
                     'currency' => $element['attributes']['merchant-list_currency'] ?? null,
                     'cta_url' => $element['attributes']['cta_url'] ?? null,
                     'cta_text' => $element['attributes']['cta_text'] ?? null,
