@@ -1702,17 +1702,12 @@ class Decorator extends Model
                         $page = $model::whereId($element['attributes'][$model] ?? '')->with('categories', 'media')->first();
                         $routePrefix = strtolower(collect(explode('\\', $model))->last());
                         $category = $page->categories->first();
-
-                        $url = '';
-                        $categoryUrl = '';
-                        $url = route('resolve.single', [$category->slug, $page->slug]);
-                        $categoryUrl = route('resolve', [$category->slug]);
                         return [
                             'title' => $page->title,
-                            'url' => $url,
+                            'slug' => $page->slug,
                             'category_name' => $category->name,
                             'image' => $page->getFirstMediaUrl('feature'),
-                            'category_url' => $categoryUrl,
+                            'category_slug' => $category->slug,
                         ];
                     })
                     ->toArray() : null
