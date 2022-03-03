@@ -1636,7 +1636,21 @@ class Decorator extends Model
     {
         return [
             'layout' => $decorator['layout'] ?? null,
-            'data' => $decorator['attributes'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' =>[
+                'main_title' => $decorator['attributes']['main_title'] ?? null,
+                'subtitle' => $decorator['attributes']['subtitle'] ?? null,
+                'section_title' => $decorator['attributes']['section_title'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'review_categories' => collect(ReviewPageCategory::where('parent_id','=',$decorator['attributes']['review_category'])->get())
+                    ->map(function ($element) {
+                        return [
+                            'name' => $element->name,
+                            'slug' => $element->slug,
+                        ];
+                    })->toArray(),
+                'image_right' => $decorator['attributes']['image_right'] ?? null,
+            ],
         ];
     }
 
@@ -1701,7 +1715,6 @@ class Decorator extends Model
                     ->map(function ($element) {
                         $model = collect($element['attributes'] ?? '')->keys()->last();
                         $page = $model::whereId($element['attributes'][$model] ?? '')->with('categories', 'media')->first();
-                        $routePrefix = strtolower(collect(explode('\\', $model))->last());
                         $category = $page->categories->first();
                         return [
                             'title' => $page->title,
