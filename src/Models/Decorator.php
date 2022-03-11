@@ -33,7 +33,7 @@ class Decorator extends Model
         'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
         'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
         'home-top-posts-section' => 'formatHomeTopPostsSection',                                        // TechTribunal (TH)
-        'image-and-content-side-by-side-section' => 'imageAndContentSideBySideSection',                 // RW42 (TR), Techjury (TT)
+        'image-and-content-side-by-side-section' => 'imageAndContentSideBySideSection',                 // RW42 (TR), Techjury (TT), TechTribunal (TH)
         'image-three-rows-section' => 'formatImageThreeRowsSection',                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH ?)
         'methodology-section' => 'formatMethodologySection',                                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'money-page-grid-section' => 'formatMoneyPageGridSection',                                      // Techjury (TT)
@@ -1520,6 +1520,7 @@ class Decorator extends Model
 
                             $url = '';
                             $categoryUrl = '';
+                            $pageSlug = $page->slug;
                             $categorySlug = $category->slug ?? null;
 
                             if($routePrefix === 'blog' || $routePrefix === 'moneypage') {
@@ -1545,6 +1546,7 @@ class Decorator extends Model
                             'category_url' => $categoryUrl ?? null,
                             'route_prefix' => $routePrefix ?? null,
                             'category_slug' => $categorySlug ?? null,
+                            'page_slug' => $pageSlug ?? null,
                         ];
                     })
                     ->toArray() : null
