@@ -1717,13 +1717,16 @@ class Decorator extends Model
                     ->map(function ($element) {
                         $model = collect($element['attributes'] ?? '')->keys()->last();
                         $page = $model::whereId($element['attributes'][$model] ?? '')->with('categories', 'media')->first();
-                        $category = $page->categories->first();
+                        $category = $page->categories->whereNotNull('parent_id')->first();
+                        $parentCategory = $category->parent()->first();
+
                         return [
                             'title' => $page->title,
                             'slug' => $page->slug,
                             'category_name' => $category->name,
                             'image' => $page->getFirstMediaUrl('feature'),
                             'category_slug' => $category->slug,
+                            'parent_slug' => $parentCategory->slug
                         ];
                     })
                     ->toArray() : null
