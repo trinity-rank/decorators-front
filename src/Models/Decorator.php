@@ -552,7 +552,6 @@ class Decorator extends Model
             'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
-            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
             'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
