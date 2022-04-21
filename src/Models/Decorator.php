@@ -506,6 +506,7 @@ class Decorator extends Model
             'offer_text' => $decorator->decorators[0]['attributes']['offer_text'] ?? null,
             'offer_price' => $decorator->decorators[0]['attributes']['offer_price'] ?? null,
             'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
+            'price_options' => $decorator->decorators[0]['attributes']['price_options'] ?? null,
             'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? null,
             'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
