@@ -1535,9 +1535,9 @@ class Decorator extends Model
                                 $url = route('news.single', [$category->slug, $page->slug]);
                                 $categoryUrl = route('news.category', [$category->slug]);
                             }
-                            if($routePrefix === 'reviews') {
+                            if ($routePrefix === 'reviewpage') {
                                 $url = route('reviews.single', [$category->slug, $page->slug]);
-                                $categoryUrl = route('reviews.category', [$category->slug]);
+                                $categoryUrl = route('reviews.resolve', [$category->slug]);
                             }
                         }
                         return [
