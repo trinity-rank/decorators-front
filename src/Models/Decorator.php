@@ -1458,6 +1458,11 @@ class Decorator extends Model
                             'feature_text' => $element['attributes']['feature_text'] ?? null
                         ];
                     })->toArray() : null,
+                    'applications' => isset($decorator['attributes']['application']) ? collect($decorator['attributes']['application'])->map(function ($element, $key) {
+                    return [
+                        $element,
+                    ];
+                })->toArray() : null,
                 ] ?? null,
         ];
     }
