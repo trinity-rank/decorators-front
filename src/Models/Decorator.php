@@ -79,6 +79,7 @@ class Decorator extends Model
         'values-content-two-buttons-table-sections' => 'formatValuesContentTwoButtonsTableSection',     // FORTUNLY (TF), SBG (TS)
         'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection',                 // FORTUNLY (TF), SBG (TS)
         'youtube-section' => 'formatYoutubeSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal (TH)
+        'notable-posts-section' => 'formatNotablePostsSection',                                         // DATAPROT
 
         // in use ????
 
@@ -194,12 +195,12 @@ class Decorator extends Model
                     'title' => $decorator['attributes']['title'] ?? null,
                     'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
                         ->map(function ($element) {
-                            if(isset($element['attributes'])) {
+                            if (isset($element['attributes'])) {
                                 $model = collect($element['attributes'])->keys()->last() ?? null;
-                                if($model != null) {
+                                if ($model != null) {
                                     $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first() ?? null;
                                     $routePrefix = strtolower(collect(explode('\\', $model))->last()) ?? null;
-                                    if($page != null) {
+                                    if ($page != null) {
                                         $category = $page->categories->first() ?? null;
                                     }
                                 }
@@ -893,7 +894,7 @@ class Decorator extends Model
                     'main_title' => $decorator['attributes']['main_title'] ?? null,
                     'elements' => isset($decorator['attributes']['paragraph']) ? collect($decorator['attributes']['paragraph'])
                         ->map(function ($element) {
-                            $element['attributes']['letter'] = substr($element['attributes']['title'] ?? null , 0, 1);
+                            $element['attributes']['letter'] = substr($element['attributes']['title'] ?? null, 0, 1);
                             return $element['attributes'];
                         }) : null
                 ] ?? null
@@ -1008,7 +1009,6 @@ class Decorator extends Model
 
     public static function smallThreeColumnTableSection($decorator)
     {
-
         return [
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
@@ -1334,7 +1334,7 @@ class Decorator extends Model
                             $page = $model::with('categories', 'media')->whereId($element['attributes'][$model])->first();
 
                             $category = $page->categories->first();
-                            if(\Illuminate\Support\Facades\Route::has('reviews.single')) {
+                            if (\Illuminate\Support\Facades\Route::has('reviews.single')) {
                                 $url = route('reviews.single', [$page->categories->first()->slug, $page->slug]);
                             } else {
                                 $url = route('reviews.resolve', [$page->categories->first()->slug, $page->slug]);
@@ -1459,10 +1459,10 @@ class Decorator extends Model
                         ];
                     })->toArray() : null,
                     'applications' => isset($decorator['attributes']['application']) ? collect($decorator['attributes']['application'])->map(function ($element, $key) {
-                    return [
+                        return [
                         $element,
                     ];
-                })->toArray() : null,
+                    })->toArray() : null,
                 ] ?? null,
         ];
     }
@@ -1521,7 +1521,7 @@ class Decorator extends Model
                 'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
                     ->map(function ($element) {
                         isset($element['attributes']) ? $model = collect($element['attributes'])->keys()->last() : $model = null;
-                        if(isset($model)) {
+                        if (isset($model)) {
                             $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first();
                             $routePrefix = strtolower(collect(explode('\\', $model))->last());
 
@@ -1532,11 +1532,11 @@ class Decorator extends Model
                             $pageSlug = $page->slug;
                             $categorySlug = $category->slug ?? null;
 
-                            if($routePrefix === 'blog' || $routePrefix === 'moneypage') {
+                            if ($routePrefix === 'blog' || $routePrefix === 'moneypage') {
                                 $url = route('resolve.single', [$category->slug, $page->slug]);
                                 $categoryUrl = route('resolve', [$category->slug]);
                             }
-                            if($routePrefix === 'news') {
+                            if ($routePrefix === 'news') {
                                 $url = route('news.single', [$category->slug, $page->slug]);
                                 $categoryUrl = route('news.category', [$category->slug]);
                             }
@@ -1653,7 +1653,7 @@ class Decorator extends Model
                 'subtitle' => $decorator['attributes']['subtitle'] ?? null,
                 'section_title' => $decorator['attributes']['section_title'] ?? null,
                 'description' => $decorator['attributes']['description'] ?? null,
-                'review_categories' => collect(ReviewPageCategory::where('parent_id','=',$decorator['attributes']['review_category'])->get())
+                'review_categories' => collect(ReviewPageCategory::where('parent_id', '=', $decorator['attributes']['review_category'])->get())
                     ->map(function ($element) {
                         return [
                             'name' => $element->name,
@@ -1793,4 +1793,22 @@ class Decorator extends Model
         ];
     }
 
+    public static function formatNotablePostsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['articles']) ? collect($decorator['attributes']['articles'])
+                    ->map(function ($element) {
+                        return [
+                            'publisher' => $element['attributes']['publisher'] ?? null,
+                            'name' => $element['attributes']['name'] ?? null,
+                            'url' => $element['attributes']['url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
+        ];
+    }
 }
