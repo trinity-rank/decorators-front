@@ -273,7 +273,7 @@ class Decorator extends Model
         // Iframe
         $content = str_replace('src="https://www.youtube.com', 'data-src="https://www.youtube.com', $content);
         // Img
-        $content = str_replace('src="https://trinity-core.s3-us-west-1.amazonaws.com', 'data-src="https://trinity-core.s3-us-west-1.amazonaws.com', $content);
+        $content = str_replace('src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', 'data-src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', $content);
 
         $content = (new MarkupFixer())->fix($content);
         return [
@@ -1059,7 +1059,7 @@ class Decorator extends Model
         // Iframe
         $content = str_replace('src="https://www.youtube.com', 'data-src="https://www.youtube.com', $content);
         // Img
-        $content = str_replace('src="https://trinity-core.s3-us-west-1.amazonaws.com', 'data-src="https://trinity-core.s3-us-west-1.amazonaws.com', $content);
+        $content = str_replace('src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', 'data-src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', $content);
 
         $content = (new MarkupFixer())->fix($content);
         return [
