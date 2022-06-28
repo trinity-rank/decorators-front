@@ -1324,8 +1324,10 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                ] ?? null
+                'title' => $decorator['attributes']['title'] ?? null,
+                'comapny' => $decorator['attributes']['comapny'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+            ] ?? null
         ];
     }
 
