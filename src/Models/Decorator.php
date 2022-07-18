@@ -9,6 +9,7 @@ use App\Models\Operater;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use TOC\MarkupFixer;
+use Trinityrank\GeoLocation\GeoLocationOperater;
 
 class Decorator extends Model
 {
@@ -104,8 +105,14 @@ class Decorator extends Model
     public static function formatTableSection($decorator)
     {
         $tableTitle = $decorator['attributes']['table_title'] ?? null;
-        $tableElements = json_decode($decorator['attributes']['table'][0]['attributes']['operaters']) ?? null;
-        isset($tableElements) ? $operaters = Operater::whereIn('id', $tableElements)->with('media')->orderByRaw('FIELD(id,' . implode(",", $tableElements) . ')')->get() : null;
+        $operaters_id = json_decode($decorator['attributes']['table'][0]['attributes']['operaters']) ?? null;
+
+        // Geolocation support
+        if( class_exists(GeoLocationOperater::class) ) {
+            $operaters_id = GeoLocationOperater::list($operaters_id);
+        }
+
+        isset($operaters_id) ? $operaters = Operater::whereIn('id', $operaters_id)->with('media')->orderByRaw('FIELD(id,' . implode(",", $operaters_id) . ')')->get() : null;
 
         $data = [
             'layout' => $decorator['attributes']['table'][0]['layout'] ?? null,
