@@ -1544,6 +1544,12 @@ class Decorator extends Model
                                 $url = route('reviews.single', [$category->slug, $page->slug]);
                                 $categoryUrl = route('reviews.resolve', [$category->slug]);
                             }
+
+                            if ($routePrefix === 'blog' || $routePrefix === 'news') {
+                                $description = $page->excerpt;
+                            } elseif ($routePrefix === 'moneypage' || $routePrefix === 'reviewpage') {
+                                $description = $page->short_description;
+                            }
                         }
                         return [
                             'title' => $page['title'] ?? null,
@@ -1556,6 +1562,7 @@ class Decorator extends Model
                             'route_prefix' => $routePrefix ?? null,
                             'category_slug' => $categorySlug ?? null,
                             'page_slug' => $pageSlug ?? null,
+                            'description' => $description,
                         ];
                     })
                     ->toArray() : null
