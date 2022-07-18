@@ -236,6 +236,7 @@ class Decorator extends Model
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
@@ -273,7 +274,7 @@ class Decorator extends Model
         // Iframe
         $content = str_replace('src="https://www.youtube.com', 'data-src="https://www.youtube.com', $content);
         // Img
-        $content = str_replace('src="https://trinity-core.s3-us-west-1.amazonaws.com', 'data-src="https://trinity-core.s3-us-west-1.amazonaws.com', $content);
+        $content = str_replace('src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', 'data-src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', $content);
 
         $content = (new MarkupFixer())->fix($content);
         return [
@@ -426,6 +427,7 @@ class Decorator extends Model
                             'rating' => $element['attributes']['rating'] ?? null,
                             'cta_text' => $element['attributes']['cta_text'] ?? null,
                             'cta_url' => $element['attributes']['cta_url'] ?? null,
+                            'additional_cta_text' => $element['attributes']['additional_cta_text'] ?? null,
                             'inactive' => $element['attributes']['inactive'] ?? false,
                             'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
                                 return [
@@ -513,6 +515,7 @@ class Decorator extends Model
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'cta_lock' => $decorator->decorators[0]['attributes']['cta_lock'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
@@ -555,6 +558,7 @@ class Decorator extends Model
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'on_website' => $decorator->decorators[0]['attributes']['on_website'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'bottom_line_title' => $decorator->decorators[0]['attributes']['bottom_line_title'] ?? null,
@@ -613,6 +617,7 @@ class Decorator extends Model
             'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
@@ -651,6 +656,7 @@ class Decorator extends Model
             'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'content' => $decorator->decorators[0]['attributes']['content'] ?? null,
             'review_text' => $decorator->decorators[0]['attributes']['review_text'] ?? null,
@@ -698,6 +704,7 @@ class Decorator extends Model
             'offer_period' => $decorator->decorators[0]['attributes']['offer_period'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'credit_score_min' => $decorator->decorators[0]['attributes']['credit_score_min'] ?? null,
@@ -732,6 +739,7 @@ class Decorator extends Model
             'best_for' => $decorator->decorators[0]['attributes']['best_for'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'comperable' => $decorator->decorators[0]['attributes']['comperable'] ?? null,
             'content' => $decorator->decorators[0]['attributes']['content'] ?? null,
@@ -782,6 +790,7 @@ class Decorator extends Model
             'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'content' => $decorator->decorators[0]['attributes']['content'] ?? null,
@@ -1059,7 +1068,7 @@ class Decorator extends Model
         // Iframe
         $content = str_replace('src="https://www.youtube.com', 'data-src="https://www.youtube.com', $content);
         // Img
-        $content = str_replace('src="https://trinity-core.s3-us-west-1.amazonaws.com', 'data-src="https://trinity-core.s3-us-west-1.amazonaws.com', $content);
+        $content = str_replace('src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', 'data-src="https://' . env('AWS_BUCKET', 'trinity-core') . '.s3.' . env('AWS_DEFAULT_REGION', 'us-west-1') . '.amazonaws.com', $content);
 
         $content = (new MarkupFixer())->fix($content);
         return [
@@ -1315,8 +1324,10 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                ] ?? null
+                'title' => $decorator['attributes']['title'] ?? null,
+                'comapny' => $decorator['attributes']['comapny'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+            ] ?? null
         ];
     }
 
