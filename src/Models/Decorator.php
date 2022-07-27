@@ -108,7 +108,7 @@ class Decorator extends Model
         $operaters_id = json_decode($decorator['attributes']['table'][0]['attributes']['operaters']) ?? null;
 
         // Geolocation support
-        if( class_exists(GeoLocationOperater::class) ) {
+        if (class_exists(GeoLocationOperater::class)) {
             $operaters_id = GeoLocationOperater::list($operaters_id);
         }
 
@@ -848,12 +848,15 @@ class Decorator extends Model
     {
         return [
             'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'subtitle' => $decorator['attributes']['subtitle'] ?? null,
-                    'cta_text' => $decorator['attributes']['cta_text'] ?? null,
-                    'cta_url' => $decorator['attributes']['cta_url'] ?? null,
-                ] ?? null,
+                'simple_layout' => $decorator['attributes']['simple_layout'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'subtitle' => $decorator['attributes']['subtitle'] ?? null,
+                'offer' => $decorator['attributes']['offer'] ?? null,
+                'cta_text' => $decorator['attributes']['cta_text'] ?? null,
+                'cta_url' => $decorator['attributes']['cta_url'] ?? null,
+            ] ?? null,
         ];
     }
 
@@ -1580,7 +1583,7 @@ class Decorator extends Model
                             'route_prefix' => $routePrefix ?? null,
                             'category_slug' => $categorySlug ?? null,
                             'page_slug' => $pageSlug ?? null,
-                            'description' => $description,
+                            'description' => $description ?? null,
                         ];
                     })
                     ->toArray() : null
