@@ -17,6 +17,7 @@ class Decorator extends Model
 
         'authors-section' => 'authorsSection',                                                          // SBG (TS), RW42 (TR), Techjury (TT)
         'background-checks-section' => 'formatBackgroundChecksSection',                                 // Techjury (TT)
+        'contact-page' => 'formatContactPageSection', 
         'content-in-quotes-section' => 'formatContentInQuotesSection',                                  // RW42 (TR), Techjury (TT)
         'content-section' => 'formatContentSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'content-table' => 'formatContentTableSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
@@ -1839,6 +1840,20 @@ class Decorator extends Model
                     })
                     ->toArray() : null
             ] ?? null
+        ];
+    }
+
+    public static function formatContactPageSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                'quote_title' => $decorator['attributes']['quote_title'] ?? null,
+                'intro_text' => $decorator['attributes']['intro_text'] ?? null,
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+            ] ?? null,
         ];
     }
 }
