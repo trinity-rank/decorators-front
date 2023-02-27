@@ -82,6 +82,7 @@ class Decorator extends Model
         'values-phone-content-table-section' => 'formatValuesPhoneContentTableSection',                 // FORTUNLY (TF), SBG (TS)
         'youtube-section' => 'formatYoutubeSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal (TH)
         'notable-posts-section' => 'formatNotablePostsSection',                                         // DATAPROT
+        'dynamic-table-section' => 'formatDynamicTableSection',                                         // Techjury (TT)
 
         // in use ????
 
@@ -1886,6 +1887,24 @@ class Decorator extends Model
                 'title' => $decorator['attributes']['title'] ?? null,
                 'description' => $decorator['attributes']['description'] ?? null,
             ] ?? null,
+        ];
+    }
+
+    public static function formatDynamicTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'] ?? null,
+            'table_type' => $decorator['table_type'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
+            'alt' => $decorator->getFirstMedia('logo')->getCustomProperty('alt') ?? $decorator->decorators[0]['attributes']['title'] ?? null,
+            'columns' => isset($decorator->decorators[0]['attributes']['columns']) ? collect($decorator->decorators[0]['attributes']['columns'])->map(function ($element) {
+                return [
+                    'column_name' => $element['attributes']['column_name'] ?? null,
+                    'value' => $element['attributes']['value'] ?? null,
+                ];
+            })->toArray() : null,
         ];
     }
 }
