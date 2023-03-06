@@ -1902,6 +1902,7 @@ class Decorator extends Model
             'columns' => isset($decorator->decorators[0]['attributes']['columns']) ? collect($decorator->decorators[0]['attributes']['columns'])->map(function ($element) {
                 return [
                     'column_name' => $element['attributes']['column_name'] ?? null,
+                    'column_type' => $element['attributes']['column_type'] ?? null,
                     'value' => $element['attributes']['value'] ?? null,
                 ];
             })->toArray() : null,
