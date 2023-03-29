@@ -83,6 +83,7 @@ class Decorator extends Model
         'youtube-section' => 'formatYoutubeSection',                                                    // FORTUNLY (TF), SBG (TS), RW42 (TR), TechTribunal (TH)
         'notable-posts-section' => 'formatNotablePostsSection',                                         // DATAPROT
         'dynamic-table-section' => 'formatDynamicTableSection',                                         // Techjury (TT)
+        'three-sidebar-section' => 'threeSidebarSection',
 
         // in use ????
 
@@ -1906,6 +1907,16 @@ class Decorator extends Model
                     'value' => $element['attributes']['value'] ?? null,
                 ];
             })->toArray() : null,
+        ];
+    }
+
+    public static function threeSidebarSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                'attributes' => $decorator['attributes'] ?? null,
+            ] ?? null
         ];
     }
 }
