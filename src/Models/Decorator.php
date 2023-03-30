@@ -1912,8 +1912,10 @@ class Decorator extends Model
 
     public static function threeSidebarSection($decorator)
     {
+
         return [
             'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
             'data' => [
                 'attributes' => $decorator['attributes'] ?? null,
             ] ?? null
