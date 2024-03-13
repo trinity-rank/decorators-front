@@ -6,12 +6,12 @@
         "laravel",
         "decorators-front"
     ],
-    "homepage": "https://github.com/trinityrank/decorators-front",
+    "homepage": "https://github.com/trinity-rank/decorators-front",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bibesko",
-            "email": "bibesko@trinityrank.com",
+            "name": "Trinityrank",
+            "email": "trinitydevbg@gmail.com",
             "role": "Developer"
         }
     ],
