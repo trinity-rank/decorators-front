@@ -5,7 +5,7 @@
 You can install the package via composer:
 
 ```bash
-composer require trinityrank/decorators-front
+composer require trinity-rank/decorators-front
 ```
 
 You can publish view components classes:
