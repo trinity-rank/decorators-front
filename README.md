@@ -14,6 +14,7 @@ You can publish view components classes:
 php artisan vendor:publish --tag="decorator-components"
 ```
 
+
 ## Usage
 
 ```php
