@@ -409,6 +409,7 @@ class Decorator extends Model
             'price_text' => $decorator->decorators[0]['attributes']['price_text'] ?? null,
             'website_url' => $decorator->decorators[0]['attributes']['website_url'] ?? null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'detail_title' => $decorator->decorators[0]['attributes']['detail_title'] ?? null,
             'detail_text' => $decorator->decorators[0]['attributes']['detail_text'] ?? null,
             'key_features' => isset($decorator->decorators[0]['attributes']['key_features']) ? collect($decorator->decorators[0]['attributes']['key_features'])->map(function ($element) {
@@ -545,6 +546,7 @@ class Decorator extends Model
             'cta_lock' => $decorator->decorators[0]['attributes']['cta_lock'] ?? null,
             'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'rating' => $decorator->decorators[0]['attributes']['rating'] ?? null,
             'phone' => $decorator->decorators[0]['attributes']['phone'] ?? null,
             'main_features_table' => isset($decorator->decorators[0]['attributes']['main_features_table']) ? collect($decorator->decorators[0]['attributes']['main_features_table'])->map(function ($element) {
