@@ -31,6 +31,7 @@ class Decorator extends Model
         'faq-section' => 'formatFaqSection',                                                            // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'featured-snippet-section' => 'formatFeaturedSnippetSection',                                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'gambler-table-section' => 'formatGamblerTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'simple-table-section' => 'formatSimpleTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
         'grid-section' => 'formatGridSection',                                                          // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
         'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
@@ -669,6 +670,30 @@ class Decorator extends Model
         ];
     }
 
+    public static function formatSimpleTableSection($decorator)
+    {
+        return [
+            'id' => $decorator['id'] ?? null,
+            'table_type' => $decorator['table_type'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'key' => $decorator->decorators[0]['key'] ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
+            'name' => $decorator->decorators[0]['attributes']['name'] ?? null,
+            'banner_description' => $decorator->decorators[0]['attributes']['banner_description'] ?? null,
+            'banner_cta_text' => $decorator->decorators[0]['attributes']['banner_cta_text'] ?? null,
+            'banner_cta_url' => $decorator->decorators[0]['attributes']['banner_cta_url'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'additional_cta_text' => $decorator->decorators[0]['attributes']['additional_cta_text'] ?? null,
+            'inactive' => $decorator->decorators[0]['attributes']['inactive'] ?? false,
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
+            'features' => $decorator->decorators[0]['attributes']['features'] ?? null,
+            'highlight_feature' => $decorator->decorators[0]['attributes']['highlight_feature'] ?? null,
+        ];
+    }
+    
     public static function formatDetailedBlueTableSection($decorator)
     {
         return [
