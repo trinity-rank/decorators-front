@@ -138,15 +138,15 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title_label' => $decorator['attributes']['title_label'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'text' => $decorator['attributes']['text'] ?? null,
-                    'columns' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
-                        ->map(function ($element) {
-                            return $element['attributes'] ?? null;
-                        })
-                        ->toArray() : null
-                ] ?? null,
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'text' => $decorator['attributes']['text'] ?? null,
+                'columns' => isset($decorator['attributes']['columns']) ? collect($decorator['attributes']['columns'])
+                    ->map(function ($element) {
+                        return $element['attributes'] ?? null;
+                    })
+                    ->toArray() : null
+            ] ?? null,
         ];
     }
 
@@ -181,19 +181,19 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'description' => $decorator['attributes']['description'] ?? null,
-                    'elements' => isset($decorator['attributes']['youtube']) ? collect($decorator['attributes']['youtube'])
-                        ->map(function ($element) {
-                            return [
-                                'key' => $element['key'] ?? null,
-                                'title' => $element['attributes']['title'] ?? null,
-                                'description' => $element['attributes']['description'] ?? null,
-                                'url' => $element['attributes']['url'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ]  ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'elements' => isset($decorator['attributes']['youtube']) ? collect($decorator['attributes']['youtube'])
+                    ->map(function ($element) {
+                        return [
+                            'key' => $element['key'] ?? null,
+                            'title' => $element['attributes']['title'] ?? null,
+                            'description' => $element['attributes']['description'] ?? null,
+                            'url' => $element['attributes']['url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ]  ?? null,
         ];
     }
 
@@ -202,34 +202,34 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'label_title' => $decorator['attributes']['label_title'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
-                        ->map(function ($element) {
-                            if (isset($element['attributes'])) {
-                                $model = collect($element['attributes'])->keys()->last() ?? null;
-                                if ($model != null) {
-                                    $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first() ?? null;
-                                    $routePrefix = strtolower(collect(explode('\\', $model))->last()) ?? null;
-                                    if ($page != null) {
-                                        $category = $page->categories->first() ?? null;
-                                    }
+                'label_title' => $decorator['attributes']['label_title'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['grid']) ? collect($decorator['attributes']['grid'])
+                    ->map(function ($element) {
+                        if (isset($element['attributes'])) {
+                            $model = collect($element['attributes'])->keys()->last() ?? null;
+                            if ($model != null) {
+                                $page = $model::whereId($element['attributes'][$model])->with('categories', 'categories.media')->first() ?? null;
+                                $routePrefix = strtolower(collect(explode('\\', $model))->last()) ?? null;
+                                if ($page != null) {
+                                    $category = $page->categories->first() ?? null;
                                 }
                             }
-                            return [
-                                'title' => $element['attributes']['title'] ?? null,
-                                'description' => $element['attributes']['description'] ?? null,
-                                'button_text' => $element['attributes']['button_text'] ?? null,
-                                'routePrefix' => $routePrefix ?? null,
-                                'page' => $page ?? null,
-                                'category' => $category ?? null,
-                                'category_name' => $category->name ?? null,
-                                'category_icon' => isset($category) ? $category->getFirstMediaUrl('icon') : null,
-                                'background_color' => $element['attributes']['background_color'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                        }
+                        return [
+                            'title' => $element['attributes']['title'] ?? null,
+                            'description' => $element['attributes']['description'] ?? null,
+                            'button_text' => $element['attributes']['button_text'] ?? null,
+                            'routePrefix' => $routePrefix ?? null,
+                            'page' => $page ?? null,
+                            'category' => $category ?? null,
+                            'category_name' => $category->name ?? null,
+                            'category_icon' => isset($category) ? $category->getFirstMediaUrl('icon') : null,
+                            'background_color' => $element['attributes']['background_color'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -274,6 +274,7 @@ class Decorator extends Model
                     'value' => $element['attributes']['value'] ?? null,
                 ];
             })->toArray() : null,
+            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
         ];
     }
 
@@ -303,16 +304,16 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? 'FAQ',
-                    'elements' => isset($decorator['attributes']['faq']) ? collect($decorator['attributes']['faq'])
-                        ->map(function ($element) {
-                            return [
-                                'question' => $element['attributes']['question'] ?? null,
-                                'answer' => $element['attributes']['answer'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                'title' => $decorator['attributes']['title'] ?? 'FAQ',
+                'elements' => isset($decorator['attributes']['faq']) ? collect($decorator['attributes']['faq'])
+                    ->map(function ($element) {
+                        return [
+                            'question' => $element['attributes']['question'] ?? null,
+                            'answer' => $element['attributes']['answer'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -321,15 +322,15 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'elements' => isset($decorator['attributes']['sources']) ? collect($decorator['attributes']['sources'])
-                        ->map(function ($element) {
-                            return [
-                                'name' => $element['attributes']['name'] ?? null,
-                                'url' => $element['attributes']['url'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                'elements' => isset($decorator['attributes']['sources']) ? collect($decorator['attributes']['sources'])
+                    ->map(function ($element) {
+                        return [
+                            'name' => $element['attributes']['name'] ?? null,
+                            'url' => $element['attributes']['url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -338,17 +339,17 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title_label' => $decorator['attributes']['title_label'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'elements' => isset($decorator['attributes']['methodology']) ? collect($decorator['attributes']['methodology'])
-                        ->map(function ($element) {
-                            return [
-                                'title' => $element['attributes']['title'] ?? null,
-                                'content' => $element['attributes']['content'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['methodology']) ? collect($decorator['attributes']['methodology'])
+                    ->map(function ($element) {
+                        return [
+                            'title' => $element['attributes']['title'] ?? null,
+                            'content' => $element['attributes']['content'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -433,50 +434,51 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                        return [
-                            'key' => $element['key'] ?? null,
-                            'intro_bonus_title' => $element['attributes']['intro_bonus_title'] ?? null,
-                            'intro_bonus_price' => $element['attributes']['intro_bonus_price'] ?? null,
-                            'intro_bonus_text' => $element['attributes']['intro_bonus_text'] ?? null,
-                            'top_feature_title' => $element['attributes']['top_feature_title'] ?? null,
-                            'top_feature_value' => $element['attributes']['top_feature_value'] ?? null,
-                            'name' => $element['attributes']['name'],
-                            'rating' => $element['attributes']['rating'] ?? null,
-                            'cta_text' => $element['attributes']['cta_text'] ?? null,
-                            'cta_url' => $element['attributes']['cta_url'] ?? null,
-                            'additional_cta_text' => $element['attributes']['additional_cta_text'] ?? null,
-                            'inactive' => $element['attributes']['inactive'] ?? false,
-                            'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
-                                return [
-                                    'feature' => $element['attributes']['feature'] ?? null,
-                                ];
-                            })->flatten(1)
-                                ->toArray() : null,
-                            'applications' => isset($element['attributes']['application']) ? collect($element['attributes']['application'])->map(function ($element, $key) {
-                                return [
-                                    $element,
-                                ];
-                            })->toArray() : null,
-                            'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
-                                return [
-                                    'feature_title' => $element['attributes']['feature_title'] ?? null,
-                                    'feature_text' => $element['attributes']['feature_text'] ?? null
-                                ];
-                            })->toArray() : null,
-                            'strenghts' => isset($element['attributes']['strenghts']) ? collect($element['attributes']['strenghts'])->map(function ($element) {
-                                return [
-                                    'strenght' => $element['attributes']['strenght'] ?? null
-                                ];
-                            })->toArray() : null,
-                            'weaknesses' => isset($element['attributes']['weaknesses']) ? collect($element['attributes']['weaknesses'])->map(function ($element) {
-                                return [
-                                    'weakness' => $element['attributes']['weakness'] ?? null
-                                ];
-                            })->toArray() : null,
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'] ?? null,
+                        'intro_bonus_title' => $element['attributes']['intro_bonus_title'] ?? null,
+                        'intro_bonus_price' => $element['attributes']['intro_bonus_price'] ?? null,
+                        'intro_bonus_text' => $element['attributes']['intro_bonus_text'] ?? null,
+                        'top_feature_title' => $element['attributes']['top_feature_title'] ?? null,
+                        'top_feature_value' => $element['attributes']['top_feature_value'] ?? null,
+                        'name' => $element['attributes']['name'],
+                        'rating' => $element['attributes']['rating'] ?? null,
+                        'cta_text' => $element['attributes']['cta_text'] ?? null,
+                        'cta_url' => $element['attributes']['cta_url'] ?? null,
+                        'additional_cta_text' => $element['attributes']['additional_cta_text'] ?? null,
+                        'inactive' => $element['attributes']['inactive'] ?? false,
+                        'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
+                            return [
+                                'feature' => $element['attributes']['feature'] ?? null,
+                            ];
+                        })->flatten(1)
+                            ->toArray() : null,
+                        'applications' => isset($element['attributes']['application']) ? collect($element['attributes']['application'])->map(function ($element, $key) {
+                            return [
+                                $element,
+                            ];
+                            ];
+                        })->toArray() : null,
+                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
+                            return [
+                                'feature_title' => $element['attributes']['feature_title'] ?? null,
+                                'feature_text' => $element['attributes']['feature_text'] ?? null
+                            ];
+                        })->toArray() : null,
+                        'strenghts' => isset($element['attributes']['strenghts']) ? collect($element['attributes']['strenghts'])->map(function ($element) {
+                            return [
+                                'strenght' => $element['attributes']['strenght'] ?? null
+                            ];
+                        })->toArray() : null,
+                        'weaknesses' => isset($element['attributes']['weaknesses']) ? collect($element['attributes']['weaknesses'])->map(function ($element) {
+                            return [
+                                'weakness' => $element['attributes']['weakness'] ?? null
+                            ];
+                        })->toArray() : null,
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -485,39 +487,39 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'table_title' => $decorator['attributes']['table_title'] ?? null,
-                    'compare_table' => $decorator['attributes']['compare_table'] ?? null,
-                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                        return [
-                            'key' => $element['key'] ?? null,
-                            'title' => $element['attributes']['title'] ?? null,
-                            'bonus_text' => $element['attributes']['bonus_text'] ?? null,
-                            'bonus_price' => $element['attributes']['bonus_price'] ?? null,
-                            'best_for' => $element['attributes']['best_for'] ?? null,
-                            'description' => $element['attributes']['description'] ?? null,
-                            'cta_text' => $element['attributes']['cta_text'] ?? null,
-                            'cta_url' => $element['attributes']['cta_url'] ?? null,
-                            'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
-                                return [
-                                    'title' => $element['attributes']['title'] ?? null,
-                                    'text' => $element['attributes']['text'] ?? null
-                                ];
-                            })->toArray() : null,
-                            'star_rating' => isset($element['attributes']['star_rating']) ? collect($element['attributes']['star_rating'])->map(function ($element) {
-                                return [
-                                    'title' => $element['attributes']['title'] ?? null,
-                                    'rating' => $element['attributes']['rating'] ?? null
-                                ];
-                            })->toArray() : null,
-                            'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
-                                return [
-                                    'feature' => $element['attributes']['feature'] ?? null
-                                ];
-                            })->flatten(1)
-                                ->toArray() : null,
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'table_title' => $decorator['attributes']['table_title'] ?? null,
+                'compare_table' => $decorator['attributes']['compare_table'] ?? null,
+                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'] ?? null,
+                        'title' => $element['attributes']['title'] ?? null,
+                        'bonus_text' => $element['attributes']['bonus_text'] ?? null,
+                        'bonus_price' => $element['attributes']['bonus_price'] ?? null,
+                        'best_for' => $element['attributes']['best_for'] ?? null,
+                        'description' => $element['attributes']['description'] ?? null,
+                        'cta_text' => $element['attributes']['cta_text'] ?? null,
+                        'cta_url' => $element['attributes']['cta_url'] ?? null,
+                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
+                            return [
+                                'title' => $element['attributes']['title'] ?? null,
+                                'text' => $element['attributes']['text'] ?? null
+                            ];
+                        })->toArray() : null,
+                        'star_rating' => isset($element['attributes']['star_rating']) ? collect($element['attributes']['star_rating'])->map(function ($element) {
+                            return [
+                                'title' => $element['attributes']['title'] ?? null,
+                                'rating' => $element['attributes']['rating'] ?? null
+                            ];
+                        })->toArray() : null,
+                        'key_features' => isset($element['attributes']['key_features']) ? collect($element['attributes']['key_features'])->map(function ($element) {
+                            return [
+                                'feature' => $element['attributes']['feature'] ?? null
+                            ];
+                        })->flatten(1)
+                            ->toArray() : null,
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -568,6 +570,7 @@ class Decorator extends Model
                     'tab_content' => $element['attributes']['tab_content'] ?? null,
                 ];
             })->toArray() : null,
+            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
         ];
     }
 
@@ -605,6 +608,7 @@ class Decorator extends Model
                     'feature_text' => $element['attributes']['feature_text'] ?? null
                 ];
             })->toArray() : null,
+            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
         ];
     }
 
@@ -667,6 +671,7 @@ class Decorator extends Model
                     'feature_text' => $element['attributes']['feature_text'] ?? null
                 ];
             })->toArray() : null,
+            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
         ];
     }
 
@@ -693,7 +698,7 @@ class Decorator extends Model
             'highlight_feature' => $decorator->decorators[0]['attributes']['highlight_feature'] ?? null,
         ];
     }
-    
+
     public static function formatDetailedBlueTableSection($decorator)
     {
         return [
@@ -742,6 +747,7 @@ class Decorator extends Model
             })
                 ->flatten(1)
                 ->toArray() : null,
+            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
         ];
     }
 
@@ -875,26 +881,26 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'table_title' => $decorator['attributes']['table_title'] ?? null,
-                    'banner_description' => $decorator['attributes']['banner_description'] ?? null,
-                    'banner_cta_text' => $decorator['attributes']['banner_cta_text'] ?? null,
-                    'banner_cta_url' => $decorator['attributes']['banner_cta_url'] ?? null,
-                    'title_columns' => isset($decorator['attributes']['title_columns']) ? collect($decorator['attributes']['title_columns'])->map(function ($element) {
-                        return [
-                            $element['attributes']['column_title'] ?? null
-                        ];
-                    })->flatten(1)->toArray() : null,
-                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                        return [
-                            'table_columns' => isset($element['attributes']['table_columns']) ? collect($element['attributes']['table_columns'])->map(function ($element) {
-                                return [
-                                    'column_value' => $element['attributes']['column_value'] ?? null,
-                                    'column_link' => $element['attributes']['column_link'] ?? null
-                                ];
-                            })->toArray() : null,
-                        ];
-                    })->toArray() : null,
-                ] ?? null
+                'table_title' => $decorator['attributes']['table_title'] ?? null,
+                'banner_description' => $decorator['attributes']['banner_description'] ?? null,
+                'banner_cta_text' => $decorator['attributes']['banner_cta_text'] ?? null,
+                'banner_cta_url' => $decorator['attributes']['banner_cta_url'] ?? null,
+                'title_columns' => isset($decorator['attributes']['title_columns']) ? collect($decorator['attributes']['title_columns'])->map(function ($element) {
+                    return [
+                        $element['attributes']['column_title'] ?? null
+                    ];
+                })->flatten(1)->toArray() : null,
+                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'table_columns' => isset($element['attributes']['table_columns']) ? collect($element['attributes']['table_columns'])->map(function ($element) {
+                            return [
+                                'column_value' => $element['attributes']['column_value'] ?? null,
+                                'column_link' => $element['attributes']['column_link'] ?? null
+                            ];
+                        })->toArray() : null,
+                    ];
+                })->toArray() : null,
+            ] ?? null
         ];
     }
 
@@ -921,13 +927,13 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'featured' => $decorator['attributes']['featured'] ?? null,
-                    'elements' => isset($decorator['attributes']['rows']) ? collect($decorator['attributes']['rows'])
-                        ->map(function ($element) {
-                            return $element['attributes'];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                'featured' => $decorator['attributes']['featured'] ?? null,
+                'elements' => isset($decorator['attributes']['rows']) ? collect($decorator['attributes']['rows'])
+                    ->map(function ($element) {
+                        return $element['attributes'];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -936,16 +942,16 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'table_title' => $decorator['attributes']['table_title'] ?? null,
-                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                        return [
-                            'key' => $element['key'],
-                            'title' => $element['attributes']['title'] ?? null,
-                            'rating' => $element['attributes']['rating'] ?? null,
-                            'review_url' => $element['attributes']['review_url'] ?? null
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'table_title' => $decorator['attributes']['table_title'] ?? null,
+                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'],
+                        'title' => $element['attributes']['title'] ?? null,
+                        'rating' => $element['attributes']['rating'] ?? null,
+                        'review_url' => $element['attributes']['review_url'] ?? null
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -954,9 +960,9 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'users' => isset($decorator['attributes']['authors']) ? User::whereIn('id', json_decode($decorator['attributes']['authors']))->get() ?? null : null,
-                    'description' => $decorator['attributes']['description'] ?? null
-                ] ?? null
+                'users' => isset($decorator['attributes']['authors']) ? User::whereIn('id', json_decode($decorator['attributes']['authors']))->get() ?? null : null,
+                'description' => $decorator['attributes']['description'] ?? null
+            ] ?? null
         ];
     }
 
@@ -965,13 +971,13 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'main_title' => $decorator['attributes']['main_title'] ?? null,
-                    'elements' => isset($decorator['attributes']['paragraph']) ? collect($decorator['attributes']['paragraph'])
-                        ->map(function ($element) {
-                            $element['attributes']['letter'] = substr($element['attributes']['title'] ?? null, 0, 1);
-                            return $element['attributes'];
-                        }) : null
-                ] ?? null
+                'main_title' => $decorator['attributes']['main_title'] ?? null,
+                'elements' => isset($decorator['attributes']['paragraph']) ? collect($decorator['attributes']['paragraph'])
+                    ->map(function ($element) {
+                        $element['attributes']['letter'] = substr($element['attributes']['title'] ?? null, 0, 1);
+                        return $element['attributes'];
+                    }) : null
+            ] ?? null
         ];
     }
 
@@ -980,13 +986,13 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'elements' => isset($decorator['attributes']['related-products']) ? collect($decorator['attributes']['related-products'])
-                        ->map(function ($element) {
-                            $model = collect($element['attributes'])->keys()->last();
-                            return $element['attributes'][$model] ?? null;
-                        })->toArray() : null
-                ]  ?? null
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['related-products']) ? collect($decorator['attributes']['related-products'])
+                    ->map(function ($element) {
+                        $model = collect($element['attributes'])->keys()->last();
+                        return $element['attributes'][$model] ?? null;
+                    })->toArray() : null
+            ]  ?? null
         ];
     }
 
@@ -996,13 +1002,13 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'subtitle' => $decorator['attributes']['subtitle'] ?? null,
-                    'description' => $decorator['attributes']['description'] ?? null,
-                    'button-text' => $decorator['attributes']['button_text'] ?? null,
-                    'button-url' => $decorator['attributes']['button_url'] ?? null,
-                    'image-right' => $decorator['attributes']['pull_image_right'] ?? null,
-                ] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'subtitle' => $decorator['attributes']['subtitle'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'button-text' => $decorator['attributes']['button_text'] ?? null,
+                'button-url' => $decorator['attributes']['button_url'] ?? null,
+                'image-right' => $decorator['attributes']['pull_image_right'] ?? null,
+            ] ?? null,
         ];
     }
 
@@ -1012,19 +1018,19 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
-                    'cta_url' => $decorator['attributes']['cta_url'] ?? null,
-                    'cta_text' => $decorator['attributes']['cta_text'] ?? null,
-                    'price_text' => $decorator['attributes']['price_text'] ?? null,
-                    'price' => $decorator['attributes']['price'] ?? null,
-                    'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
-                        return [
-                            'title' => $element['attributes']['feature_title'] ?? null,
-                            'feature_text' => $element['attributes']['feature_text'] ?? null,
-                            'rating' => $element['attributes']['rating'] ?? null
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
+                'cta_url' => $decorator['attributes']['cta_url'] ?? null,
+                'cta_text' => $decorator['attributes']['cta_text'] ?? null,
+                'price_text' => $decorator['attributes']['price_text'] ?? null,
+                'price' => $decorator['attributes']['price'] ?? null,
+                'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'] ?? null,
+                        'feature_text' => $element['attributes']['feature_text'] ?? null,
+                        'rating' => $element['attributes']['rating'] ?? null
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1034,24 +1040,24 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'key' => $decorator['key'] ?? null,
-                    'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
-                    'rating' => $decorator['attributes']['rating'] ?? null,
-                    'merchant_list' => isset($decorator['attributes']['merchant_list']) ? collect($decorator['attributes']['merchant_list'])->map(function ($element) {
-                        return [
-                            'price' => $element['attributes']['price'] ?? null,
-                            'cta_url' => $element['attributes']['cta_url'] ?? null,
-                            'cta_text' => $element['attributes']['cta_text'] ?? null,
-                            'merchant' => $element['attributes']['merchant'] ?? null,
-                        ];
-                    })->toArray() : null,
-                    'main_features' => isset($decorator['attributes']['main_features_table']) ? collect($decorator['attributes']['main_features_table'])->map(function ($element) {
-                        return [
-                            'title' => $element['attributes']['feature_title'] ?? null,
-                            'text' => $element['attributes']['feature_text'] ?? null,
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'key' => $decorator['key'] ?? null,
+                'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
+                'rating' => $decorator['attributes']['rating'] ?? null,
+                'merchant_list' => isset($decorator['attributes']['merchant_list']) ? collect($decorator['attributes']['merchant_list'])->map(function ($element) {
+                    return [
+                        'price' => $element['attributes']['price'] ?? null,
+                        'cta_url' => $element['attributes']['cta_url'] ?? null,
+                        'cta_text' => $element['attributes']['cta_text'] ?? null,
+                        'merchant' => $element['attributes']['merchant'] ?? null,
+                    ];
+                })->toArray() : null,
+                'main_features' => isset($decorator['attributes']['main_features_table']) ? collect($decorator['attributes']['main_features_table'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'] ?? null,
+                        'text' => $element['attributes']['feature_text'] ?? null,
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1061,23 +1067,23 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
-                    'winner_title' => $decorator['attributes']['winner_title'] ?? null,
-                    'winner_rating' => $decorator['attributes']['winner_rating'] ?? null,
-                    'winner_cta_text' => $decorator['attributes']['winner_cta_text'] ?? null,
-                    'winner_cta_url' => $decorator['attributes']['winner_cta_url'] ?? null,
-                    'loser_title' => $decorator['attributes']['loser_title'] ?? null,
-                    'loser_rating' => $decorator['attributes']['loser_rating'] ?? null,
-                    'loser_cta_text' => $decorator['attributes']['loser_cta_text'] ?? null,
-                    'loser_cta_url' => $decorator['attributes']['loser_cta_url'] ?? null,
-                    'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
-                        return [
-                            'title' => $element['attributes']['feature_title'] ?? null,
-                            'winner_text' => $element['attributes']['winner_text'] ?? null,
-                            'loser_text' => $element['attributes']['loser_text'] ?? null,
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
+                'winner_title' => $decorator['attributes']['winner_title'] ?? null,
+                'winner_rating' => $decorator['attributes']['winner_rating'] ?? null,
+                'winner_cta_text' => $decorator['attributes']['winner_cta_text'] ?? null,
+                'winner_cta_url' => $decorator['attributes']['winner_cta_url'] ?? null,
+                'loser_title' => $decorator['attributes']['loser_title'] ?? null,
+                'loser_rating' => $decorator['attributes']['loser_rating'] ?? null,
+                'loser_cta_text' => $decorator['attributes']['loser_cta_text'] ?? null,
+                'loser_cta_url' => $decorator['attributes']['loser_cta_url'] ?? null,
+                'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'] ?? null,
+                        'winner_text' => $element['attributes']['winner_text'] ?? null,
+                        'loser_text' => $element['attributes']['loser_text'] ?? null,
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1087,22 +1093,22 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'text' => $decorator['attributes']['text'] ?? null,
-                    'table' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
-                        return [
-                            'key' => $element['key'] ?? null,
-                            'title' => $element['attributes']['title'] ?? null,
-                            'review_url' => $element['attributes']['review_url'] ?? null,
-                            'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($subelement) {
-                                return [
-                                    'feature_title' => $subelement['attributes']['feature_title'] ?? null,
-                                    'feature_text' => $subelement['attributes']['feature_text'] ?? null,
-                                ];
-                            })->toArray() : null
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'title' => $decorator['attributes']['title'] ?? null,
+                'text' => $decorator['attributes']['text'] ?? null,
+                'table' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])->map(function ($element) {
+                    return [
+                        'key' => $element['key'] ?? null,
+                        'title' => $element['attributes']['title'] ?? null,
+                        'review_url' => $element['attributes']['review_url'] ?? null,
+                        'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($subelement) {
+                            return [
+                                'feature_title' => $subelement['attributes']['feature_title'] ?? null,
+                                'feature_text' => $subelement['attributes']['feature_text'] ?? null,
+                            ];
+                        })->toArray() : null
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1113,11 +1119,11 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'reviews' => $reviews ?? null,
-                    'label_title' => $decorator['attributes']['label_title'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'review_description' => $decorator['attributes']['review_description'] ?? null
-                ] ?? null
+                'reviews' => $reviews ?? null,
+                'label_title' => $decorator['attributes']['label_title'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'review_description' => $decorator['attributes']['review_description'] ?? null
+            ] ?? null
         ];
     }
 
@@ -1148,8 +1154,8 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'content' => $decorator['attributes']['content']  ?? null,
-                ]  ?? null
+                'content' => $decorator['attributes']['content']  ?? null,
+            ]  ?? null
         ];
     }
 
@@ -1158,26 +1164,26 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'table_row' => isset($decorator['attributes']['table_row']) ? collect($decorator['attributes']['table_row'])->map(function ($element) {
-                        return [
-                            'url' => $element['attributes']['url'] ?? null,
-                            'plan' => $element['attributes']['plan'] ?? null,
-                            'offer' => $element['attributes']['offer'] ?? null,
-                            'description' => $element['attributes']['description'] ?? null,
-                            'key' => $element['key'] ?? null,
-                            'cta_text' => $element['attributes']['cta_text'] ?? null,
-                            'price' => $element['attributes']['price'] ?? null,
-                            'price_period' =>  $element['attributes']['price_period'] ?? null,
-                            'features_title' => $element['attributes']['features_title'] ?? null,
-                            'features' => isset($element['attributes']['features']) ? collect($element['attributes']['features'])->map(function ($element) {
-                                return [
-                                    'feature' => $element['attributes']['feature'] ?? null,
-                                ];
-                            })->toArray() : null
-                        ];
-                    })->toArray() : null
-                ] ?? null
+                'title' => $decorator['attributes']['title'] ?? null,
+                'table_row' => isset($decorator['attributes']['table_row']) ? collect($decorator['attributes']['table_row'])->map(function ($element) {
+                    return [
+                        'url' => $element['attributes']['url'] ?? null,
+                        'plan' => $element['attributes']['plan'] ?? null,
+                        'offer' => $element['attributes']['offer'] ?? null,
+                        'description' => $element['attributes']['description'] ?? null,
+                        'key' => $element['key'] ?? null,
+                        'cta_text' => $element['attributes']['cta_text'] ?? null,
+                        'price' => $element['attributes']['price'] ?? null,
+                        'price_period' =>  $element['attributes']['price_period'] ?? null,
+                        'features_title' => $element['attributes']['features_title'] ?? null,
+                        'features' => isset($element['attributes']['features']) ? collect($element['attributes']['features'])->map(function ($element) {
+                            return [
+                                'feature' => $element['attributes']['feature'] ?? null,
+                            ];
+                        })->toArray() : null
+                    ];
+                })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1186,18 +1192,18 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'best_for' => $decorator['attributes']['best_for'] ?? null,
-                    'strengths' => isset($decorator['attributes']['strengths']) ? collect($decorator['attributes']['strengths'])->map(function ($element) {
-                        return [
-                            'text' => $element['attributes']['strength'] ?? null,
-                        ];
-                    })->toArray() : null,
-                    'weaknesses' => isset($decorator['attributes']['weaknesses']) ? collect($decorator['attributes']['weaknesses'])->map(function ($element) {
-                        return [
-                            'text' => $element['attributes']['weakness'] ?? null,
-                        ];
-                    })->toArray() : null
-                ]  ?? null
+                'best_for' => $decorator['attributes']['best_for'] ?? null,
+                'strengths' => isset($decorator['attributes']['strengths']) ? collect($decorator['attributes']['strengths'])->map(function ($element) {
+                    return [
+                        'text' => $element['attributes']['strength'] ?? null,
+                    ];
+                })->toArray() : null,
+                'weaknesses' => isset($decorator['attributes']['weaknesses']) ? collect($decorator['attributes']['weaknesses'])->map(function ($element) {
+                    return [
+                        'text' => $element['attributes']['weakness'] ?? null,
+                    ];
+                })->toArray() : null
+            ]  ?? null
         ];
     }
 
@@ -1329,8 +1335,8 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'description' => $decorator['attributes']['description'] ?? null
-                ] ?? null
+                'description' => $decorator['attributes']['description'] ?? null
+            ] ?? null
         ];
     }
 
@@ -1340,20 +1346,20 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
-                    'description' => $decorator['attributes']['description'] ?? null,
-                    'cta_url' => $decorator['attributes']['cta_url'] ?? null,
-                    'cta_text' => $decorator['attributes']['cta_text'] ?? null,
-                    'price_text' => $decorator['attributes']['price_text'] ?? null,
-                    'price' => $decorator['attributes']['price'] ?? null,
-                    'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
-                        return [
-                            'title' => $element['attributes']['feature_title'] ?? null,
-                            'feature' => $element['attributes']['feature_text'] ?? null
-                        ];
-                    })->toArray() : null,
-                    'works_on' => $decorator['attributes']['works_on'] ?? null,
-                ] ?? null
+                'fact_checked' => $decorator['attributes']['fact_checked'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'cta_url' => $decorator['attributes']['cta_url'] ?? null,
+                'cta_text' => $decorator['attributes']['cta_text'] ?? null,
+                'price_text' => $decorator['attributes']['price_text'] ?? null,
+                'price' => $decorator['attributes']['price'] ?? null,
+                'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'title' => $element['attributes']['feature_title'] ?? null,
+                        'feature' => $element['attributes']['feature_text'] ?? null
+                    ];
+                })->toArray() : null,
+                'works_on' => $decorator['attributes']['works_on'] ?? null,
+            ] ?? null
         ];
     }
 
@@ -1363,10 +1369,10 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'label_title' => $decorator['attributes']['label_title'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'money_description' => $decorator['attributes']['review_description'] ?? null
-                ] ?? null
+                'label_title' => $decorator['attributes']['label_title'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'money_description' => $decorator['attributes']['review_description'] ?? null
+            ] ?? null
         ];
     }
 
@@ -1384,11 +1390,11 @@ class Decorator extends Model
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
             'data' => [
-                    'posts' => $posts ?? null,
-                    'category' => $decorator['attributes']['category'] ?? null,
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'description' => $decorator['attributes']['description'] ?? null
-                ] ?? null
+                'posts' => $posts ?? null,
+                'category' => $decorator['attributes']['category'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null
+            ] ?? null
         ];
     }
 
@@ -1409,71 +1415,71 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'title' => $decorator['attributes']['title'] ?? null,
-                    'elements' => isset($decorator['attributes']['related-reviews']) ? collect($decorator['attributes']['related-reviews'])
-                        ->map(function ($element) {
-                            $model = isset($element['attributes']) ? collect($element['attributes'])->keys()->last() : null;
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['related-reviews']) ? collect($decorator['attributes']['related-reviews'])
+                    ->map(function ($element) {
+                        $model = isset($element['attributes']) ? collect($element['attributes'])->keys()->last() : null;
 
-                            $model = collect($element['attributes'])->keys()->last();
-                            $page = $model::with('categories', 'media')->whereId($element['attributes'][$model])->first();
+                        $model = collect($element['attributes'])->keys()->last();
+                        $page = $model::with('categories', 'media')->whereId($element['attributes'][$model])->first();
 
-                            $category = $page->categories->first();
-                            if (\Illuminate\Support\Facades\Route::has('reviews.single')) {
-                                $url = route('reviews.single', [$page->categories->first()->slug, $page->slug]);
-                            } else {
-                                $url = route('reviews.resolve', [$page->categories->first()->slug, $page->slug]);
+                        $category = $page->categories->first();
+                        if (\Illuminate\Support\Facades\Route::has('reviews.single')) {
+                            $url = route('reviews.single', [$page->categories->first()->slug, $page->slug]);
+                        } else {
+                            $url = route('reviews.resolve', [$page->categories->first()->slug, $page->slug]);
+                        }
+
+                        $key_for_img = collect($page->decorators)->map(function ($item) {
+                            if ($item['layout'] === "single-review-table-section") {
+                                return $item['attributes']['table'][0]['key'];
                             }
+                        })->reject(function ($value) {
+                            return $value === null;
+                        })->toArray();
 
-                            $key_for_img = collect($page->decorators)->map(function ($item) {
-                                if ($item['layout'] === "single-review-table-section") {
-                                    return $item['attributes']['table'][0]['key'];
-                                }
-                            })->reject(function ($value) {
-                                return $value === null;
-                            })->toArray();
-
-                            $data_for_related = collect($page->decorators)->map(function ($item) {
-                                if ($item['layout'] === "single-review-table-section") {
-                                    return $item['attributes']['table'][0]['attributes'];
-                                }
-                            })->reject(function ($value) {
-                                return $value === null;
-                            })->toArray();
-
-                            $key = array_values($key_for_img)[0] ?? '';
-
-                            if ($data_for_related != []) {
-                                $card = collect(array_values($data_for_related)[0])->only([
-                                    'name',
-                                    'top_feature_value',
-                                    'alternative_feature',
-                                    'alternative_feature_value',
-                                    'application',
-                                    'cta_url',
-                                    'rating',
-                                    'top_feature_title'
-                                ])->toArray();
-                            } else {
-                                $card = [];
+                        $data_for_related = collect($page->decorators)->map(function ($item) {
+                            if ($item['layout'] === "single-review-table-section") {
+                                return $item['attributes']['table'][0]['attributes'];
                             }
+                        })->reject(function ($value) {
+                            return $value === null;
+                        })->toArray();
 
-                            $img = $page->getFirstMediaUrl('logo'.'_'.$key);
-                            $imgFeature = $page->getFirstMediaUrl('feature');
+                        $key = array_values($key_for_img)[0] ?? '';
 
-                            return [
-                                $element['attributes'][$model] ?? null,
-                                'name' => $page->name,
-                                'slug' => $category->slug,
-                                'url' => $url,
-                                'card' => $card,
-                                'img' => $img,
-                                'page_status' => $page->status,
-                                'title' => $page->title,
-                                'page_slug' => $page->slug,
-                                'img_feature' => $imgFeature
-                            ];
-                        })->toArray() : null
-                ] ?? null
+                        if ($data_for_related != []) {
+                            $card = collect(array_values($data_for_related)[0])->only([
+                                'name',
+                                'top_feature_value',
+                                'alternative_feature',
+                                'alternative_feature_value',
+                                'application',
+                                'cta_url',
+                                'rating',
+                                'top_feature_title'
+                            ])->toArray();
+                        } else {
+                            $card = [];
+                        }
+
+                        $img = $page->getFirstMediaUrl('logo' . '_' . $key);
+                        $imgFeature = $page->getFirstMediaUrl('feature');
+
+                        return [
+                            $element['attributes'][$model] ?? null,
+                            'name' => $page->name,
+                            'slug' => $category->slug,
+                            'url' => $url,
+                            'card' => $card,
+                            'img' => $img,
+                            'page_status' => $page->status,
+                            'title' => $page->title,
+                            'page_slug' => $page->slug,
+                            'img_feature' => $imgFeature
+                        ];
+                    })->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1526,28 +1532,28 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'key' => $decorator['key'] ?? null,
-                    'description' => $decorator['attributes']['description'] ?? null,
-                    'price_text' => $decorator['attributes']['price_text'] ?? null,
-                    'price' => $decorator['attributes']['price'] ?? null,
-                    'price_options' => $decorator['attributes']['price_options'] ?? null,
-                    'price_period' => $decorator['attributes']['price_period'] ?? null,
-                    'cta_text' => $decorator['attributes']['cta_text'] ?? null,
-                    'cta_url' => $decorator['attributes']['cta_url'] ?? null,
-                    'best_for_title' => $decorator['attributes']['best_for_title'] ?? null,
-                    'best_for_text' => $decorator['attributes']['best_for_text'] ?? null,
-                    'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
-                        return [
-                            'feature_title' => $element['attributes']['feature_title'] ?? null,
-                            'feature_text' => $element['attributes']['feature_text'] ?? null
-                        ];
-                    })->toArray() : null,
-                    'applications' => isset($decorator['attributes']['application']) ? collect($decorator['attributes']['application'])->map(function ($element, $key) {
-                        return [
+                'key' => $decorator['key'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'price_text' => $decorator['attributes']['price_text'] ?? null,
+                'price' => $decorator['attributes']['price'] ?? null,
+                'price_options' => $decorator['attributes']['price_options'] ?? null,
+                'price_period' => $decorator['attributes']['price_period'] ?? null,
+                'cta_text' => $decorator['attributes']['cta_text'] ?? null,
+                'cta_url' => $decorator['attributes']['cta_url'] ?? null,
+                'best_for_title' => $decorator['attributes']['best_for_title'] ?? null,
+                'best_for_text' => $decorator['attributes']['best_for_text'] ?? null,
+                'main_features' => isset($decorator['attributes']['main_features']) ? collect($decorator['attributes']['main_features'])->map(function ($element) {
+                    return [
+                        'feature_title' => $element['attributes']['feature_title'] ?? null,
+                        'feature_text' => $element['attributes']['feature_text'] ?? null
+                    ];
+                })->toArray() : null,
+                'applications' => isset($decorator['attributes']['application']) ? collect($decorator['attributes']['application'])->map(function ($element, $key) {
+                    return [
                         $element,
                     ];
-                    })->toArray() : null,
-                ] ?? null,
+                })->toArray() : null,
+            ] ?? null,
         ];
     }
 
@@ -1576,22 +1582,22 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'data' => [
-                    'key' => $decorator['key'] ?? null,
-                    'title' => $decorator['attributes']['table_title'] ?? null,
-                    'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])
-                        ->map(function ($element) {
-                            return [
-                                'key' => $element['key'] ?? null,
-                                'title' => $element['attributes']['title'] ?? null,
-                                'price' => $element['attributes']['price'] ?? null,
-                                'price_period' => $element['attributes']['price_period'] ?? null,
-                                'cta_text' => $element['attributes']['cta_text'] ?? null,
-                                'cta_url' => $element['attributes']['cta_url'] ?? null,
-                                'review_url' => $element['attributes']['review_url'] ?? null,
-                            ];
-                        })
-                        ->toArray() : null
-                ] ?? null
+                'key' => $decorator['key'] ?? null,
+                'title' => $decorator['attributes']['table_title'] ?? null,
+                'elements' => isset($decorator['attributes']['table']) ? collect($decorator['attributes']['table'])
+                    ->map(function ($element) {
+                        return [
+                            'key' => $element['key'] ?? null,
+                            'title' => $element['attributes']['title'] ?? null,
+                            'price' => $element['attributes']['price'] ?? null,
+                            'price_period' => $element['attributes']['price_period'] ?? null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null,
+                            'review_url' => $element['attributes']['review_url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 
@@ -1688,7 +1694,7 @@ class Decorator extends Model
             'brand' => $decorator->decorators[0]['attributes']['brand'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'content' => $decorator->decorators[0]['attributes']['content'] ?? null,
-            'product_gallery' => $decorator->getMedia('product_gallery_'. $decorator->decorators[0]['key']) ?? null,
+            'product_gallery' => $decorator->getMedia('product_gallery_' . $decorator->decorators[0]['key']) ?? null,
             'main_features_table' => isset($decorator->decorators[0]['attributes']['main_features_table']) ? collect($decorator->decorators[0]['attributes']['main_features_table'])->map(function ($element) {
                 return [
                     'feature_title' => $element['attributes']['feature_title'] ?? null,
@@ -1740,7 +1746,7 @@ class Decorator extends Model
         return [
             'layout' => $decorator['layout'] ?? null,
             'key' => $decorator['key'] ?? null,
-            'data' =>[
+            'data' => [
                 'main_title' => $decorator['attributes']['main_title'] ?? null,
                 'subtitle' => $decorator['attributes']['subtitle'] ?? null,
                 'section_title' => $decorator['attributes']['section_title'] ?? null,
