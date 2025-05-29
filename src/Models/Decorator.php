@@ -458,7 +458,6 @@ class Decorator extends Model
                             return [
                                 $element,
                             ];
-                            ];
                         })->toArray() : null,
                         'main_features' => isset($element['attributes']['main_features']) ? collect($element['attributes']['main_features'])->map(function ($element) {
                             return [
