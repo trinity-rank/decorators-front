@@ -274,7 +274,20 @@ class Decorator extends Model
                     'value' => $element['attributes']['value'] ?? null,
                 ];
             })->toArray() : null,
-            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
+            'tags' => (function ($tags) {
+                if (empty($tags) || $tags === "\"\"") {
+                    return 'all';
+                }
+                // Try to decode if it's a JSON string
+                $decoded = is_string($tags) ? json_decode($tags, true) : null;
+                if (is_array($decoded)) {
+                    return implode(',', $decoded);
+                }
+                if (is_array($tags)) {
+                    return implode(',', $tags);
+                }
+                return (string) $tags;
+            })($decorator->decorators[0]['attributes']['tags'] ?? null),
         ];
     }
 
@@ -569,7 +582,20 @@ class Decorator extends Model
                     'tab_content' => $element['attributes']['tab_content'] ?? null,
                 ];
             })->toArray() : null,
-            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
+            'tags' => (function ($tags) {
+                if (empty($tags) || $tags === "\"\"") {
+                    return 'all';
+                }
+                // Try to decode if it's a JSON string
+                $decoded = is_string($tags) ? json_decode($tags, true) : null;
+                if (is_array($decoded)) {
+                    return implode(',', $decoded);
+                }
+                if (is_array($tags)) {
+                    return implode(',', $tags);
+                }
+                return (string) $tags;
+            })($decorator->decorators[0]['attributes']['tags'] ?? null),
         ];
     }
 
@@ -607,7 +633,20 @@ class Decorator extends Model
                     'feature_text' => $element['attributes']['feature_text'] ?? null
                 ];
             })->toArray() : null,
-            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
+            'tags' => (function ($tags) {
+                if (empty($tags) || $tags === "\"\"") {
+                    return 'all';
+                }
+                // Try to decode if it's a JSON string
+                $decoded = is_string($tags) ? json_decode($tags, true) : null;
+                if (is_array($decoded)) {
+                    return implode(',', $decoded);
+                }
+                if (is_array($tags)) {
+                    return implode(',', $tags);
+                }
+                return (string) $tags;
+            })($decorator->decorators[0]['attributes']['tags'] ?? null),
         ];
     }
 
@@ -670,7 +709,20 @@ class Decorator extends Model
                     'feature_text' => $element['attributes']['feature_text'] ?? null
                 ];
             })->toArray() : null,
-            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
+            'tags' => (function ($tags) {
+                if (empty($tags) || $tags === "\"\"") {
+                    return 'all';
+                }
+                // Try to decode if it's a JSON string
+                $decoded = is_string($tags) ? json_decode($tags, true) : null;
+                if (is_array($decoded)) {
+                    return implode(',', $decoded);
+                }
+                if (is_array($tags)) {
+                    return implode(',', $tags);
+                }
+                return (string) $tags;
+            })($decorator->decorators[0]['attributes']['tags'] ?? null),
         ];
     }
 
@@ -746,7 +798,20 @@ class Decorator extends Model
             })
                 ->flatten(1)
                 ->toArray() : null,
-            'tags' => isset($decorator->decorators[0]['attributes']['tags']) ? implode(',', json_decode($decorator->decorators[0]['attributes']['tags'])) : 'all'
+            'tags' => (function ($tags) {
+                if (empty($tags) || $tags === "\"\"") {
+                    return 'all';
+                }
+                // Try to decode if it's a JSON string
+                $decoded = is_string($tags) ? json_decode($tags, true) : null;
+                if (is_array($decoded)) {
+                    return implode(',', $decoded);
+                }
+                if (is_array($tags)) {
+                    return implode(',', $tags);
+                }
+                return (string) $tags;
+            })($decorator->decorators[0]['attributes']['tags'] ?? null),
         ];
     }
 
