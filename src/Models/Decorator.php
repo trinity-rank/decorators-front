@@ -85,6 +85,7 @@ class Decorator extends Model
         'notable-posts-section' => 'formatNotablePostsSection',                                         // DATAPROT
         'dynamic-table-section' => 'formatDynamicTableSection',                                         // Techjury (TT)
         'three-sidebar-section' => 'threeSidebarSection',
+        'calculator-section' => 'formatCalculatorSection',                                              // FORTUNLY (TF)
 
         // in use ????
 
@@ -2016,6 +2017,17 @@ class Decorator extends Model
             'data' => [
                 'attributes' => $decorator['attributes'] ?? null,
             ] ?? null
+        ];
+    }
+    public static function formatCalculatorSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                'title_label' => isset($decorator['attributes']['title_label']) ? $decorator['attributes']['title_label'] : 'Investment Calculator',
+                'title' => isset($decorator['attributes']['title']) ? $decorator['attributes']['title'] : 'Investment Calculator',
+                'type' => $decorator['attributes']['calculators'] ?? null,
+            ] ?? null,
         ];
     }
 }
