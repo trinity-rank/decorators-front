@@ -86,6 +86,7 @@ class Decorator extends Model
         'dynamic-table-section' => 'formatDynamicTableSection',                                         // Techjury (TT)
         'three-sidebar-section' => 'threeSidebarSection',
         'calculator-section' => 'formatCalculatorSection',                                              // FORTUNLY (TF)
+        'help-center-section' => 'formatHelpCenterSection',   // FORTUNLY (TF), KommandoTech (TK)
 
         // in use ????
 
@@ -2028,6 +2029,24 @@ class Decorator extends Model
                 'title' => isset($decorator['attributes']['title']) ? $decorator['attributes']['title'] : 'Investment Calculator',
                 'type' => $decorator['attributes']['calculators'] ?? null,
             ] ?? null,
+        ];
+    }
+
+    public static function formatHelpCenterSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'data' => [
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['items']) ? collect($decorator['attributes']['items'])
+                    ->map(function ($element) {
+                        return [
+                            'title' => $element['attributes']['title'] ?? null,
+                            'content' => $element['attributes']['content'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null
+            ] ?? null
         ];
     }
 }
