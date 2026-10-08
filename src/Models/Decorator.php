@@ -32,6 +32,7 @@ class Decorator extends Model
         'featured-snippet-section' => 'formatFeaturedSnippetSection',                                   // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'gambler-table-section' => 'formatGamblerTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
         'simple-table-section' => 'formatSimpleTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
+        'four-columns-table-section' => 'formatFourColumnsTableSection',                             // FORTUNLY (TF)
         'grid-section' => 'formatGridSection',                                                          // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
         'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
@@ -120,8 +121,11 @@ class Decorator extends Model
 
         isset($operaters_id) ? $operaters = Operater::whereIn('id', $operaters_id)->with('media')->orderByRaw('FIELD(id,' . implode(",", $operaters_id) . ')')->get() : null;
 
+        $layout = $decorator['attributes']['table'][0]['layout'] ?? null;
+        $tableAttributes = $decorator['attributes']['table'][0]['attributes'] ?? [];
+
         $data = [
-            'layout' => $decorator['attributes']['table'][0]['layout'] ?? null,
+            'layout' => $layout,
             'data' => [
                 'table_title' => $tableTitle ?? null,
                 'elements' => isset($operaters) ? $operaters->map(function ($operater) {
@@ -132,6 +136,15 @@ class Decorator extends Model
                 })->toArray() : null
             ]
         ];
+
+        if ($layout === 'four-columns-table-section') {
+            $data['data']['column1_title'] = $tableAttributes['column1_title'] ?? 'Firm';
+            $data['data']['column2_title'] = $tableAttributes['column2_title'] ?? null;
+            $data['data']['column3_title'] = $tableAttributes['column3_title'] ?? null;
+            $data['data']['column4_title'] = $tableAttributes['column4_title'] ?? null;
+            $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
+        }
+
         return $data ?? null;
     }
 
@@ -749,6 +762,26 @@ class Decorator extends Model
             'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'features' => $decorator->decorators[0]['attributes']['features'] ?? null,
             'highlight_feature' => $decorator->decorators[0]['attributes']['highlight_feature'] ?? null,
+        ];
+    }
+
+    public static function formatFourColumnsTableSection($decorator)
+    {
+        $logo = $decorator->getFirstMedia('logo');
+
+        return [
+            'id' => $decorator['id'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'title' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'alt' => $logo ? $logo->getCustomProperty('alt') : null,
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'column_2_value' => $decorator->decorators[0]['attributes']['column_2_value'] ?? null,
+            'column_3_value' => $decorator->decorators[0]['attributes']['column_3_value'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
+            'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
         ];
     }
 
