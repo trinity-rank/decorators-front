@@ -58,6 +58,7 @@ class Decorator extends Model
         'review-strengths-weaknesses-section' => 'formatReviewStrengthsWeaknessesSection',              // RW42 (TR), Techjury (TT), TechTribunal (TH)
         'reviews-section' => 'formatReviewsSection',                                                    // TechTribunal (TH)
         'show-more-section' => 'formatShowMoreSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
+        'sidebar-highlights-section' => 'formatSidebarHighlightsSection',                               // FORTUNLY (TF)
         'single-review-box-section' => 'formatSingleReviewRowSection',                                  // TechTribunal (TH)
         'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',              // Techjury (TT)
         'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',                  // RW42 (TR)
@@ -143,6 +144,7 @@ class Decorator extends Model
             $data['data']['column3_title'] = $tableAttributes['column3_title'] ?? null;
             $data['data']['column4_title'] = $tableAttributes['column4_title'] ?? null;
             $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
+            $data['data']['footer_disclaimer'] = $tableAttributes['footer/disclaimer'] ?? null;
         }
 
         return $data ?? null;
@@ -2080,6 +2082,29 @@ class Decorator extends Model
                     })
                     ->toArray() : null
             ] ?? null
+        ];
+    }
+
+    public static function formatSidebarHighlightsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' => [
+                'title' => $decorator['attributes']['title'] ?? null,
+                'subtitle' => $decorator['attributes']['subtitle'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'elements' => isset($decorator['attributes']['highlights']) ? collect($decorator['attributes']['highlights'])
+                    ->map(function ($element) {
+                        return [
+                            'title' => $element['attributes']['title'] ?? null,
+                            'text' => $element['attributes']['text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null,
+            ],
         ];
     }
 }
