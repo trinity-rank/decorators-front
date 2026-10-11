@@ -782,7 +782,6 @@ class Decorator extends Model
             'column_3_value' => $decorator->decorators[0]['attributes']['column_3_value'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
-            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
         ];
     }
