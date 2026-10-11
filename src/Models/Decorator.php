@@ -59,6 +59,7 @@ class Decorator extends Model
         'reviews-section' => 'formatReviewsSection',                                                    // TechTribunal (TH)
         'show-more-section' => 'formatShowMoreSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'sidebar-highlights-section' => 'formatSidebarHighlightsSection',                               // FORTUNLY (TF)
+        'interlinking-cards-section' => 'formatInterlinkingCardsSection',                               // FORTUNLY (TF)
         'single-review-box-section' => 'formatSingleReviewRowSection',                                  // TechTribunal (TH)
         'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',              // Techjury (TT)
         'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',                  // RW42 (TR)
@@ -2081,6 +2082,29 @@ class Decorator extends Model
                     })
                     ->toArray() : null
             ] ?? null
+        ];
+    }
+
+    public static function formatInterlinkingCardsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' => [
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'elements' => isset($decorator['attributes']['cards']) ? collect($decorator['attributes']['cards'])
+                    ->map(function ($element) {
+                        return [
+                            'type' => $element['attributes']['type'] ?? null,
+                            'title' => $element['attributes']['title'] ?? null,
+                            'text' => $element['attributes']['text'] ?? null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null,
+            ],
         ];
     }
 
