@@ -60,6 +60,7 @@ class Decorator extends Model
         'show-more-section' => 'formatShowMoreSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'sidebar-highlights-section' => 'formatSidebarHighlightsSection',                               // FORTUNLY (TF)
         'interlinking-cards-section' => 'formatInterlinkingCardsSection',                               // FORTUNLY (TF)
+        'evaluation-block-section' => 'formatEvaluationBlockSection',                                   // FORTUNLY (TF)
         'single-review-box-section' => 'formatSingleReviewRowSection',                                  // TechTribunal (TH)
         'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',              // Techjury (TT)
         'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',                  // RW42 (TR)
@@ -2082,6 +2083,29 @@ class Decorator extends Model
                     })
                     ->toArray() : null
             ] ?? null
+        ];
+    }
+
+    public static function formatEvaluationBlockSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' => [
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'text' => $decorator['attributes']['text'] ?? null,
+                'elements' => isset($decorator['attributes']['criteria']) ? collect($decorator['attributes']['criteria'])
+                    ->map(function ($element) {
+                        return [
+                            'icon' => $element['attributes']['icon'] ?? null,
+                            'title' => $element['attributes']['title'] ?? null,
+                            'text' => $element['attributes']['text'] ?? null,
+                            'score' => $element['attributes']['score'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null,
+            ],
         ];
     }
 
