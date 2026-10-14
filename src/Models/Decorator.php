@@ -33,6 +33,10 @@ class Decorator extends Model
         'gambler-table-section' => 'formatGamblerTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
         'simple-table-section' => 'formatSimpleTableSection',                                         // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), TechTribunal (TH)
         'four-columns-table-section' => 'formatFourColumnsTableSection',                             // FORTUNLY (TF)
+        'five-columns-table-section' => 'formatFiveColumnsTableSection',                             // FORTUNLY (TF)
+        'six-columns-table-section' => 'formatSixColumnsTableSection',                               // FORTUNLY (TF)
+        'seven-columns-table-section' => 'formatSevenColumnsTableSection',                           // FORTUNLY (TF)
+        'eight-columns-table-section' => 'formatEightColumnsTableSection',                           // FORTUNLY (TF)
         'grid-section' => 'formatGridSection',                                                          // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
         'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
@@ -145,6 +149,30 @@ class Decorator extends Model
             $data['data']['column2_title'] = $tableAttributes['column2_title'] ?? null;
             $data['data']['column3_title'] = $tableAttributes['column3_title'] ?? null;
             $data['data']['column4_title'] = $tableAttributes['column4_title'] ?? null;
+            $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
+            $data['data']['footer_disclaimer'] = $tableAttributes['footer/disclaimer'] ?? null;
+        }
+
+        if ($layout === 'five-columns-table-section') {
+            $data['data']['column1_title'] = $tableAttributes['column1_title'] ?? 'Firm';
+            $data['data']['column2_title'] = $tableAttributes['column2_title'] ?? null;
+            $data['data']['column3_title'] = $tableAttributes['column3_title'] ?? null;
+            $data['data']['column4_title'] = $tableAttributes['column4_title'] ?? null;
+            $data['data']['column5_title'] = $tableAttributes['column5_title'] ?? null;
+            $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
+            $data['data']['footer_disclaimer'] = $tableAttributes['footer/disclaimer'] ?? null;
+        }
+
+        $widerColumnTables = [
+            'six-columns-table-section' => 6,
+            'seven-columns-table-section' => 7,
+            'eight-columns-table-section' => 8,
+        ];
+
+        if (isset($widerColumnTables[$layout])) {
+            for ($column = 1; $column <= $widerColumnTables[$layout]; $column++) {
+                $data['data']['column' . $column . '_title'] = $tableAttributes['column' . $column . '_title'] ?? ($column === 1 ? 'Firm' : null);
+            }
             $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
             $data['data']['footer_disclaimer'] = $tableAttributes['footer/disclaimer'] ?? null;
         }
@@ -786,6 +814,64 @@ class Decorator extends Model
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
             'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
         ];
+    }
+
+    public static function formatFiveColumnsTableSection($decorator)
+    {
+        $logo = $decorator->getFirstMedia('logo');
+
+        return [
+            'id' => $decorator['id'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'title' => $decorator['name'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'alt' => $logo ? $logo->getCustomProperty('alt') : null,
+            'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
+            'column_2_value' => $decorator->decorators[0]['attributes']['column_2_value'] ?? null,
+            'column_3_value' => $decorator->decorators[0]['attributes']['column_3_value'] ?? null,
+            'column_4_value' => $decorator->decorators[0]['attributes']['column_4_value'] ?? null,
+            'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
+            'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
+        ];
+    }
+
+    public static function formatSixColumnsTableSection($decorator)
+    {
+        return self::formatWideColumnsTableSection($decorator, 6, false);
+    }
+
+    public static function formatSevenColumnsTableSection($decorator)
+    {
+        return self::formatWideColumnsTableSection($decorator, 7, false);
+    }
+
+    public static function formatEightColumnsTableSection($decorator)
+    {
+        return self::formatWideColumnsTableSection($decorator, 8, false);
+    }
+
+    private static function formatWideColumnsTableSection($decorator, int $columns, bool $titleFromAttributes)
+    {
+        $logo = $decorator->getFirstMedia('logo');
+        $attributes = $decorator->decorators[0]['attributes'] ?? [];
+        $row = [
+            'id' => $decorator['id'] ?? null,
+            'name' => $decorator['name'] ?? null,
+            'title' => $titleFromAttributes ? ($attributes['title'] ?? null) : ($decorator['name'] ?? null),
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'alt' => $logo ? $logo->getCustomProperty('alt') : null,
+            'review_scroll_tag' => $attributes['review_scroll_tag'] ?? null,
+            'cta_text' => $attributes['cta_text'] ?? null,
+            'cta_url' => $attributes['cta_url'] ?? null,
+            'code' => $attributes['code'] ?? null,
+        ];
+
+        for ($column = 2; $column < $columns; $column++) {
+            $row['column_' . $column . '_value'] = $attributes['column_' . $column . '_value'] ?? null;
+        }
+
+        return $row;
     }
 
     public static function formatDetailedBlueTableSection($decorator)
