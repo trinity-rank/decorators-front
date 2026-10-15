@@ -37,6 +37,7 @@ class Decorator extends Model
         'six-columns-table-section' => 'formatSixColumnsTableSection',                               // FORTUNLY (TF)
         'seven-columns-table-section' => 'formatSevenColumnsTableSection',                           // FORTUNLY (TF)
         'eight-columns-table-section' => 'formatEightColumnsTableSection',                           // FORTUNLY (TF)
+        'short-reviews-table-section' => 'formatShortReviewsTableSection',                           // FORTUNLY (TF)
         'grid-section' => 'formatGridSection',                                                          // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'hardware-box-table-section' => 'formatHardwareBoxTableSection',                                // RW42 (TR), Techjury (TT), KommandoTech (TK)
         'home-title-section' => 'formatHomeTitleSection',                                               // TechTribunal (TH)
@@ -63,8 +64,10 @@ class Decorator extends Model
         'reviews-section' => 'formatReviewsSection',                                                    // TechTribunal (TH)
         'show-more-section' => 'formatShowMoreSection',                                                 // FORTUNLY (TF), SBG (TS), RW42 (TR), Techjury (TT), Dataprot (TD), TechTribunal (TH), KommandoTech (TK)
         'sidebar-highlights-section' => 'formatSidebarHighlightsSection',                               // FORTUNLY (TF)
+        'glance-cards-section' => 'formatGlanceCardsSection',                                           // FORTUNLY (TF)
         'interlinking-cards-section' => 'formatInterlinkingCardsSection',                               // FORTUNLY (TF)
         'evaluation-block-section' => 'formatEvaluationBlockSection',                                   // FORTUNLY (TF)
+        'quick-links-section' => 'formatQuickLinksSection',                                             // FORTUNLY (TF)
         'single-review-box-section' => 'formatSingleReviewRowSection',                                  // TechTribunal (TH)
         'single-review-box-with-features-section' => 'singleReviewBoxWithFeaturesSection',              // Techjury (TT)
         'single-review-box-with-rating-section' => 'singleReviewBoxWithRatingSection',                  // RW42 (TR)
@@ -175,6 +178,14 @@ class Decorator extends Model
             }
             $data['data']['column_hightlight'] = $tableAttributes['column_hightlight'] ?? null;
             $data['data']['footer_disclaimer'] = $tableAttributes['footer/disclaimer'] ?? null;
+        }
+
+        if ($layout === 'short-reviews-table-section') {
+            $data['data']['title_label'] = $tableAttributes['title_label'] ?? null;
+            $data['data']['table_description'] = $tableAttributes['table_description'] ?? null;
+            for ($i = 1; $i <= 5; $i++) {
+                $data['data']['methodology_parmetar_' . $i] = $tableAttributes['methodology_parmetar_' . $i] ?? null;
+            }
         }
 
         return $data ?? null;
@@ -804,7 +815,7 @@ class Decorator extends Model
         return [
             'id' => $decorator['id'] ?? null,
             'name' => $decorator['name'] ?? null,
-            'title' => $decorator['name'] ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? null,
             'alt' => $logo ? $logo->getCustomProperty('alt') : null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
@@ -812,6 +823,8 @@ class Decorator extends Model
             'column_3_value' => $decorator->decorators[0]['attributes']['column_3_value'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'review_url_button_text' => $decorator->decorators[0]['attributes']['review_url_button_text'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
         ];
     }
@@ -823,7 +836,7 @@ class Decorator extends Model
         return [
             'id' => $decorator['id'] ?? null,
             'name' => $decorator['name'] ?? null,
-            'title' => $decorator['name'] ?? null,
+            'title' => $decorator->decorators[0]['attributes']['title'] ?? null,
             'image' => $decorator->getFirstMediaUrl('logo') ?? null,
             'alt' => $logo ? $logo->getCustomProperty('alt') : null,
             'review_scroll_tag' => $decorator->decorators[0]['attributes']['review_scroll_tag'] ?? null,
@@ -832,23 +845,25 @@ class Decorator extends Model
             'column_4_value' => $decorator->decorators[0]['attributes']['column_4_value'] ?? null,
             'cta_text' => $decorator->decorators[0]['attributes']['cta_text'] ?? null,
             'cta_url' => $decorator->decorators[0]['attributes']['cta_url'] ?? null,
+            'review_url_button_text' => $decorator->decorators[0]['attributes']['review_url_button_text'] ?? null,
+            'review_url' => $decorator->decorators[0]['attributes']['review_url'] ?? null,
             'code' => $decorator->decorators[0]['attributes']['code'] ?? null,
         ];
     }
 
     public static function formatSixColumnsTableSection($decorator)
     {
-        return self::formatWideColumnsTableSection($decorator, 6, false);
+        return self::formatWideColumnsTableSection($decorator, 6, true);
     }
 
     public static function formatSevenColumnsTableSection($decorator)
     {
-        return self::formatWideColumnsTableSection($decorator, 7, false);
+        return self::formatWideColumnsTableSection($decorator, 7, true);
     }
 
     public static function formatEightColumnsTableSection($decorator)
     {
-        return self::formatWideColumnsTableSection($decorator, 8, false);
+        return self::formatWideColumnsTableSection($decorator, 8, true);
     }
 
     private static function formatWideColumnsTableSection($decorator, int $columns, bool $titleFromAttributes)
@@ -864,6 +879,8 @@ class Decorator extends Model
             'review_scroll_tag' => $attributes['review_scroll_tag'] ?? null,
             'cta_text' => $attributes['cta_text'] ?? null,
             'cta_url' => $attributes['cta_url'] ?? null,
+            'review_url_button_text' => $attributes['review_url_button_text'] ?? null,
+            'review_url' => $attributes['review_url'] ?? null,
             'code' => $attributes['code'] ?? null,
         ];
 
@@ -872,6 +889,39 @@ class Decorator extends Model
         }
 
         return $row;
+    }
+
+    public static function formatShortReviewsTableSection($decorator)
+    {
+        $logo = $decorator->getFirstMedia('logo');
+        $attributes = $decorator->decorators[0]['attributes'] ?? [];
+
+        $features = isset($attributes['features']) ? collect($attributes['features'])->map(function ($element) {
+            return [
+                'feature' => $element['attributes']['feature'] ?? null,
+                'feature_value' => $element['attributes']['feature_value'] ?? null,
+            ];
+        })->toArray() : [];
+
+        return [
+            'id' => $decorator['id'] ?? null,
+            'title' => $attributes['title'] ?? null,
+            'image' => $decorator->getFirstMediaUrl('logo') ?? null,
+            'alt' => $logo ? $logo->getCustomProperty('alt') : null,
+            'review_scroll_tag' => $attributes['review_scroll_tag'] ?? null,
+            'best_for' => $attributes['best_for'] ?? null,
+            'features' => $features,
+            'methodology_1_score' => $attributes['methodology_1_score'] ?? null,
+            'methodology_2_score' => $attributes['methodology_2_score'] ?? null,
+            'methodology_3_score' => $attributes['methodology_3_score'] ?? null,
+            'methodology_4_score' => $attributes['methodology_4_score'] ?? null,
+            'methodology_5_score' => $attributes['methodology_5_score'] ?? null,
+            'content' => $attributes['content'] ?? null,
+            'cta_text' => $attributes['cta_text'] ?? null,
+            'cta_url' => $attributes['cta_url'] ?? null,
+            'review_url_button_text' => $attributes['review_url_button_text'] ?? null,
+            'review_url' => $attributes['review_url'] ?? null,
+        ];
     }
 
     public static function formatDetailedBlueTableSection($decorator)
@@ -2172,6 +2222,26 @@ class Decorator extends Model
         ];
     }
 
+    public static function formatQuickLinksSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' => [
+                'text' => $decorator['attributes']['text'] ?? null,
+                'elements' => isset($decorator['attributes']['links']) ? collect($decorator['attributes']['links'])
+                    ->map(function ($element) {
+                        return [
+                            'name' => $element['attributes']['name'] ?? null,
+                            'url' => $element['attributes']['url'] ?? null,
+                            'icon' => $element['attributes']['icon'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null,
+            ],
+        ];
+    }
+
     public static function formatEvaluationBlockSection($decorator)
     {
         return [
@@ -2208,6 +2278,31 @@ class Decorator extends Model
                         return [
                             'type' => $element['attributes']['type'] ?? null,
                             'title' => $element['attributes']['title'] ?? null,
+                            'text' => $element['attributes']['text'] ?? null,
+                            'cta_text' => $element['attributes']['cta_text'] ?? null,
+                            'cta_url' => $element['attributes']['cta_url'] ?? null,
+                        ];
+                    })
+                    ->toArray() : null,
+            ],
+        ];
+    }
+
+    public static function formatGlanceCardsSection($decorator)
+    {
+        return [
+            'layout' => $decorator['layout'] ?? null,
+            'key' => $decorator['key'] ?? null,
+            'data' => [
+                'title_label' => $decorator['attributes']['title_label'] ?? null,
+                'title' => $decorator['attributes']['title'] ?? null,
+                'description' => $decorator['attributes']['description'] ?? null,
+                'elements' => isset($decorator['attributes']['cards']) ? collect($decorator['attributes']['cards'])
+                    ->map(function ($element) {
+                        return [
+                            'icon' => $element['attributes']['icon'] ?? null,
+                            'type' => $element['attributes']['type'] ?? null,
+                            'highlight_text' => $element['attributes']['highlight_text'] ?? null,
                             'text' => $element['attributes']['text'] ?? null,
                             'cta_text' => $element['attributes']['cta_text'] ?? null,
                             'cta_url' => $element['attributes']['cta_url'] ?? null,
