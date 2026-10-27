@@ -139,10 +139,14 @@ class Decorator extends Model
             'data' => [
                 'table_title' => $tableTitle ?? null,
                 'elements' => isset($operaters) ? $operaters->map(function ($operater) {
-                    $tableParser = self::$decoratorMapper[$operater['table_type']] ?? null;
+                    $tableType = $operater['table_type'] ?? null;
+                    $tableParser = is_string($tableType) ? (self::$decoratorMapper[$tableType] ?? null) : null;
                     $operater['image'] = $operater->getFirstMediaUrl('logo') ?? null;
-                    $operater = self::{$tableParser}($operater) ?? [];
-                    return $operater;
+                    if (!is_string($tableParser)) {
+                        return $operater;
+                    }
+
+                    return self::{$tableParser}($operater) ?? [];
                 })->toArray() : null
             ]
         ];
